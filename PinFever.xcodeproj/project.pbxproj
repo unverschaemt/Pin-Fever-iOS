@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6398B7F51AF7D00E000235FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F41AF7D00E000235FE /* main.m */; };
 		6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F71AF7D00E000235FE /* AppDelegate.m */; };
-		6398B7FB1AF7D00E000235FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7FA1AF7D00E000235FE /* ViewController.m */; };
+		6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7FA1AF7D00E000235FE /* LoginViewController.m */; };
 		6398B7FE1AF7D00E000235FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6398B7FC1AF7D00E000235FE /* Main.storyboard */; };
 		6398B8001AF7D00E000235FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6398B7FF1AF7D00E000235FE /* Images.xcassets */; };
 		6398B8031AF7D00E000235FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6398B8011AF7D00E000235FE /* LaunchScreen.xib */; };
@@ -32,8 +32,8 @@
 		6398B7F41AF7D00E000235FE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6398B7F61AF7D00E000235FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6398B7F71AF7D00E000235FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6398B7F91AF7D00E000235FE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6398B7FA1AF7D00E000235FE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6398B7F91AF7D00E000235FE /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		6398B7FA1AF7D00E000235FE /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		6398B7FD1AF7D00E000235FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6398B7FF1AF7D00E000235FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6398B8021AF7D00E000235FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -60,6 +60,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6349C8EF1AF7D9C600F412CC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6398B7F91AF7D00E000235FE /* LoginViewController.h */,
+				6398B7FA1AF7D00E000235FE /* LoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		6398B7E61AF7D00E000235FE = {
 			isa = PBXGroup;
 			children = (
@@ -83,8 +92,7 @@
 			children = (
 				6398B7F61AF7D00E000235FE /* AppDelegate.h */,
 				6398B7F71AF7D00E000235FE /* AppDelegate.m */,
-				6398B7F91AF7D00E000235FE /* ViewController.h */,
-				6398B7FA1AF7D00E000235FE /* ViewController.m */,
+				6349C8EF1AF7D9C600F412CC /* Login */,
 				6398B7FC1AF7D00E000235FE /* Main.storyboard */,
 				6398B7FF1AF7D00E000235FE /* Images.xcassets */,
 				6398B8011AF7D00E000235FE /* LaunchScreen.xib */,
@@ -219,7 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6398B7FB1AF7D00E000235FE /* ViewController.m in Sources */,
+				6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */,
 				6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */,
 				6398B7F51AF7D00E000235FE /* main.m in Sources */,
 			);
@@ -418,6 +426,7 @@
 				6398B8141AF7D00E000235FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6398B8151AF7D00E000235FE /* Build configuration list for PBXNativeTarget "PinFeverTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +435,7 @@
 				6398B8171AF7D00E000235FE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
