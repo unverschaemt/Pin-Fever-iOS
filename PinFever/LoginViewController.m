@@ -26,12 +26,8 @@
     [self setupSignInButton];
 
     [GPGManager sharedInstance].statusDelegate = self;
-    
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = NSLocalizedString(@"loginHud", nil);
-    
     self.silentLogin = [[GPGManager sharedInstance] signInWithClientID:CLIENT_ID silently:YES];
+
     [self refreshInterfaceBasedOnSignIn];
 }
 
@@ -86,7 +82,6 @@
         loginButton.enabled = NO;
         NSLog(@"Signed in!");
     }
-    [hud hide:YES];
     [self refreshInterfaceBasedOnSignIn];
 }
 
@@ -95,12 +90,9 @@
         NSLog(@"Received an error while signing in %@", [error localizedDescription]);
         loginButton.enabled = YES;
     }
-    [hud hide:YES];
 }
 
 - (void)refreshInterfaceBasedOnSignIn {
-
-    [hud hide:!self.silentLogin];
     loginButton.enabled = !self.silentLogin;
     
     BOOL signedInToGameServices = [GPGManager sharedInstance].isSignedIn;
