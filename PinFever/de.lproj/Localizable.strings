@@ -7,4 +7,7 @@
 */
 
 "playStateWaiting" = "Warten...";
+"playStateActive" = "Du bist dran!";
 "friendsTitle" = "Freundesliste";
+"signInError" = "Fehler beim Login. Bitte überprüfe deine eingegebenen Daten.";
+"loginHud" = "Einloggen...";

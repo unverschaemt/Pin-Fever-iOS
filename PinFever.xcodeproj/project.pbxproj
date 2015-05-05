@@ -14,7 +14,6 @@
 		6358AF911AF91230002A0234 /* FriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF8F1AF91230002A0234 /* FriendsTableViewCell.m */; };
 		6358AF921AF91230002A0234 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF901AF91230002A0234 /* FriendsTableViewCell.xib */; };
 		6358AF951AF918CE002A0234 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF971AF918CE002A0234 /* Main.storyboard */; };
-		6358AF9C1AF918E2002A0234 /* ActiveGamesTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF9E1AF918E2002A0234 /* ActiveGamesTableHeader.xib */; };
 		6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6358AFA71AF919AD002A0234 /* Localizable.strings */; };
 		6398B7F51AF7D00E000235FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F41AF7D00E000235FE /* main.m */; };
 		6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F71AF7D00E000235FE /* AppDelegate.m */; };
@@ -52,8 +51,6 @@
 		6358AF931AF918B8002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Login.strings; sourceTree = "<group>"; };
 		6358AF961AF918CE002A0234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6358AF9B1AF918D5002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		6358AF9D1AF918E2002A0234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ActiveGamesTableHeader.xib; sourceTree = "<group>"; };
-		6358AFA21AF918E4002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ActiveGamesTableHeader.strings; sourceTree = "<group>"; };
 		6358AFA61AF919AD002A0234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6358AFA81AF919B0002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63970AE31AF8DDC10015106D /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -115,7 +112,6 @@
 		6358AF851AF9035A002A0234 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				6358AF9E1AF918E2002A0234 /* ActiveGamesTableHeader.xib */,
 				6358AF801AF90354002A0234 /* ActiveGamesTableViewCell.h */,
 				6358AF811AF90354002A0234 /* ActiveGamesTableViewCell.m */,
 				6358AF821AF90354002A0234 /* ActiveGamesTableViewCell.xib */,
@@ -295,7 +291,6 @@
 				6398B8001AF7D00E000235FE /* Images.xcassets in Resources */,
 				6358AF951AF918CE002A0234 /* Main.storyboard in Resources */,
 				6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */,
-				6358AF9C1AF918E2002A0234 /* ActiveGamesTableHeader.xib in Resources */,
 				6358AF921AF91230002A0234 /* FriendsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,15 +408,6 @@
 				6358AF9B1AF918D5002A0234 /* de */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6358AF9E1AF918E2002A0234 /* ActiveGamesTableHeader.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6358AF9D1AF918E2002A0234 /* Base */,
-				6358AFA21AF918E4002A0234 /* de */,
-			);
-			name = ActiveGamesTableHeader.xib;
 			sourceTree = "<group>";
 		};
 		6358AFA71AF919AD002A0234 /* Localizable.strings */ = {

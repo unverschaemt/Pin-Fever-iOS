@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
-@interface LoginViewController : UIViewController {
+@interface LoginViewController : UIViewController <GPGStatusDelegate> {
     IBOutlet UIImageView *logoImageView;
+    IBOutlet UIButton *loginButton;
+    
+    MBProgressHUD *hud;
 }
 
 -(IBAction)signIn:(id)sender;

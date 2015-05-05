@@ -60,18 +60,20 @@
     NSLog(@"New Game");
 }
 
-
 #pragma mark -
 #pragma mark UITableViewDelegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    if(section == 0) {
+        return 3;
+    }
+    else return 6;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,10 +81,25 @@
     return 44;
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {    
-    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ActiveGamesTableHeader" owner:self options:nil];
-    UIView *headerView = [topLevelObjects objectAtIndex:0];
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
+    headerView.backgroundColor = [UIColor whiteColor];
+    UILabel *sectionTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 200, 44)];
+    sectionTitleLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+    [headerView addSubview:sectionTitleLabel];
     
+    if(section == 0)
+    {
+        sectionTitleLabel.text = NSLocalizedString(@"playStateActive", nil);
+        UIButton *addButton = [[UIButton alloc]initWithFrame:CGRectMake(self.tableView.frame.size.width-50, 7, 30, 30)];
+        addButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        [addButton setImage:[UIImage imageNamed:@"newGame"] forState:UIControlStateNormal];
+        [addButton addTarget:self action:@selector(newGame:) forControlEvents:UIControlEventTouchUpInside];
+        [headerView addSubview:addButton];
+    }
+    else {
+        sectionTitleLabel.text = NSLocalizedString(@"playStateWaiting", nil);
+    }
     return headerView;
 }
 
@@ -108,8 +125,6 @@
         cell = [topLevelObjects objectAtIndex:0];
     }
     cell.titleLabel.text = @"Nils";
-    cell.detailLabel.text = NSLocalizedString(@"playStateWaiting",nil);
-    
     cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
     cell.scoreLabel.text = @"5:3";
     return cell;

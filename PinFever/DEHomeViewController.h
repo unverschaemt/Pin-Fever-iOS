@@ -14,8 +14,6 @@
 }
 
 @property (nonatomic,weak) IBOutlet UITableView *tableView;
-
 -(IBAction)showSettings:(id)sender;
 -(IBAction)newGame:(id)sender;
-
 @end

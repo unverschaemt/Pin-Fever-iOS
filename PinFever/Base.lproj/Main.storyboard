@@ -112,7 +112,7 @@
                     <navigationItem key="navigationItem" id="VIS-ch-EVN">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rCr-5N-oMx">
                             <connections>
-                                <action selector="addFriend:" destination="YeL-2v-V08" id="ALt-47-nzQ"/>
+                                <action selector="addFriend:" destination="YeL-2v-V08" id="ud2-lV-UGk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

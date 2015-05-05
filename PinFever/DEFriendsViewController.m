@@ -44,11 +44,14 @@
 #pragma mark Actions
 
 -(IBAction)addFriend:(id)sender {
-    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
-    NSLog(@"Add Friend, Row: %li",(long)indexPath.row);
+    NSLog(@"Add Friend");
 }
 
+-(void)battleFriend:(id)sender {
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
+    NSLog(@"Battle Friend, Row: %li",(long)indexPath.row);
+}
 
 #pragma mark -
 #pragma mark UITableViewDelegate
@@ -87,7 +90,7 @@
     }
     cell.titleLabel.text = @"Nils";
     cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
-    [cell.playButton addTarget:self action:@selector(addFriend:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.playButton addTarget:self action:@selector(battleFriend:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
