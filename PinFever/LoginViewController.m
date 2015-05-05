@@ -22,13 +22,16 @@
     logoImageView.layer.cornerRadius = logoImageView.frame.size.width/2;
     logoImageView.layer.borderWidth = 2.0;
     logoImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
+    
+    [self setupSignInButton];
 
     [GPGManager sharedInstance].statusDelegate = self;
     
     hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.labelText = NSLocalizedString(@"loginHud", nil);
-    [[GPGManager sharedInstance] signInWithClientID:CLIENT_ID silently:YES];
+    
+    self.silentLogin = [[GPGManager sharedInstance] signInWithClientID:CLIENT_ID silently:YES];
     [self refreshInterfaceBasedOnSignIn];
 }
 
@@ -37,7 +40,40 @@
     // Dispose of any resources that can be recreated.
 }
 
--(IBAction)signIn:(id)sender {
+-(void)setupSignInButton {
+    loginButton = [[GPPSignInButton alloc] init];
+    [loginButton setStyle:kGPPSignInButtonStyleWide];
+    loginButton.enabled = NO;
+    [loginButton addTarget:self action:@selector(signIn:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:loginButton];
+
+    // This is just the autolayout code to center our button.
+    loginButton.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    // Center the button vertically.
+    NSLayoutConstraint *constraint = [NSLayoutConstraint
+                                      constraintWithItem:loginButton
+                                      attribute:NSLayoutAttributeCenterY
+                                      relatedBy:NSLayoutRelationEqual
+                                      toItem:self.view
+                                      attribute:NSLayoutAttributeCenterY
+                                      multiplier:1.0f
+                                      constant:0.0f];
+    [self.view addConstraint:constraint];
+    
+    // Center the button horizontally.
+    constraint = [NSLayoutConstraint
+                  constraintWithItem:loginButton
+                  attribute:NSLayoutAttributeCenterX
+                  relatedBy:NSLayoutRelationEqual
+                  toItem:self.view
+                  attribute:NSLayoutAttributeCenterX
+                  multiplier:1.0f
+                  constant:0.0f];
+    [self.view addConstraint:constraint];
+}
+
+-(void)signIn:(id)sender {
     [[GPGManager sharedInstance] signInWithClientID:CLIENT_ID silently:NO];
     loginButton.enabled = NO;
 }
@@ -64,6 +100,9 @@
 
 - (void)refreshInterfaceBasedOnSignIn {
 
+    [hud hide:!self.silentLogin];
+    loginButton.enabled = !self.silentLogin;
+    
     BOOL signedInToGameServices = [GPGManager sharedInstance].isSignedIn;
     if(signedInToGameServices) {
         DEHomeViewController *homeViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]instantiateInitialViewController];

@@ -11,3 +11,5 @@
 "friendsTitle" = "Freundesliste";
 "signInError" = "Fehler beim Login. Bitte überprüfe deine eingegebenen Daten.";
 "loginHud" = "Einloggen...";
+"errorPlayerInfo" = "Es konnten keine Informationen für den Spieler geladen werden. Bitte versuche es später erneut.";
+"settingsTitle" = "Einstellungen";

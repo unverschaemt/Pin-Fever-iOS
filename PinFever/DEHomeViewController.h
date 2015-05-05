@@ -11,9 +11,11 @@
 @interface DEHomeViewController : UIViewController <UITableViewDataSource,UITableViewDelegate> {
     IBOutlet UIImageView *avatarImageView;
     IBOutlet UILabel *scoreLabel;
+    
+    GPGPlayer *player;
 }
 
+@property (nonatomic,assign) BOOL avatarLoaded;
 @property (nonatomic,weak) IBOutlet UITableView *tableView;
--(IBAction)showSettings:(id)sender;
--(IBAction)newGame:(id)sender;
+
 @end

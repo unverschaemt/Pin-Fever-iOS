@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63275A2D1AF9696400A5881A /* DESettingsViewController.m */; };
+		63275A301AF96E9900A5881A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63275A2F1AF96E9900A5881A /* Images.xcassets */; };
 		6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */; };
 		6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF811AF90354002A0234 /* ActiveGamesTableViewCell.m */; };
 		6358AF841AF90354002A0234 /* ActiveGamesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF821AF90354002A0234 /* ActiveGamesTableViewCell.xib */; };
@@ -19,7 +21,6 @@
 		6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F71AF7D00E000235FE /* AppDelegate.m */; };
 		6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7FA1AF7D00E000235FE /* LoginViewController.m */; };
 		6398B7FE1AF7D00E000235FE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6398B7FC1AF7D00E000235FE /* Login.storyboard */; };
-		6398B8001AF7D00E000235FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6398B7FF1AF7D00E000235FE /* Images.xcassets */; };
 		6398B8031AF7D00E000235FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6398B8011AF7D00E000235FE /* LaunchScreen.xib */; };
 		6398B80F1AF7D00E000235FE /* PinFeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B80E1AF7D00E000235FE /* PinFeverTests.m */; };
 		AA074DF6F7DC330072874014 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B1C09E42F865C1EF58A623B /* libPods.a */; };
@@ -38,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		23246D62D85BC0918686BF90 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		63275A2C1AF9696400A5881A /* DESettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESettingsViewController.h; sourceTree = "<group>"; };
+		63275A2D1AF9696400A5881A /* DESettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DESettingsViewController.m; sourceTree = "<group>"; };
+		63275A2F1AF96E9900A5881A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6358AF7D1AF8F5AB002A0234 /* DEHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEHomeViewController.h; sourceTree = "<group>"; };
 		6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHomeViewController.m; sourceTree = "<group>"; };
 		6358AF801AF90354002A0234 /* ActiveGamesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveGamesTableViewCell.h; sourceTree = "<group>"; };
@@ -63,7 +67,6 @@
 		6398B7F91AF7D00E000235FE /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		6398B7FA1AF7D00E000235FE /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		6398B7FD1AF7D00E000235FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
-		6398B7FF1AF7D00E000235FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6398B8021AF7D00E000235FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6398B8081AF7D00E000235FE /* PinFeverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinFeverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6398B80D1AF7D00E000235FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,10 +156,12 @@
 				6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */,
 				6358AF8B1AF910B0002A0234 /* DEFriendsViewController.h */,
 				6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */,
+				63275A2C1AF9696400A5881A /* DESettingsViewController.h */,
+				63275A2D1AF9696400A5881A /* DESettingsViewController.m */,
 				6358AF851AF9035A002A0234 /* TableViewCells */,
+				63275A2F1AF96E9900A5881A /* Images.xcassets */,
 				6398B7FC1AF7D00E000235FE /* Login.storyboard */,
 				6358AF971AF918CE002A0234 /* Main.storyboard */,
-				6398B7FF1AF7D00E000235FE /* Images.xcassets */,
 				6398B8011AF7D00E000235FE /* LaunchScreen.xib */,
 				6398B7F21AF7D00E000235FE /* Supporting Files */,
 			);
@@ -287,8 +292,8 @@
 			files = (
 				6358AF841AF90354002A0234 /* ActiveGamesTableViewCell.xib in Resources */,
 				6398B7FE1AF7D00E000235FE /* Login.storyboard in Resources */,
+				63275A301AF96E9900A5881A /* Images.xcassets in Resources */,
 				6398B8031AF7D00E000235FE /* LaunchScreen.xib in Resources */,
-				6398B8001AF7D00E000235FE /* Images.xcassets in Resources */,
 				6358AF951AF918CE002A0234 /* Main.storyboard in Resources */,
 				6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */,
 				6358AF921AF91230002A0234 /* FriendsTableViewCell.xib in Resources */,
@@ -378,6 +383,7 @@
 				6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */,
 				6358AF8D1AF910B0002A0234 /* DEFriendsViewController.m in Sources */,
 				6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */,
+				63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */,
 				6398B7F51AF7D00E000235FE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

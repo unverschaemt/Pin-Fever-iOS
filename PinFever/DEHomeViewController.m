@@ -22,11 +22,16 @@
     avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2;
     avatarImageView.layer.borderWidth = 2.0;
     avatarImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
-
+    [avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showProfile:)]];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"ActiveGamesTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"activeGamesCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
 
-    [avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showProfile:)]];
+-(void)viewDidAppear:(BOOL)animated {
+    if(!self.avatarLoaded) {
+        [self loadPlayer];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,17 +53,38 @@
 #pragma mark -
 #pragma mark Actions
 
--(IBAction)showSettings:(id)sender {
-    NSLog(@"Show Settings");
-}
-
 -(void)showProfile:(UIGestureRecognizer *)gestureRecognizer {
     NSLog(@"Show Profile");
 }
 
--(IBAction)newGame:(id)sender {
+-(void)newGame:(id)sender {
     NSLog(@"New Game");
 }
+
+-(void)loadPlayer {
+    if ([GPGManager sharedInstance].isSignedIn) {
+        
+        [GPGPlayer localPlayerWithCompletionHandler:^(GPGPlayer *localPlayer, NSError *error) {
+            if (!error) {
+                player = localPlayer;
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                    UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:player.imageUrl]];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        if(img != nil) {
+                            [avatarImageView setImage: img];
+                            self.avatarLoaded = YES;
+                        }
+                    });
+                });
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"errorPlayerInfo", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alert show];
+            }
+        }];
+    }
+}
+
 
 #pragma mark -
 #pragma mark UITableViewDelegate

@@ -64,7 +64,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="Wmz-V6-5en">
                             <connections>
-                                <action selector="showSettings:" destination="VO0-KH-4l2" id="2K1-ak-ejO"/>
+                                <segue destination="BhU-8D-Kb5" kind="show" id="xc9-x4-co1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -124,6 +124,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ou6-OD-odt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1577" y="376"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="jXQ-Qx-BpQ">
+            <objects>
+                <viewController id="BhU-8D-Kb5" customClass="DESettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qTk-9x-MIf"/>
+                        <viewControllerLayoutGuide type="bottom" id="shi-m0-B7p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1vt-tM-b6t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mxm-zd-AB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2003" y="376"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gqc-zr-5RP">

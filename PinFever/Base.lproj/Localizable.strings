@@ -11,3 +11,5 @@
 "friendsTitle" = "Friendslist";
 "signInError" = "Signin process failed. Please check your entered data.";
 "loginHud" = "Logging In...";
+"errorPlayerInfo" = "Failed to retrieve information and avatar for your player. Please try again later.";
+"settingsTitle" = "Settings";
