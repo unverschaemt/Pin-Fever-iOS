@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  PinFever
+
+  Created by David Ehlen on 05.05.15.
+  Copyright (c) 2015 David Ehlen. All rights reserved.
+*/
+
+"playStateWaiting" = "Waiting...";
+"friendsTitle" = "Friendslist";

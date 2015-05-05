@@ -7,10 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */; };
+		6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF811AF90354002A0234 /* ActiveGamesTableViewCell.m */; };
+		6358AF841AF90354002A0234 /* ActiveGamesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF821AF90354002A0234 /* ActiveGamesTableViewCell.xib */; };
+		6358AF8D1AF910B0002A0234 /* DEFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */; };
+		6358AF911AF91230002A0234 /* FriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF8F1AF91230002A0234 /* FriendsTableViewCell.m */; };
+		6358AF921AF91230002A0234 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF901AF91230002A0234 /* FriendsTableViewCell.xib */; };
+		6358AF951AF918CE002A0234 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF971AF918CE002A0234 /* Main.storyboard */; };
+		6358AF9C1AF918E2002A0234 /* ActiveGamesTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF9E1AF918E2002A0234 /* ActiveGamesTableHeader.xib */; };
+		6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6358AFA71AF919AD002A0234 /* Localizable.strings */; };
 		6398B7F51AF7D00E000235FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F41AF7D00E000235FE /* main.m */; };
 		6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F71AF7D00E000235FE /* AppDelegate.m */; };
 		6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7FA1AF7D00E000235FE /* LoginViewController.m */; };
-		6398B7FE1AF7D00E000235FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6398B7FC1AF7D00E000235FE /* Main.storyboard */; };
+		6398B7FE1AF7D00E000235FE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6398B7FC1AF7D00E000235FE /* Login.storyboard */; };
 		6398B8001AF7D00E000235FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6398B7FF1AF7D00E000235FE /* Images.xcassets */; };
 		6398B8031AF7D00E000235FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6398B8011AF7D00E000235FE /* LaunchScreen.xib */; };
 		6398B80F1AF7D00E000235FE /* PinFeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B80E1AF7D00E000235FE /* PinFeverTests.m */; };
@@ -30,6 +39,23 @@
 
 /* Begin PBXFileReference section */
 		23246D62D85BC0918686BF90 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6358AF7D1AF8F5AB002A0234 /* DEHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEHomeViewController.h; sourceTree = "<group>"; };
+		6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHomeViewController.m; sourceTree = "<group>"; };
+		6358AF801AF90354002A0234 /* ActiveGamesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveGamesTableViewCell.h; sourceTree = "<group>"; };
+		6358AF811AF90354002A0234 /* ActiveGamesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveGamesTableViewCell.m; sourceTree = "<group>"; };
+		6358AF821AF90354002A0234 /* ActiveGamesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveGamesTableViewCell.xib; sourceTree = "<group>"; };
+		6358AF8B1AF910B0002A0234 /* DEFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEFriendsViewController.h; sourceTree = "<group>"; };
+		6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEFriendsViewController.m; sourceTree = "<group>"; };
+		6358AF8E1AF91230002A0234 /* FriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewCell.h; sourceTree = "<group>"; };
+		6358AF8F1AF91230002A0234 /* FriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewCell.m; sourceTree = "<group>"; };
+		6358AF901AF91230002A0234 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
+		6358AF931AF918B8002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Login.strings; sourceTree = "<group>"; };
+		6358AF961AF918CE002A0234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6358AF9B1AF918D5002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		6358AF9D1AF918E2002A0234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ActiveGamesTableHeader.xib; sourceTree = "<group>"; };
+		6358AFA21AF918E4002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ActiveGamesTableHeader.strings; sourceTree = "<group>"; };
+		6358AFA61AF919AD002A0234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6358AFA81AF919B0002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		63970AE31AF8DDC10015106D /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		63970AE41AF8E3540015106D /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		6398B7EF1AF7D00E000235FE /* PinFever.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinFever.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,7 +65,7 @@
 		6398B7F71AF7D00E000235FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6398B7F91AF7D00E000235FE /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		6398B7FA1AF7D00E000235FE /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		6398B7FD1AF7D00E000235FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6398B7FD1AF7D00E000235FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		6398B7FF1AF7D00E000235FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6398B8021AF7D00E000235FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6398B8081AF7D00E000235FE /* PinFeverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinFeverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +112,20 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		6358AF851AF9035A002A0234 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				6358AF9E1AF918E2002A0234 /* ActiveGamesTableHeader.xib */,
+				6358AF801AF90354002A0234 /* ActiveGamesTableViewCell.h */,
+				6358AF811AF90354002A0234 /* ActiveGamesTableViewCell.m */,
+				6358AF821AF90354002A0234 /* ActiveGamesTableViewCell.xib */,
+				6358AF8E1AF91230002A0234 /* FriendsTableViewCell.h */,
+				6358AF8F1AF91230002A0234 /* FriendsTableViewCell.m */,
+				6358AF901AF91230002A0234 /* FriendsTableViewCell.xib */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
 		6398B7E61AF7D00E000235FE = {
 			isa = PBXGroup;
 			children = (
@@ -113,7 +153,13 @@
 				6398B7F71AF7D00E000235FE /* AppDelegate.m */,
 				63970AE31AF8DDC10015106D /* Constants.h */,
 				6349C8EF1AF7D9C600F412CC /* Login */,
-				6398B7FC1AF7D00E000235FE /* Main.storyboard */,
+				6358AF7D1AF8F5AB002A0234 /* DEHomeViewController.h */,
+				6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */,
+				6358AF8B1AF910B0002A0234 /* DEFriendsViewController.h */,
+				6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */,
+				6358AF851AF9035A002A0234 /* TableViewCells */,
+				6398B7FC1AF7D00E000235FE /* Login.storyboard */,
+				6358AF971AF918CE002A0234 /* Main.storyboard */,
 				6398B7FF1AF7D00E000235FE /* Images.xcassets */,
 				6398B8011AF7D00E000235FE /* LaunchScreen.xib */,
 				6398B7F21AF7D00E000235FE /* Supporting Files */,
@@ -127,6 +173,7 @@
 				6398B7F31AF7D00E000235FE /* Info.plist */,
 				6398B7F41AF7D00E000235FE /* main.m */,
 				63970AE41AF8E3540015106D /* PrefixHeader.pch */,
+				6358AFA71AF919AD002A0234 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -224,6 +271,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 6398B7E61AF7D00E000235FE;
 			productRefGroup = 6398B7F01AF7D00E000235FE /* Products */;
@@ -241,9 +289,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6398B7FE1AF7D00E000235FE /* Main.storyboard in Resources */,
+				6358AF841AF90354002A0234 /* ActiveGamesTableViewCell.xib in Resources */,
+				6398B7FE1AF7D00E000235FE /* Login.storyboard in Resources */,
 				6398B8031AF7D00E000235FE /* LaunchScreen.xib in Resources */,
 				6398B8001AF7D00E000235FE /* Images.xcassets in Resources */,
+				6358AF951AF918CE002A0234 /* Main.storyboard in Resources */,
+				6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */,
+				6358AF9C1AF918E2002A0234 /* ActiveGamesTableHeader.xib in Resources */,
+				6358AF921AF91230002A0234 /* FriendsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +379,10 @@
 			files = (
 				6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */,
 				6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */,
+				6358AF911AF91230002A0234 /* FriendsTableViewCell.m in Sources */,
+				6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */,
+				6358AF8D1AF910B0002A0234 /* DEFriendsViewController.m in Sources */,
+				6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */,
 				6398B7F51AF7D00E000235FE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,12 +406,40 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6398B7FC1AF7D00E000235FE /* Main.storyboard */ = {
+		6358AF971AF918CE002A0234 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6358AF961AF918CE002A0234 /* Base */,
+				6358AF9B1AF918D5002A0234 /* de */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6358AF9E1AF918E2002A0234 /* ActiveGamesTableHeader.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6358AF9D1AF918E2002A0234 /* Base */,
+				6358AFA21AF918E4002A0234 /* de */,
+			);
+			name = ActiveGamesTableHeader.xib;
+			sourceTree = "<group>";
+		};
+		6358AFA71AF919AD002A0234 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6358AFA61AF919AD002A0234 /* Base */,
+				6358AFA81AF919B0002A0234 /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		6398B7FC1AF7D00E000235FE /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6398B7FD1AF7D00E000235FE /* Base */,
+				6358AF931AF918B8002A0234 /* de */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		6398B8011AF7D00E000235FE /* LaunchScreen.xib */ = {
