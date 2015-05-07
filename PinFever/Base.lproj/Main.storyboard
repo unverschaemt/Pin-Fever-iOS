@@ -39,7 +39,7 @@
                                     <constraint firstAttribute="width" constant="130" id="VEj-A7-cDQ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -143,6 +143,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxm-zd-AB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2003" y="376"/>
+        </scene>
+        <!--Round Detail View Controller-->
+        <scene sceneID="Rj5-Td-nKu">
+            <objects>
+                <viewController storyboardIdentifier="roundDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z5o-3M-EL9" customClass="DERoundDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uXz-tg-7EI"/>
+                        <viewControllerLayoutGuide type="bottom" id="jQG-ND-c6j"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gwQ-em-6AG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="w3d-DE-gbY" customClass="SKSTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="w3d-DE-gbY" firstAttribute="top" secondItem="uXz-tg-7EI" secondAttribute="bottom" constant="-20" id="Uj4-P1-fps"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="w3d-DE-gbY" secondAttribute="trailing" constant="-16" id="mHI-mI-HCA"/>
+                            <constraint firstAttribute="centerX" secondItem="w3d-DE-gbY" secondAttribute="centerX" id="mbc-eb-ahz"/>
+                            <constraint firstAttribute="centerY" secondItem="w3d-DE-gbY" secondAttribute="centerY" id="r0i-xM-NDD"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="tableView" destination="w3d-DE-gbY" id="sxW-hk-O1R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2aa-kd-ako" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2432" y="376"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gqc-zr-5RP">

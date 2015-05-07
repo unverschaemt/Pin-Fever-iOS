@@ -11,11 +11,10 @@
 @interface DEHomeViewController : UIViewController <UITableViewDataSource,UITableViewDelegate> {
     IBOutlet UIImageView *avatarImageView;
     IBOutlet UILabel *scoreLabel;
-    
-    GPGPlayer *player;
 }
 
-@property (nonatomic,assign) BOOL avatarLoaded;
 @property (nonatomic,weak) IBOutlet UITableView *tableView;
+@property (nonatomic,strong) NSMutableArray *activeGames;
+@property (nonatomic,strong) NSMutableArray *waitingGames;
 
 @end

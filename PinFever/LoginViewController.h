@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <google-plus-ios-sdk/GPPSignInButton.h>
 
-@class GPPSignInButton;
-@interface LoginViewController : UIViewController <GPGStatusDelegate> {
+@interface LoginViewController : UIViewController {
     IBOutlet UIImageView *logoImageView;
-    GPPSignInButton *loginButton;
 }
 
-@property (nonatomic,assign) BOOL silentLogin;
+-(IBAction)login:(id)sender;
+-(IBAction)signUp:(id)sender;
+-(IBAction)forgotPassword:(id)sender;
 
 @end
 

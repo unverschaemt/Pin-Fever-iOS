@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -23,13 +24,69 @@
                                     <constraint firstAttribute="width" constant="150" id="ofc-sN-Nqf"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vQ5-Q9-jfV">
+                                <rect key="frame" x="16" y="550" width="568" height="30"/>
+                                <state key="normal" title="Login With Facebook">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xln-0Q-tZs">
+                                <rect key="frame" x="16" y="285" width="247" height="30"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="REa-hV-EEt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UgF-Uw-rGg">
+                                <rect key="frame" x="337" y="285" width="247" height="30"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YLc-Uh-q3f"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Yq-MY-6Aj">
+                                <rect key="frame" x="16" y="313" width="247" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7Mq-d7-Epm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Forgot Password ?">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="forgotPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KOV-hz-227"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="vQ5-Q9-jfV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="33c-e9-uZP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vQ5-Q9-jfV" secondAttribute="bottom" constant="20" id="6Iq-q2-k63"/>
+                            <constraint firstItem="9Yq-MY-6Aj" firstAttribute="top" secondItem="xln-0Q-tZs" secondAttribute="bottom" constant="-2" id="9ec-do-B5R">
+                                <variation key="widthClass=compact" constant="-9"/>
+                            </constraint>
                             <constraint firstAttribute="centerX" secondItem="UXn-ur-ukb" secondAttribute="centerX" id="FIO-e8-f4K"/>
+                            <constraint firstItem="xln-0Q-tZs" firstAttribute="top" relation="lessThanOrEqual" secondItem="UXn-ur-ukb" secondAttribute="bottom" constant="93" id="HaA-qh-4h5"/>
+                            <constraint firstItem="UgF-Uw-rGg" firstAttribute="leading" secondItem="9Yq-MY-6Aj" secondAttribute="trailing" constant="74" id="PHs-oc-sFS"/>
+                            <constraint firstItem="xln-0Q-tZs" firstAttribute="width" secondItem="9Yq-MY-6Aj" secondAttribute="width" id="ToM-Wd-Hu4"/>
+                            <constraint firstItem="xln-0Q-tZs" firstAttribute="baseline" secondItem="UgF-Uw-rGg" secondAttribute="baseline" id="Uma-yp-4Jq"/>
+                            <constraint firstItem="xln-0Q-tZs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="WiW-7p-fWK"/>
+                            <constraint firstItem="UgF-Uw-rGg" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="agv-Pt-9gb"/>
+                            <constraint firstItem="UgF-Uw-rGg" firstAttribute="leading" secondItem="xln-0Q-tZs" secondAttribute="trailing" constant="74" id="cKQ-vi-ySH"/>
+                            <constraint firstItem="xln-0Q-tZs" firstAttribute="width" secondItem="UgF-Uw-rGg" secondAttribute="width" id="hT3-Um-jXW"/>
+                            <constraint firstItem="vQ5-Q9-jfV" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ikj-Gc-fHR"/>
+                            <constraint firstItem="9Yq-MY-6Aj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ur1-Yf-f0Z"/>
+                            <constraint firstItem="UgF-Uw-rGg" firstAttribute="top" secondItem="UXn-ur-ukb" secondAttribute="bottom" constant="93" id="xQj-8G-nYV">
+                                <variation key="widthClass=compact" constant="66"/>
+                            </constraint>
                             <constraint firstItem="UXn-ur-ukb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="22" id="yVv-n5-eGw"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="logoImageView" destination="UXn-ur-ukb" id="b0I-Lw-YI8"/>
                     </connections>

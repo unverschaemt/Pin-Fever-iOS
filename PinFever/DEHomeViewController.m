@@ -8,9 +8,9 @@
 
 #import "DEHomeViewController.h"
 #import "ActiveGamesTableViewCell.h"
+#import "DERoundDetailViewController.h"
 
 @interface DEHomeViewController ()
-
 @end
 
 @implementation DEHomeViewController
@@ -18,20 +18,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     avatarImageView.clipsToBounds = YES;
     avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2;
     avatarImageView.layer.borderWidth = 2.0;
     avatarImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
     [avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showProfile:)]];
     
+    self.waitingGames = [NSMutableArray new];
+    self.activeGames = [NSMutableArray new];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"ActiveGamesTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"activeGamesCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    if(!self.avatarLoaded) {
-        [self loadPlayer];
-    }
+    [self reloadMatches];
+    //TODO: loadAvatar if not loaded yet
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,33 +61,13 @@
 }
 
 -(void)newGame:(id)sender {
-    NSLog(@"New Game");
+    NSLog(@"Add New Game");
 }
 
--(void)loadPlayer {
-    if ([GPGManager sharedInstance].isSignedIn) {
-        
-        [GPGPlayer localPlayerWithCompletionHandler:^(GPGPlayer *localPlayer, NSError *error) {
-            if (!error) {
-                player = localPlayer;
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                    UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:player.imageUrl]];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        if(img != nil) {
-                            [avatarImageView setImage: img];
-                            self.avatarLoaded = YES;
-                        }
-                    });
-                });
-            }
-            else {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"errorPlayerInfo", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                [alert show];
-            }
-        }];
-    }
+-(void)reloadMatches {
+    //TODO reloadArrays and afterwards TableView
+    [self.tableView reloadData];
 }
-
 
 #pragma mark -
 #pragma mark UITableViewDelegate
@@ -97,9 +80,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section == 0) {
-        return 3;
+        return self.activeGames.count;
     }
-    else return 6;
+    else return self.waitingGames.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -150,15 +133,16 @@
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ActiveGamesTableViewCell" owner:self options:nil];
         cell = [topLevelObjects objectAtIndex:0];
     }
-    cell.titleLabel.text = @"Nils";
+    cell.titleLabel.text = @"Opponent";
     cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
-    cell.scoreLabel.text = @"5:3";
+    cell.scoreLabel.text = @"0:0";
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //TODO: Je nach Section Detail oder Game pushen
 }
-
 
 @end

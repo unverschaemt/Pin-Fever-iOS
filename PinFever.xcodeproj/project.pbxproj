@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6319044E1AFA210B00E3665F /* DERoundDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */; };
+		631904521AFA27FF00E3665F /* DERoundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 631904501AFA27FF00E3665F /* DERoundTableViewCell.m */; };
+		631904531AFA27FF00E3665F /* DERoundTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 631904511AFA27FF00E3665F /* DERoundTableViewCell.xib */; };
 		63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63275A2D1AF9696400A5881A /* DESettingsViewController.m */; };
 		63275A301AF96E9900A5881A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63275A2F1AF96E9900A5881A /* Images.xcassets */; };
 		6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */; };
@@ -39,6 +42,11 @@
 
 /* Begin PBXFileReference section */
 		23246D62D85BC0918686BF90 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6319044C1AFA210B00E3665F /* DERoundDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DERoundDetailViewController.h; sourceTree = "<group>"; };
+		6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DERoundDetailViewController.m; sourceTree = "<group>"; };
+		6319044F1AFA27FF00E3665F /* DERoundTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DERoundTableViewCell.h; sourceTree = "<group>"; };
+		631904501AFA27FF00E3665F /* DERoundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DERoundTableViewCell.m; sourceTree = "<group>"; };
+		631904511AFA27FF00E3665F /* DERoundTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DERoundTableViewCell.xib; sourceTree = "<group>"; };
 		63275A2C1AF9696400A5881A /* DESettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESettingsViewController.h; sourceTree = "<group>"; };
 		63275A2D1AF9696400A5881A /* DESettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DESettingsViewController.m; sourceTree = "<group>"; };
 		63275A2F1AF96E9900A5881A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -121,6 +129,9 @@
 				6358AF8E1AF91230002A0234 /* FriendsTableViewCell.h */,
 				6358AF8F1AF91230002A0234 /* FriendsTableViewCell.m */,
 				6358AF901AF91230002A0234 /* FriendsTableViewCell.xib */,
+				6319044F1AFA27FF00E3665F /* DERoundTableViewCell.h */,
+				631904501AFA27FF00E3665F /* DERoundTableViewCell.m */,
+				631904511AFA27FF00E3665F /* DERoundTableViewCell.xib */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -154,6 +165,8 @@
 				6349C8EF1AF7D9C600F412CC /* Login */,
 				6358AF7D1AF8F5AB002A0234 /* DEHomeViewController.h */,
 				6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */,
+				6319044C1AFA210B00E3665F /* DERoundDetailViewController.h */,
+				6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */,
 				6358AF8B1AF910B0002A0234 /* DEFriendsViewController.h */,
 				6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */,
 				63275A2C1AF9696400A5881A /* DESettingsViewController.h */,
@@ -295,6 +308,7 @@
 				63275A301AF96E9900A5881A /* Images.xcassets in Resources */,
 				6398B8031AF7D00E000235FE /* LaunchScreen.xib in Resources */,
 				6358AF951AF918CE002A0234 /* Main.storyboard in Resources */,
+				631904531AFA27FF00E3665F /* DERoundTableViewCell.xib in Resources */,
 				6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */,
 				6358AF921AF91230002A0234 /* FriendsTableViewCell.xib in Resources */,
 			);
@@ -382,7 +396,9 @@
 				6358AF911AF91230002A0234 /* FriendsTableViewCell.m in Sources */,
 				6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */,
 				6358AF8D1AF910B0002A0234 /* DEFriendsViewController.m in Sources */,
+				631904521AFA27FF00E3665F /* DERoundTableViewCell.m in Sources */,
 				6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */,
+				6319044E1AFA210B00E3665F /* DERoundDetailViewController.m in Sources */,
 				63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */,
 				6398B7F51AF7D00E000235FE /* main.m in Sources */,
 			);
