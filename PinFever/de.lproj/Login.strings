@@ -1,3 +1,33 @@
 
-/* Class = "UIButton"; normalTitle = "Sign In With Google+"; ObjectID = "4s2-l3-8EV"; */
-"4s2-l3-8EV.normalTitle" = "Einloggen mit Google+";
+/* Class = "UIButton"; normalTitle = "Forgot Password ?"; ObjectID = "9Yq-MY-6Aj"; */
+"9Yq-MY-6Aj.normalTitle" = "Passwort vergessen ?";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "9z7-8t-K58"; */
+"9z7-8t-K58.placeholder" = "Passwort";
+
+/* Class = "UITextField"; placeholder = "E-Mail"; ObjectID = "Cfj-gp-xc3"; */
+"Cfj-gp-xc3.placeholder" = "E-Mail";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "KJH-em-RKI"; */
+"KJH-em-RKI.placeholder" = "Username";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "NTG-s3-H5p"; */
+"NTG-s3-H5p.placeholder" = "Passwort";
+
+/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "UgF-Uw-rGg"; */
+"UgF-Uw-rGg.normalTitle" = "Registrieren";
+
+/* Class = "UITextField"; placeholder = "Retype Password"; ObjectID = "Y1p-zj-Sog"; */
+"Y1p-zj-Sog.placeholder" = "Passwort wiederholen";
+
+/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "ZZ3-Hc-a7z"; */
+"ZZ3-Hc-a7z.normalTitle" = "Registrieren";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "gHs-Lb-JWl"; */
+"gHs-Lb-JWl.placeholder" = "Username";
+
+/* Class = "UIButton"; normalTitle = "Login With Facebook"; ObjectID = "vQ5-Q9-jfV"; */
+"vQ5-Q9-jfV.normalTitle" = "Login mit Facebook";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "xln-0Q-tZs"; */
+"xln-0Q-tZs.normalTitle" = "Login";

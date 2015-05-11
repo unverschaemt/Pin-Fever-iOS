@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6314E51F1AFE1CCC00B8574E /* DELaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6314E51E1AFE1CCC00B8574E /* DELaunchViewController.m */; };
+		6314E5231AFE1F0000B8574E /* PlayerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6314E5211AFE1F0000B8574E /* PlayerCollectionViewCell.m */; };
 		6319044E1AFA210B00E3665F /* DERoundDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */; };
 		631904521AFA27FF00E3665F /* DERoundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 631904501AFA27FF00E3665F /* DERoundTableViewCell.m */; };
 		631904531AFA27FF00E3665F /* DERoundTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 631904511AFA27FF00E3665F /* DERoundTableViewCell.xib */; };
@@ -26,6 +28,9 @@
 		6398B7FE1AF7D00E000235FE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6398B7FC1AF7D00E000235FE /* Login.storyboard */; };
 		6398B8031AF7D00E000235FE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6398B8011AF7D00E000235FE /* LaunchScreen.xib */; };
 		6398B80F1AF7D00E000235FE /* PinFeverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B80E1AF7D00E000235FE /* PinFeverTests.m */; };
+		63AF11BE1B008E340063D3B1 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AF11BD1B008E340063D3B1 /* TLTagsControl.m */; };
+		63AF11C21B0097950063D3B1 /* DEDeleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AF11C11B0097950063D3B1 /* DEDeleteTextField.m */; };
+		63F782E81B00DAF700C101FC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F782E71B00DAF700C101FC /* RegisterViewController.m */; };
 		AA074DF6F7DC330072874014 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B1C09E42F865C1EF58A623B /* libPods.a */; };
 		ECD5BEC372440E7D600D36C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B1C09E42F865C1EF58A623B /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -42,6 +47,10 @@
 
 /* Begin PBXFileReference section */
 		23246D62D85BC0918686BF90 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6314E51D1AFE1CCC00B8574E /* DELaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DELaunchViewController.h; sourceTree = "<group>"; };
+		6314E51E1AFE1CCC00B8574E /* DELaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DELaunchViewController.m; sourceTree = "<group>"; };
+		6314E5201AFE1F0000B8574E /* PlayerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCollectionViewCell.h; sourceTree = "<group>"; };
+		6314E5211AFE1F0000B8574E /* PlayerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerCollectionViewCell.m; sourceTree = "<group>"; };
 		6319044C1AFA210B00E3665F /* DERoundDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DERoundDetailViewController.h; sourceTree = "<group>"; };
 		6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DERoundDetailViewController.m; sourceTree = "<group>"; };
 		6319044F1AFA27FF00E3665F /* DERoundTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DERoundTableViewCell.h; sourceTree = "<group>"; };
@@ -79,6 +88,12 @@
 		6398B8081AF7D00E000235FE /* PinFeverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinFeverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6398B80D1AF7D00E000235FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6398B80E1AF7D00E000235FE /* PinFeverTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PinFeverTests.m; sourceTree = "<group>"; };
+		63AF11BC1B008E340063D3B1 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
+		63AF11BD1B008E340063D3B1 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
+		63AF11C01B0097950063D3B1 /* DEDeleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEDeleteTextField.h; sourceTree = "<group>"; };
+		63AF11C11B0097950063D3B1 /* DEDeleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEDeleteTextField.m; sourceTree = "<group>"; };
+		63F782E61B00DAF700C101FC /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		63F782E71B00DAF700C101FC /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		6B1C09E42F865C1EF58A623B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABA9E17C690EC19D25973B59 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +131,8 @@
 			children = (
 				6398B7F91AF7D00E000235FE /* LoginViewController.h */,
 				6398B7FA1AF7D00E000235FE /* LoginViewController.m */,
+				63F782E61B00DAF700C101FC /* RegisterViewController.h */,
+				63F782E71B00DAF700C101FC /* RegisterViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -132,6 +149,8 @@
 				6319044F1AFA27FF00E3665F /* DERoundTableViewCell.h */,
 				631904501AFA27FF00E3665F /* DERoundTableViewCell.m */,
 				631904511AFA27FF00E3665F /* DERoundTableViewCell.xib */,
+				6314E5201AFE1F0000B8574E /* PlayerCollectionViewCell.h */,
+				6314E5211AFE1F0000B8574E /* PlayerCollectionViewCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -162,9 +181,12 @@
 				6398B7F61AF7D00E000235FE /* AppDelegate.h */,
 				6398B7F71AF7D00E000235FE /* AppDelegate.m */,
 				63970AE31AF8DDC10015106D /* Constants.h */,
+				63AF11BF1B008E380063D3B1 /* TLTagsControl */,
 				6349C8EF1AF7D9C600F412CC /* Login */,
 				6358AF7D1AF8F5AB002A0234 /* DEHomeViewController.h */,
 				6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */,
+				6314E51D1AFE1CCC00B8574E /* DELaunchViewController.h */,
+				6314E51E1AFE1CCC00B8574E /* DELaunchViewController.m */,
 				6319044C1AFA210B00E3665F /* DERoundDetailViewController.h */,
 				6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */,
 				6358AF8B1AF910B0002A0234 /* DEFriendsViewController.h */,
@@ -207,6 +229,17 @@
 				6398B80D1AF7D00E000235FE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		63AF11BF1B008E380063D3B1 /* TLTagsControl */ = {
+			isa = PBXGroup;
+			children = (
+				63AF11BC1B008E340063D3B1 /* TLTagsControl.h */,
+				63AF11BD1B008E340063D3B1 /* TLTagsControl.m */,
+				63AF11C01B0097950063D3B1 /* DEDeleteTextField.h */,
+				63AF11C11B0097950063D3B1 /* DEDeleteTextField.m */,
+			);
+			name = TLTagsControl;
 			sourceTree = "<group>";
 		};
 		A46BBED1BCC88E47CD0E3E3C /* Pods */ = {
@@ -392,14 +425,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */,
+				6314E51F1AFE1CCC00B8574E /* DELaunchViewController.m in Sources */,
 				6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */,
 				6358AF911AF91230002A0234 /* FriendsTableViewCell.m in Sources */,
 				6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */,
+				63AF11C21B0097950063D3B1 /* DEDeleteTextField.m in Sources */,
+				6314E5231AFE1F0000B8574E /* PlayerCollectionViewCell.m in Sources */,
 				6358AF8D1AF910B0002A0234 /* DEFriendsViewController.m in Sources */,
 				631904521AFA27FF00E3665F /* DERoundTableViewCell.m in Sources */,
 				6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */,
+				63F782E81B00DAF700C101FC /* RegisterViewController.m in Sources */,
 				6319044E1AFA210B00E3665F /* DERoundDetailViewController.m in Sources */,
 				63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */,
+				63AF11BE1B008E340063D3B1 /* TLTagsControl.m in Sources */,
 				6398B7F51AF7D00E000235FE /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,7 @@
 #import "DEHomeViewController.h"
 #import "ActiveGamesTableViewCell.h"
 #import "DERoundDetailViewController.h"
+#import "DELaunchViewController.h"
 
 @interface DEHomeViewController ()
 @end
@@ -61,7 +62,8 @@
 }
 
 -(void)newGame:(id)sender {
-    NSLog(@"Add New Game");
+    DELaunchViewController *launchVc = [[self storyboard]instantiateViewControllerWithIdentifier:@"launchViewController"];
+    [self.navigationController pushViewController:launchVc animated:YES];
 }
 
 -(void)reloadMatches {

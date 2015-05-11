@@ -9,5 +9,4 @@
 
 #ifdef __OBJC__
 #import "Constants.h"
-#import <GooglePlayGames/GooglePlayGames.h>
 #endif

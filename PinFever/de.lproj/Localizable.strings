@@ -16,3 +16,6 @@
 "roundDetailTitle" = "Spiel Details";
 "round" = "Runde";
 "question" = "Frage";
+"autoMatch" = "Autom. Spiel";
+"tagPlaceholder" = "Eingeladene Spieler";
+"pinFeverGame" = "Pin Fever Spiel";

@@ -1,20 +1,18 @@
 //
-//  ViewController.m
+//  RegisterViewController.m
 //  PinFever
 //
-//  Created by David Ehlen on 04.05.15.
+//  Created by David Ehlen on 11.05.15.
 //  Copyright (c) 2015 David Ehlen. All rights reserved.
 //
 
-#import "LoginViewController.h"
-#import "DEHomeViewController.h"
-#import "AppDelegate.h"
+#import "RegisterViewController.h"
 
-@interface LoginViewController ()
+@interface RegisterViewController ()
 
 @end
 
-@implementation LoginViewController
+@implementation RegisterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,12 +23,13 @@
     logoImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
     
     [self setupTextFields];
-    
 }
 
 -(void)setupTextFields {
     usernameField.delegate = self;
+    emailField.delegate = self;
     passwordField.delegate = self;
+    rePasswordField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,28 +47,34 @@
     return YES;
 }
 
-
-#pragma mark -
-#pragma mark IBAction's
--(IBAction)login:(id)sender {
-    DEHomeViewController *homeViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]instantiateInitialViewController];
-    homeViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    homeViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:homeViewController animated:YES completion:nil];
-}
-
--(IBAction)forgotPassword:(id)sender {
+-(IBAction)signUp:(id)sender {
     
 }
+
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 #pragma mark -
 #pragma mark UITextFieldDelegate
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     if(textField == usernameField) {
+        [emailField becomeFirstResponder];
+    }
+    else if (textField == emailField) {
         [passwordField becomeFirstResponder];
+    }
+    else if(textField == passwordField) {
+        [rePasswordField becomeFirstResponder];
     }
     return YES;
 }
-
 
 @end
