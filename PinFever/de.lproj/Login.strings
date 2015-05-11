@@ -1,33 +1,33 @@
 
+/* Class = "UITextField"; placeholder = "E-Mail"; ObjectID = "5I9-FK-dGZ"; */
+"5I9-FK-dGZ.placeholder" = "E-Mail";
+
 /* Class = "UIButton"; normalTitle = "Forgot Password ?"; ObjectID = "9Yq-MY-6Aj"; */
 "9Yq-MY-6Aj.normalTitle" = "Passwort vergessen ?";
 
-/* Class = "UITextField"; placeholder = "Password"; ObjectID = "9z7-8t-K58"; */
-"9z7-8t-K58.placeholder" = "Passwort";
+/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "FMC-OK-OeG"; */
+"FMC-OK-OeG.normalTitle" = "Registrieren";
 
-/* Class = "UITextField"; placeholder = "E-Mail"; ObjectID = "Cfj-gp-xc3"; */
-"Cfj-gp-xc3.placeholder" = "E-Mail";
-
-/* Class = "UITextField"; placeholder = "Username"; ObjectID = "KJH-em-RKI"; */
-"KJH-em-RKI.placeholder" = "Username";
-
-/* Class = "UITextField"; placeholder = "Password"; ObjectID = "NTG-s3-H5p"; */
-"NTG-s3-H5p.placeholder" = "Passwort";
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "JFL-Uu-Qso"; */
+"JFL-Uu-Qso.placeholder" = "Username";
 
 /* Class = "UIButton"; normalTitle = "Register"; ObjectID = "UgF-Uw-rGg"; */
 "UgF-Uw-rGg.normalTitle" = "Registrieren";
 
-/* Class = "UITextField"; placeholder = "Retype Password"; ObjectID = "Y1p-zj-Sog"; */
-"Y1p-zj-Sog.placeholder" = "Passwort wiederholen";
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "ZjO-eZ-9IA"; */
+"ZjO-eZ-9IA.placeholder" = "Username";
 
-/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "ZZ3-Hc-a7z"; */
-"ZZ3-Hc-a7z.normalTitle" = "Registrieren";
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "a6a-ds-fs6"; */
+"a6a-ds-fs6.placeholder" = "Passwort";
 
-/* Class = "UITextField"; placeholder = "Username"; ObjectID = "gHs-Lb-JWl"; */
-"gHs-Lb-JWl.placeholder" = "Username";
+/* Class = "UITextField"; placeholder = "Retype Password"; ObjectID = "nHQ-Zo-URf"; */
+"nHQ-Zo-URf.placeholder" = "Passwort wiederholen";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "oyh-ST-mUg"; */
+"oyh-ST-mUg.placeholder" = "Passwort";
 
 /* Class = "UIButton"; normalTitle = "Login With Facebook"; ObjectID = "vQ5-Q9-jfV"; */
-"vQ5-Q9-jfV.normalTitle" = "Login mit Facebook";
+"vQ5-Q9-jfV.normalTitle" = "Login Mit Facebook";
 
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "xln-0Q-tZs"; */
 "xln-0Q-tZs.normalTitle" = "Login";

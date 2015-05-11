@@ -26,13 +26,6 @@
                                     <outlet property="delegate" destination="VO0-KH-4l2" id="cd1-wd-IhA"/>
                                 </connections>
                             </tableView>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="bft-x2-leC">
-                                <rect key="frame" x="142" y="72" width="130" height="130"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="hOz-Ki-XfV"/>
-                                    <constraint firstAttribute="width" constant="130" id="o7x-YC-7YK"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="210" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfx-04-Nvb">
                                 <rect key="frame" x="142" y="210" width="130" height="21"/>
                                 <constraints>
@@ -42,6 +35,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="bft-x2-leC">
+                                <rect key="frame" x="142" y="72" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="hOz-Ki-XfV"/>
+                                    <constraint firstAttribute="width" constant="130" id="o7x-YC-7YK"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
