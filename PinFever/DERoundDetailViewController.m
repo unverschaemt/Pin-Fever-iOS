@@ -81,7 +81,7 @@
     
     if (!cell) {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"DERoundTableViewCell" owner:self options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
+        cell = topLevelObjects[0];
 
     }
     

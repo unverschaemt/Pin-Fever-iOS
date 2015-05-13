@@ -35,9 +35,9 @@ typedef NS_ENUM(NSUInteger, TLTagsControlMode) {
 
 @property (assign, nonatomic) id<TLTagsControlDelegate> tagDelegate;
 
-- (id)initWithFrame:(CGRect)frame andTags:(NSArray *)tags withTagsControlMode:(TLTagsControlMode)mode maxTags:(NSNumber *)maxTags;
-
+- (id)initWithFrame:(CGRect)frame andTags:(NSArray *)tags withTagsControlMode:(TLTagsControlMode)mode;
 - (void)addTag:(NSString *)tag;
 - (void)reloadTagSubviews;
+-(NSString *)stringForTagIndex:(NSInteger)index;
 
 @end

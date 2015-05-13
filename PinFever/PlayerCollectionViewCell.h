@@ -12,6 +12,6 @@
     //UIImageView *overlayImageView;
 }
 
-@property (nonatomic,strong) IBOutlet UIImageView *playerImageView;
-@property (nonatomic,strong) IBOutlet UILabel *playerNameLabel;
+@property (nonatomic,weak) IBOutlet UIImageView *playerImageView;
+@property (nonatomic,weak) IBOutlet UILabel *playerNameLabel;
 @end

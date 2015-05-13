@@ -20,11 +20,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    avatarImageView.clipsToBounds = YES;
-    avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2;
-    avatarImageView.layer.borderWidth = 2.0;
-    avatarImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
-    [avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showProfile:)]];
+    self.avatarImageView.clipsToBounds = YES;
+    self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width/2;
+    self.avatarImageView.layer.borderWidth = 2.0;
+    self.avatarImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
+    [self.avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showProfile:)]];
     
     self.waitingGames = [NSMutableArray new];
     self.activeGames = [NSMutableArray new];
@@ -34,6 +34,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self reloadMatches];
     //TODO: loadAvatar if not loaded yet
 }
@@ -58,7 +59,9 @@
 #pragma mark Actions
 
 -(void)showProfile:(UIGestureRecognizer *)gestureRecognizer {
+    if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
     NSLog(@"Show Profile");
+    }
 }
 
 -(void)newGame:(id)sender {
@@ -84,7 +87,7 @@
     if(section == 0) {
         return self.activeGames.count;
     }
-    else return self.waitingGames.count;
+    return self.waitingGames.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -133,7 +136,7 @@
     if (cell == nil)
     {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"ActiveGamesTableViewCell" owner:self options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
+        cell = topLevelObjects[0];
     }
     cell.titleLabel.text = @"Opponent";
     cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];

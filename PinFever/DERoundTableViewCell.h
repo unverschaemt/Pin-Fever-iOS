@@ -11,7 +11,7 @@
 
 @interface DERoundTableViewCell : SKSTableViewCell
 
-@property(nonatomic,strong) IBOutlet UILabel *titleLabel;
-@property(nonatomic,strong) IBOutlet UILabel *scoreLabel;
+@property(nonatomic,weak) IBOutlet UILabel *titleLabel;
+@property(nonatomic,weak) IBOutlet UILabel *scoreLabel;
 
 @end

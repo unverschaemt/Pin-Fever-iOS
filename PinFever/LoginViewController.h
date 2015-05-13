@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate> {
-    IBOutlet UIImageView *logoImageView;
-    IBOutlet UITextField *usernameField;
-    IBOutlet UITextField *passwordField;
-    
-    IBOutlet UIButton *loginButton;
-    IBOutlet UIButton *forgotPwButton;
-    IBOutlet UIButton *signupButton;
-}
+@interface LoginViewController : UIViewController<UITextFieldDelegate>
 
 -(IBAction)login:(id)sender;
 -(IBAction)forgotPassword:(id)sender;
+
+@property (nonatomic, weak) IBOutlet UIImageView *logoImageView;
+@property (nonatomic, weak) IBOutlet UITextField *usernameField;
+@property (nonatomic, weak) IBOutlet UITextField *passwordField;
+
+@property (nonatomic, weak) IBOutlet UIButton *loginButton;
+@property (nonatomic, weak) IBOutlet UIButton *forgotPwButton;
+@property (nonatomic, weak) IBOutlet UIButton *signupButton;
 
 @end
 

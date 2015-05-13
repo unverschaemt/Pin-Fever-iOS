@@ -18,13 +18,14 @@
 #define FOOTER_HEIGHT 50
 #define STARTBUTTON_HEIGHT 30
 #define STARTBUTTON_WIDTH 60
-
+#define STARTLABEL_HEIGHT 30
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.tagControl.tagPlaceholder = NSLocalizedString(@"tagPlaceholder", nil);
     self.tagControl.mode = TLTagsControlModeEdit;
     self.tagControl.tagDelegate = self;
+    self.tagControl.maxTags = @1;
     [self setupFooterView];
 }
 
@@ -42,12 +43,12 @@
     [startButton setTitle:@"Start" forState:UIControlStateNormal];
     [startButton setTitleColor:darkGrayColor forState:UIControlStateNormal];
     [startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-
+    [startButton addTarget:self action:@selector(startGame) forControlEvents:UIControlEventTouchUpInside];
     startButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     startButton.layer.cornerRadius = 5;
     [self.footerView addSubview:startButton];
     
-    UILabel *footerLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, (FOOTER_HEIGHT-STARTBUTTON_HEIGHT)/2, 150, STARTBUTTON_HEIGHT)];
+    UILabel *footerLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, (FOOTER_HEIGHT-STARTLABEL_HEIGHT)/2, 150, STARTLABEL_HEIGHT)];
     footerLabel.text = NSLocalizedString(@"pinFeverGame", nil);
     footerLabel.textColor = darkGrayColor;
     footerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15];
@@ -59,6 +60,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)startGame {
+    //Only 1 opponent is allowed therefore always tags[0]
+    NSString *opponentName = [self.tagControl stringForTagIndex:0];
+    NSLog(@"%@",opponentName);
 }
 
 /*

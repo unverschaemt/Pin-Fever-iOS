@@ -86,7 +86,7 @@
     if (cell == nil)
     {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"FriendsTableViewCell" owner:self options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
+        cell = topLevelObjects[0];
     }
     cell.titleLabel.text = @"Nils";
     cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];

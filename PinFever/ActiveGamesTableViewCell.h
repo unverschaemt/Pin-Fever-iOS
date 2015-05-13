@@ -10,8 +10,8 @@
 
 @interface ActiveGamesTableViewCell : UITableViewCell
 
-@property (nonatomic,strong) IBOutlet UIImageView *playerImageView;
-@property (nonatomic,strong) IBOutlet UILabel *titleLabel;
-@property (nonatomic,strong) IBOutlet UILabel *scoreLabel;
+@property (nonatomic,weak) IBOutlet UIImageView *playerImageView;
+@property (nonatomic,weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic,weak) IBOutlet UILabel *scoreLabel;
 
 @end

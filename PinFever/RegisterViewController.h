@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface RegisterViewController : UIViewController <UITextFieldDelegate>
-{
-    IBOutlet UIImageView *logoImageView;
-    IBOutlet UITextField *usernameField;
-    IBOutlet UITextField *emailField;
-    IBOutlet UITextField *passwordField;
-    IBOutlet UITextField *rePasswordField;
-    IBOutlet UIButton *signupButton;
-}
 
 -(IBAction)signUp:(id)sender;
+
+@property (nonatomic, weak) IBOutlet UIImageView *logoImageView;
+@property (nonatomic, weak) IBOutlet UITextField *usernameField;
+@property (nonatomic, weak) IBOutlet UITextField *emailField;
+@property (nonatomic, weak) IBOutlet UITextField *passwordField;
+@property (nonatomic, weak) IBOutlet UITextField *rePasswordField;
+@property (nonatomic, weak) IBOutlet UIButton *signupButton;
+
 @end

@@ -19,18 +19,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    logoImageView.clipsToBounds = YES;
-    logoImageView.layer.cornerRadius = logoImageView.frame.size.width/2;
-    logoImageView.layer.borderWidth = 2.0;
-    logoImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
+    self.logoImageView.clipsToBounds = YES;
+    self.logoImageView.layer.cornerRadius = self.logoImageView.frame.size.width/2;
+    self.logoImageView.layer.borderWidth = 2.0;
+    self.logoImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
     
     [self setupTextFields];
     
 }
 
 -(void)setupTextFields {
-    usernameField.delegate = self;
-    passwordField.delegate = self;
+    self.usernameField.delegate = self;
+    self.passwordField.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,10 +65,12 @@
 #pragma mark -
 #pragma mark UITextFieldDelegate
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if(textField == usernameField) {
-        [passwordField becomeFirstResponder];
+    if(textField == self.usernameField) {
+        [self.passwordField becomeFirstResponder];
+        return YES;
     }
-    return YES;
+    [textField resignFirstResponder];
+    return NO;
 }
 
 

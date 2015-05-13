@@ -40,14 +40,13 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame andTags:(NSArray *)tags withTagsControlMode:(TLTagsControlMode)mode maxTags:(NSNumber *)maxTags {
+- (id)initWithFrame:(CGRect)frame andTags:(NSArray *)tags withTagsControlMode:(TLTagsControlMode)mode {
     self = [super initWithFrame:frame];
     
     if (self != nil) {
         [self commonInit];
         [self setTags:[[NSMutableArray alloc]initWithArray:tags]];
         [self setMode:mode];
-        [self setMaxTags:maxTags];
     }
     
     return self;
@@ -84,8 +83,6 @@
     tagInputField_.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
     tagInputField_.placeholder = @"tag";
     tagInputField_.autocorrectionType = UITextAutocorrectionTypeNo;
-    
-    _maxTags = [NSNumber numberWithInt:1];
     
     if (_mode == TLTagsControlModeEdit) {
         [self addSubview:tagInputField_];
@@ -161,7 +158,7 @@
 }
 
 - (void)addTag:(NSString *)tag {
-    if(_tags.count >= _maxTags.integerValue) {
+    if(_maxTags != nil && _tags.count >= _maxTags.integerValue) {
         return;
     }
     for (NSString *oldTag in _tags) {
@@ -188,6 +185,13 @@
     }
     
     self.contentOffset = offset;
+}
+
+-(NSString *)stringForTagIndex:(NSInteger)index {
+    if(_tags.count < index) {
+        return [_tags objectAtIndex:index];
+    }
+    return @"";
 }
 
 - (void)reloadTagSubviews {

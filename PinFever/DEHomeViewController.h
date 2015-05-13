@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DEHomeViewController : UIViewController <UITableViewDataSource,UITableViewDelegate> {
-    IBOutlet UIImageView *avatarImageView;
-    IBOutlet UILabel *scoreLabel;
-}
+@interface DEHomeViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,weak) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *activeGames;
 @property (nonatomic,strong) NSMutableArray *waitingGames;
 
+@property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
+@property (nonatomic, weak) IBOutlet UILabel *scoreLabel;
 @end

@@ -12,6 +12,6 @@
 @interface DELaunchViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate,TLTagsControlDelegate>
 
 @property(nonatomic,weak) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) IBOutlet TLTagsControl *tagControl;
+@property (nonatomic, weak) IBOutlet TLTagsControl *tagControl;
 
 @end
