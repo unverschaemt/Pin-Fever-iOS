@@ -273,6 +273,25 @@
             </objects>
             <point key="canvasLocation" x="2867" y="376"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="Uwa-nT-kfy">
+            <objects>
+                <viewController storyboardIdentifier="profileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zf9-8d-TnY" customClass="DEProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nPx-Mf-dro"/>
+                        <viewControllerLayoutGuide type="bottom" id="QhT-93-dsM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xas-uP-4k7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ugI-1F-83x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3304" y="376"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Gqc-zr-5RP">
             <objects>

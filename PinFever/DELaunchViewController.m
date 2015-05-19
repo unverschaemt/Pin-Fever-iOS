@@ -22,6 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.title = NSLocalizedString(@"newGameTitle", nil);
+    
     self.tagControl.tagPlaceholder = NSLocalizedString(@"tagPlaceholder", nil);
     self.tagControl.mode = TLTagsControlModeEdit;
     self.tagControl.tagDelegate = self;

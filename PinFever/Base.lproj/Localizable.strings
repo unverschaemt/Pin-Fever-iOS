@@ -8,7 +8,7 @@
 
 "playStateWaiting" = "Waiting...";
 "playStateActive" = "Your Turn!";
-"friendsTitle" = "Friendslist";
+"friendsTitle" = "Friends";
 "signInError" = "Signin process failed. Please check your entered data.";
 "loginHud" = "Logging In...";
 "errorPlayerInfo" = "Failed to retrieve information and avatar for your player. Please try again later.";
@@ -19,3 +19,5 @@
 "autoMatch" = "Auto Match";
 "tagPlaceholder" = "Invited Players";
 "pinFeverGame" = "Pin Fever Game";
+"newGameTitle" = "New Game";
+"profileViewTitle" = "Profile";

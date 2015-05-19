@@ -10,6 +10,7 @@
 #import "ActiveGamesTableViewCell.h"
 #import "DERoundDetailViewController.h"
 #import "DELaunchViewController.h"
+#import "DEProfileViewController.h"
 
 @interface DEHomeViewController ()
 @end
@@ -60,11 +61,12 @@
 
 -(void)showProfile:(UIGestureRecognizer *)gestureRecognizer {
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-    NSLog(@"Show Profile");
+        DEProfileViewController *profileViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
+        [self.navigationController pushViewController:profileViewController animated:YES];
     }
 }
 
--(void)newGame:(id)sender {
+-(void)newGame {
     DELaunchViewController *launchVc = [[self storyboard]instantiateViewControllerWithIdentifier:@"launchViewController"];
     [self.navigationController pushViewController:launchVc animated:YES];
 }
@@ -108,7 +110,7 @@
         UIButton *addButton = [[UIButton alloc]initWithFrame:CGRectMake(self.tableView.frame.size.width-50, 7, 30, 30)];
         addButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         [addButton setImage:[UIImage imageNamed:@"newGame"] forState:UIControlStateNormal];
-        [addButton addTarget:self action:@selector(newGame:) forControlEvents:UIControlEventTouchUpInside];
+        [addButton addTarget:self action:@selector(newGame) forControlEvents:UIControlEventTouchUpInside];
         [headerView addSubview:addButton];
     }
     else {

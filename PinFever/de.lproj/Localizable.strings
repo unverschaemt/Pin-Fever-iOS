@@ -8,7 +8,7 @@
 
 "playStateWaiting" = "Warten...";
 "playStateActive" = "Du bist dran!";
-"friendsTitle" = "Freundesliste";
+"friendsTitle" = "Freunde";
 "signInError" = "Fehler beim Login. Bitte überprüfe deine eingegebenen Daten.";
 "loginHud" = "Einloggen...";
 "errorPlayerInfo" = "Es konnten keine Informationen für den Spieler geladen werden. Bitte versuche es später erneut.";
@@ -19,3 +19,5 @@
 "autoMatch" = "Autom. Spiel";
 "tagPlaceholder" = "Eingeladene Spieler";
 "pinFeverGame" = "Pin Fever Spiel";
+"newGameTitle" = "Neues Spiel";
+"profileViewTitle" = "Profil";
