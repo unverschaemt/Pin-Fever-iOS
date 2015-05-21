@@ -21,3 +21,5 @@
 "pinFeverGame" = "Pin Fever Spiel";
 "newGameTitle" = "Neues Spiel";
 "profileViewTitle" = "Profil";
+"addFriendTitle" = "Freund hinzufügen";
+"errorAddingFriend" = "Ein Fehler ist aufgetreten beim Hinzufügen des Spielers zu deiner Freundesliste. Bitte versuche es später erneut.";

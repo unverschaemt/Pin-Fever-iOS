@@ -102,9 +102,10 @@
         cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
         cell.playerNameLabel.text = NSLocalizedString(@"autoMatch", nil);
     }
-    
+    else {
     cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
     cell.playerNameLabel.text = @"nils_hirsekorn";
+    }
     return cell;
 }
 

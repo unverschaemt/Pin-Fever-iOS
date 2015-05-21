@@ -33,6 +33,9 @@
 		63B0CFC91B0A0545000AED84 /* DEProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B0CFC81B0A0545000AED84 /* DEProfileViewController.m */; };
 		63D36DB41B036144008B3C3F /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D36DB31B036144008B3C3F /* SQLiteManager.m */; };
 		63D36DB71B03615F008B3C3F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D36DB61B03615F008B3C3F /* libsqlite3.0.dylib */; };
+		63F42B481B0E1C6C00E5CC48 /* DEAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F42B471B0E1C6C00E5CC48 /* DEAddFriendViewController.m */; };
+		63F42B4B1B0E1EBD00E5CC48 /* DEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F42B4A1B0E1EBD00E5CC48 /* DEPlayer.m */; };
+		63F42B4F1B0E2B2200E5CC48 /* pinfever_db.db in Resources */ = {isa = PBXBuildFile; fileRef = 63F42B4E1B0E2B1E00E5CC48 /* pinfever_db.db */; };
 		63F782E81B00DAF700C101FC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F782E71B00DAF700C101FC /* RegisterViewController.m */; };
 		AA074DF6F7DC330072874014 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B1C09E42F865C1EF58A623B /* libPods.a */; };
 		ECD5BEC372440E7D600D36C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B1C09E42F865C1EF58A623B /* libPods.a */; };
@@ -100,6 +103,11 @@
 		63D36DB21B036144008B3C3F /* SQLiteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteManager.h; sourceTree = "<group>"; };
 		63D36DB31B036144008B3C3F /* SQLiteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteManager.m; sourceTree = "<group>"; };
 		63D36DB61B03615F008B3C3F /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		63F42B461B0E1C6C00E5CC48 /* DEAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAddFriendViewController.h; sourceTree = "<group>"; };
+		63F42B471B0E1C6C00E5CC48 /* DEAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAddFriendViewController.m; sourceTree = "<group>"; };
+		63F42B491B0E1EBD00E5CC48 /* DEPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEPlayer.h; sourceTree = "<group>"; };
+		63F42B4A1B0E1EBD00E5CC48 /* DEPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEPlayer.m; sourceTree = "<group>"; };
+		63F42B4E1B0E2B1E00E5CC48 /* pinfever_db.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = pinfever_db.db; sourceTree = "<group>"; };
 		63F782E61B00DAF700C101FC /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		63F782E71B00DAF700C101FC /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		6B1C09E42F865C1EF58A623B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +212,10 @@
 				6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */,
 				6358AF8B1AF910B0002A0234 /* DEFriendsViewController.h */,
 				6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */,
+				63F42B491B0E1EBD00E5CC48 /* DEPlayer.h */,
+				63F42B4A1B0E1EBD00E5CC48 /* DEPlayer.m */,
+				63F42B461B0E1C6C00E5CC48 /* DEAddFriendViewController.h */,
+				63F42B471B0E1C6C00E5CC48 /* DEAddFriendViewController.m */,
 				63275A2C1AF9696400A5881A /* DESettingsViewController.h */,
 				63275A2D1AF9696400A5881A /* DESettingsViewController.m */,
 				6358AF851AF9035A002A0234 /* TableViewCells */,
@@ -219,6 +231,7 @@
 		6398B7F21AF7D00E000235FE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				63F42B4E1B0E2B1E00E5CC48 /* pinfever_db.db */,
 				6398B7F31AF7D00E000235FE /* Info.plist */,
 				6398B7F41AF7D00E000235FE /* main.m */,
 				63970AE41AF8E3540015106D /* PrefixHeader.pch */,
@@ -367,6 +380,7 @@
 				631904531AFA27FF00E3665F /* DERoundTableViewCell.xib in Resources */,
 				6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */,
 				6358AF921AF91230002A0234 /* FriendsTableViewCell.xib in Resources */,
+				63F42B4F1B0E2B2200E5CC48 /* pinfever_db.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +478,9 @@
 				6314E51F1AFE1CCC00B8574E /* DELaunchViewController.m in Sources */,
 				6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */,
 				6358AF911AF91230002A0234 /* FriendsTableViewCell.m in Sources */,
+				63F42B4B1B0E1EBD00E5CC48 /* DEPlayer.m in Sources */,
 				6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */,
+				63F42B481B0E1C6C00E5CC48 /* DEAddFriendViewController.m in Sources */,
 				63AF11C21B0097950063D3B1 /* DEDeleteTextField.m in Sources */,
 				6314E5231AFE1F0000B8574E /* PlayerCollectionViewCell.m in Sources */,
 				63D36DB41B036144008B3C3F /* SQLiteManager.m in Sources */,

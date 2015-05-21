@@ -21,3 +21,5 @@
 "pinFeverGame" = "Pin Fever Game";
 "newGameTitle" = "New Game";
 "profileViewTitle" = "Profile";
+"addFriendTitle" = "Add Friend";
+"errorAddingFriend" = "An error occured while trying to add this player to your friendslist. Please try again later.";

@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DEAddFriendViewController.h"
+#import "SQLiteManager.h"
 
-@interface DEFriendsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface DEFriendsViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource,DEAddFriendDelegate> {
+    SQLiteManager *sqliteManager;
+}
 
-@property (nonatomic,weak) IBOutlet UITableView *tableView;
+@property(nonatomic,weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *friends;
 
 -(IBAction)addFriend:(id)sender;
 

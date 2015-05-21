@@ -1,49 +1,49 @@
 //
-//  DEFriendsViewController.m
+//  DEAddFriendViewController.m
 //  PinFever
 //
-//  Created by David Ehlen on 05.05.15.
+//  Created by David Ehlen on 21.05.15.
 //  Copyright (c) 2015 David Ehlen. All rights reserved.
 //
 
-#import "DEFriendsViewController.h"
-#import "FriendsTableViewCell.h"
 #import "DEAddFriendViewController.h"
 #import "PlayerCollectionViewCell.h"
-#import "DEPlayer.h"
 #import "SQLiteManager.h"
 
-@interface DEFriendsViewController ()
+@interface DEAddFriendViewController ()
 
 @end
 
-@implementation DEFriendsViewController
+@implementation DEAddFriendViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = NSLocalizedString(@"friendsTitle", nil);
-    
-    self.friends = [NSMutableArray new];
+    self.title = NSLocalizedString(@"addFriendTitle", nil);
+    self.searchResults = [NSMutableArray new];
     sqliteManager = [self getSQLiteManager];
-    [self loadFriends];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.searchBar becomeFirstResponder];
 }
-*/
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
+
 
 #pragma mark -
 #pragma mark Actions
@@ -55,41 +55,21 @@
     return [[SQLiteManager alloc]initWithDatabaseNamed:writableDBPath];
 }
 
--(void)loadFriends {
-    [self.friends removeAllObjects];
-    NSArray *friendResults = [sqliteManager getRowsForQuery:[NSString stringWithFormat:@"SELECT Users.name, Users.imageName,Users.userId from Friends JOIN Users ON Friends.userId = Users.userId;"]];
+-(void)searchForName:(NSString *)searchString {
+    [self.searchResults removeAllObjects];
     
-    for(NSDictionary *dict in friendResults) {
-        DEPlayer *player = [[DEPlayer alloc]init];
+    NSArray *sqlResults = [sqliteManager getRowsForQuery:[NSString stringWithFormat:@"SELECT Users.name, Users.imageName, Users.userId FROM Users WHERE Users.name LIKE '%@%%';",searchString]];
+    for(NSDictionary *dict in sqlResults) {
+        DEPlayer *player = [DEPlayer new];
         player.name = dict[@"name"];
         player.imageName = dict[@"imageName"];
         player.userId = [dict[@"userId"]integerValue];
-        [self.friends addObject:player];
+        [self.searchResults addObject:player];
     }
+    
     [self.collectionView reloadData];
 }
 
--(IBAction)addFriend:(id)sender {
-    DEAddFriendViewController *addFriendViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"addFriendViewController"];
-    addFriendViewController.delegate = self;
-    [self.navigationController pushViewController:addFriendViewController animated:YES];
-}
-
--(void)battleFriend:(DEPlayer *)player {
-    NSLog(@"Battle with: %@",player.name);
-}
-
-#pragma mark -
-#pragma mark DEAddFriendDelegate
-
--(void)addedFriend:(DEPlayer *)player {
-    NSError *error = [sqliteManager doQuery:[NSString stringWithFormat:@"INSERT INTO Friends VALUES('%li');",player.userId]];
-    if(error) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"errorAddingFriend", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    [self loadFriends];
-}
 
 #pragma mark -
 #pragma mark UICollectionViewDataSource & Delegate
@@ -102,17 +82,16 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.friends.count;
+    return self.searchResults.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PlayerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
-
-    DEPlayer *player = self.friends[indexPath.row];
+    DEPlayer *player = self.searchResults[indexPath.row];
     cell.playerImageView.image = [UIImage imageNamed:player.imageName];
     cell.playerNameLabel.text = player.name;
-    
+
     return cell;
 }
 
@@ -133,9 +112,39 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    DEPlayer *player = self.friends[indexPath.row];
-    [self battleFriend:player];
+  
+    if ([self.delegate respondsToSelector:@selector(addedFriend:)])
+    {
+        [self.delegate addedFriend:self.searchResults[indexPath.row]];
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark -
+#pragma mark UISearchBarDelegate
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if(searchText.length > 0) {
+        [self searchForName:searchBar.text];
+    }
+    else {
+        [self.searchResults removeAllObjects];
+        [self.collectionView reloadData];
+    }
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    searchBar.text=@"";
+    
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+}
+
 
 
 @end
