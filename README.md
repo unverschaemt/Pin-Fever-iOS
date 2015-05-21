@@ -24,10 +24,9 @@ open PinFever.xcworkspace
 ```
 
 #####Server
-Pin Fever makes use of the [Google Play Game Services](https://developers.google.com/games/services/).
-This service is used to implement the communication between Android and iOS clients and to maintain a stable infrastructure for the turn-based game.
+The Pin Fever Server is written in Javascript and with the help of [nodejs](https://nodejs.org/).
+We implement Push Notifications for iOS and Android aswell as User Management and a full featured API to run the turn-based game. Further documentation concerning the server side can be found in the official server repository: [Pin Fever Server](https://github.com/unverschaemt/Pin-Fever-Server).
 
-A Getting Started Guide concerning this service can be found here: [Getting Started](https://developers.google.com/games/services/ios/quickstart).
 
 #####Client Code
 The client is written completely in Objective-C. Further documentation on the code will follow.
