@@ -18,8 +18,6 @@
 		6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF811AF90354002A0234 /* ActiveGamesTableViewCell.m */; };
 		6358AF841AF90354002A0234 /* ActiveGamesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF821AF90354002A0234 /* ActiveGamesTableViewCell.xib */; };
 		6358AF8D1AF910B0002A0234 /* DEFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */; };
-		6358AF911AF91230002A0234 /* FriendsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF8F1AF91230002A0234 /* FriendsTableViewCell.m */; };
-		6358AF921AF91230002A0234 /* FriendsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF901AF91230002A0234 /* FriendsTableViewCell.xib */; };
 		6358AF951AF918CE002A0234 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF971AF918CE002A0234 /* Main.storyboard */; };
 		6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6358AFA71AF919AD002A0234 /* Localizable.strings */; };
 		6398B7F51AF7D00E000235FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F41AF7D00E000235FE /* main.m */; };
@@ -72,9 +70,6 @@
 		6358AF821AF90354002A0234 /* ActiveGamesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveGamesTableViewCell.xib; sourceTree = "<group>"; };
 		6358AF8B1AF910B0002A0234 /* DEFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEFriendsViewController.h; sourceTree = "<group>"; };
 		6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEFriendsViewController.m; sourceTree = "<group>"; };
-		6358AF8E1AF91230002A0234 /* FriendsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsTableViewCell.h; sourceTree = "<group>"; };
-		6358AF8F1AF91230002A0234 /* FriendsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsTableViewCell.m; sourceTree = "<group>"; };
-		6358AF901AF91230002A0234 /* FriendsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsTableViewCell.xib; sourceTree = "<group>"; };
 		6358AF931AF918B8002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Login.strings; sourceTree = "<group>"; };
 		6358AF961AF918CE002A0234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6358AF9B1AF918D5002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
@@ -161,9 +156,6 @@
 				6358AF801AF90354002A0234 /* ActiveGamesTableViewCell.h */,
 				6358AF811AF90354002A0234 /* ActiveGamesTableViewCell.m */,
 				6358AF821AF90354002A0234 /* ActiveGamesTableViewCell.xib */,
-				6358AF8E1AF91230002A0234 /* FriendsTableViewCell.h */,
-				6358AF8F1AF91230002A0234 /* FriendsTableViewCell.m */,
-				6358AF901AF91230002A0234 /* FriendsTableViewCell.xib */,
 				6319044F1AFA27FF00E3665F /* DERoundTableViewCell.h */,
 				631904501AFA27FF00E3665F /* DERoundTableViewCell.m */,
 				631904511AFA27FF00E3665F /* DERoundTableViewCell.xib */,
@@ -202,6 +194,7 @@
 				63D36DB51B036149008B3C3F /* Database */,
 				63AF11BF1B008E380063D3B1 /* TLTagsControl */,
 				6349C8EF1AF7D9C600F412CC /* Login */,
+				63D060CA1B0E852B00D54B23 /* Models */,
 				6358AF7D1AF8F5AB002A0234 /* DEHomeViewController.h */,
 				6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */,
 				63B0CFC71B0A0545000AED84 /* DEProfileViewController.h */,
@@ -210,12 +203,7 @@
 				6314E51E1AFE1CCC00B8574E /* DELaunchViewController.m */,
 				6319044C1AFA210B00E3665F /* DERoundDetailViewController.h */,
 				6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */,
-				6358AF8B1AF910B0002A0234 /* DEFriendsViewController.h */,
-				6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */,
-				63F42B491B0E1EBD00E5CC48 /* DEPlayer.h */,
-				63F42B4A1B0E1EBD00E5CC48 /* DEPlayer.m */,
-				63F42B461B0E1C6C00E5CC48 /* DEAddFriendViewController.h */,
-				63F42B471B0E1C6C00E5CC48 /* DEAddFriendViewController.m */,
+				63D060C91B0E851800D54B23 /* FriendsViewController */,
 				63275A2C1AF9696400A5881A /* DESettingsViewController.h */,
 				63275A2D1AF9696400A5881A /* DESettingsViewController.m */,
 				6358AF851AF9035A002A0234 /* Cells */,
@@ -266,6 +254,26 @@
 				63AF11C11B0097950063D3B1 /* DEDeleteTextField.m */,
 			);
 			name = TLTagsControl;
+			sourceTree = "<group>";
+		};
+		63D060C91B0E851800D54B23 /* FriendsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6358AF8B1AF910B0002A0234 /* DEFriendsViewController.h */,
+				6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */,
+				63F42B461B0E1C6C00E5CC48 /* DEAddFriendViewController.h */,
+				63F42B471B0E1C6C00E5CC48 /* DEAddFriendViewController.m */,
+			);
+			name = FriendsViewController;
+			sourceTree = "<group>";
+		};
+		63D060CA1B0E852B00D54B23 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				63F42B491B0E1EBD00E5CC48 /* DEPlayer.h */,
+				63F42B4A1B0E1EBD00E5CC48 /* DEPlayer.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		63D36DB51B036149008B3C3F /* Database */ = {
@@ -379,7 +387,6 @@
 				6358AF951AF918CE002A0234 /* Main.storyboard in Resources */,
 				631904531AFA27FF00E3665F /* DERoundTableViewCell.xib in Resources */,
 				6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */,
-				6358AF921AF91230002A0234 /* FriendsTableViewCell.xib in Resources */,
 				63F42B4F1B0E2B2200E5CC48 /* pinfever_db.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,7 +484,6 @@
 				6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */,
 				6314E51F1AFE1CCC00B8574E /* DELaunchViewController.m in Sources */,
 				6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */,
-				6358AF911AF91230002A0234 /* FriendsTableViewCell.m in Sources */,
 				63F42B4B1B0E1EBD00E5CC48 /* DEPlayer.m in Sources */,
 				6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */,
 				63F42B481B0E1C6C00E5CC48 /* DEAddFriendViewController.m in Sources */,

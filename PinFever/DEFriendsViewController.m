@@ -7,7 +7,6 @@
 //
 
 #import "DEFriendsViewController.h"
-#import "FriendsTableViewCell.h"
 #import "DEAddFriendViewController.h"
 #import "PlayerCollectionViewCell.h"
 #import "DEPlayer.h"
@@ -47,18 +46,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
 #pragma mark -
-#pragma mark Actions
+#pragma mark Delete
 
 -(void)activateDeletionMode:(UIGestureRecognizer *)recognizer {
     
@@ -126,6 +115,20 @@
     [self stopShivering:cell];
 }
 
+-(void)deleteFriend:(NSIndexPath *)indexPath {
+    NSError *error = [sqliteManager doQuery:[NSString stringWithFormat:@"DELETE FROM Friends WHERE Friends.userId = '%li';",((DEPlayer *)self.friends[indexPath.row]).userId]];
+    if(error) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"deleteFriendMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else {
+        [self.friends removeObjectAtIndex:indexPath.row];
+    }
+}
+
+#pragma mark -
+#pragma mark Delete Animations
+
 -(CAAnimation*)rotationAnimation {
     CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
     animation.values = @[@(-kWiggleRotateAngle), @(kWiggleRotateAngle)];
@@ -169,6 +172,9 @@
     [cell.layer removeAnimationForKey:@"bounce"];
 }
 
+#pragma mark -
+#pragma mark Database
+
 -(SQLiteManager *)getSQLiteManager {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -190,16 +196,9 @@
     [self.collectionView reloadData];
 }
 
--(void)deleteFriend:(NSIndexPath *)indexPath {
-    NSError *error = [sqliteManager doQuery:[NSString stringWithFormat:@"DELETE FROM Friends WHERE Friends.userId = '%li';",((DEPlayer *)self.friends[indexPath.row]).userId]];
-    if(error) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"deleteFriendMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else {
-        [self.friends removeObjectAtIndex:indexPath.row];
-    }
-}
+
+#pragma mark -
+#pragma mark Actions
 
 -(IBAction)addFriend:(id)sender {
     DEAddFriendViewController *addFriendViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"addFriendViewController"];
