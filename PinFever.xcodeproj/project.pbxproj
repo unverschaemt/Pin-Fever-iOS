@@ -155,7 +155,7 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-		6358AF851AF9035A002A0234 /* TableViewCells */ = {
+		6358AF851AF9035A002A0234 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				6358AF801AF90354002A0234 /* ActiveGamesTableViewCell.h */,
@@ -170,7 +170,7 @@
 				6314E5201AFE1F0000B8574E /* PlayerCollectionViewCell.h */,
 				6314E5211AFE1F0000B8574E /* PlayerCollectionViewCell.m */,
 			);
-			name = TableViewCells;
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		6398B7E61AF7D00E000235FE = {
@@ -218,7 +218,7 @@
 				63F42B471B0E1C6C00E5CC48 /* DEAddFriendViewController.m */,
 				63275A2C1AF9696400A5881A /* DESettingsViewController.h */,
 				63275A2D1AF9696400A5881A /* DESettingsViewController.m */,
-				6358AF851AF9035A002A0234 /* TableViewCells */,
+				6358AF851AF9035A002A0234 /* Cells */,
 				63275A2F1AF96E9900A5881A /* Images.xcassets */,
 				6398B7FC1AF7D00E000235FE /* Login.storyboard */,
 				6358AF971AF918CE002A0234 /* Main.storyboard */,

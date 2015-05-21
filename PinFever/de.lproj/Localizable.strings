@@ -23,3 +23,4 @@
 "profileViewTitle" = "Profil";
 "addFriendTitle" = "Freund hinzufügen";
 "errorAddingFriend" = "Ein Fehler ist aufgetreten beim Hinzufügen des Spielers zu deiner Freundesliste. Bitte versuche es später erneut.";
+"deleteFriendMsg" = "Ein Fehler ist aufgetreten beim Löschen des Spielers von deiner Freundesliste. Bitte versuche es später erneut.";

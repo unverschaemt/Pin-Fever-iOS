@@ -16,7 +16,7 @@
 
 @property(nonatomic,weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *friends;
-
+@property (nonatomic,assign) BOOL deleteModus;
 -(IBAction)addFriend:(id)sender;
 
 @end

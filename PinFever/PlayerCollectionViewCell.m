@@ -18,4 +18,10 @@
     self.playerImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
 }
 
+-(void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+}
+
+
+
 @end

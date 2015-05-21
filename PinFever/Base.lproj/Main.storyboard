@@ -120,6 +120,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aY0-h5-7mP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                    <state key="normal" image="deleteButton">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted" image="deleteButtonPressed"/>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -129,10 +136,13 @@
                                             <constraint firstItem="rhk-Yk-g32" firstAttribute="top" secondItem="BfF-KY-z0s" secondAttribute="bottom" constant="2" id="FJ9-Gy-M2j"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="BfF-KY-z0s" secondAttribute="trailing" id="QAi-LN-ZPU"/>
                                             <constraint firstItem="rhk-Yk-g32" firstAttribute="trailing" secondItem="qSw-W8-bGb" secondAttribute="trailingMargin" id="aDo-ZB-5Fs"/>
+                                            <constraint firstItem="aY0-h5-7mP" firstAttribute="leading" secondItem="qSw-W8-bGb" secondAttribute="leading" id="jMd-90-gWt"/>
+                                            <constraint firstItem="aY0-h5-7mP" firstAttribute="top" secondItem="qSw-W8-bGb" secondAttribute="top" id="jVR-my-D74"/>
                                             <constraint firstItem="rhk-Yk-g32" firstAttribute="leading" secondItem="qSw-W8-bGb" secondAttribute="leadingMargin" id="kSF-Sw-Whg"/>
                                             <constraint firstItem="BfF-KY-z0s" firstAttribute="top" secondItem="qSw-W8-bGb" secondAttribute="topMargin" id="q4y-6q-ZY3"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="deleteButton" destination="aY0-h5-7mP" id="A1Y-ow-zIp"/>
                                             <outlet property="playerImageView" destination="BfF-KY-z0s" id="Nf0-aQ-8Yt"/>
                                             <outlet property="playerNameLabel" destination="rhk-Yk-g32" id="lId-JQ-JAj"/>
                                         </connections>
@@ -451,5 +461,7 @@
     </scenes>
     <resources>
         <image name="avatarPlaceholder" width="199" height="199"/>
+        <image name="deleteButton" width="30" height="30"/>
+        <image name="deleteButtonPressed" width="30" height="30"/>
     </resources>
 </document>
