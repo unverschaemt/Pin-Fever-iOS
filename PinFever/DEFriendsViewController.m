@@ -27,6 +27,7 @@
     self.friends = [NSMutableArray new];
     sqliteManager = [self getSQLiteManager];
     [self loadFriends];
+    //TODO: implement delete like app icon (long press, shivering animation, delete button in corner)
 }
 
 

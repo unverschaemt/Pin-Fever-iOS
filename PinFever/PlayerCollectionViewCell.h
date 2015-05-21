@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlayerCollectionViewCell : UICollectionViewCell {
-    //UIImageView *overlayImageView;
-}
+@interface PlayerCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic,weak) IBOutlet UIImageView *playerImageView;
 @property (nonatomic,weak) IBOutlet UILabel *playerNameLabel;
+
 @end
