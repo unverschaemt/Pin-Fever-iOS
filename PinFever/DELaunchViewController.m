@@ -8,6 +8,7 @@
 
 #import "DELaunchViewController.h"
 #import "PlayerCollectionViewCell.h"
+#import "DECategoryViewController.h"
 
 @interface DELaunchViewController ()
 @property (nonatomic,strong) UIView *footerView;
@@ -69,6 +70,9 @@
     //Only 1 opponent is allowed therefore always tags[0]
     NSString *opponentName = [self.tagControl stringForTagIndex:0];
     NSLog(@"%@",opponentName);
+    //TODO: Opponent mitübergeben
+    DECategoryViewController *categoryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
+    [self.navigationController pushViewController:categoryViewController animated:YES];
 }
 
 /*

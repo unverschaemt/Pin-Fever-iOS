@@ -20,6 +20,12 @@
 		6358AF8D1AF910B0002A0234 /* DEFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF8C1AF910B0002A0234 /* DEFriendsViewController.m */; };
 		6358AF951AF918CE002A0234 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF971AF918CE002A0234 /* Main.storyboard */; };
 		6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6358AFA71AF919AD002A0234 /* Localizable.strings */; };
+		636FAA511B0F092C00937E23 /* DECategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA501B0F092C00937E23 /* DECategoryViewController.m */; };
+		636FAA541B0F093A00937E23 /* DECategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA531B0F093A00937E23 /* DECategory.m */; };
+		636FAA571B0F0D4100937E23 /* DEGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA561B0F0D4100937E23 /* DEGameViewController.m */; };
+		636FAA591B0F0E4800937E23 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636FAA581B0F0E4800937E23 /* MapKit.framework */; };
+		636FAA5C1B0F1B5200937E23 /* DETileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA5B1B0F1B5200937E23 /* DETileOverlay.m */; };
+		636FAA5F1B0F1B7400937E23 /* MBXRasterTileRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA5E1B0F1B7400937E23 /* MBXRasterTileRenderer.m */; };
 		6398B7F51AF7D00E000235FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F41AF7D00E000235FE /* main.m */; };
 		6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F71AF7D00E000235FE /* AppDelegate.m */; };
 		6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7FA1AF7D00E000235FE /* LoginViewController.m */; };
@@ -75,6 +81,17 @@
 		6358AF9B1AF918D5002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		6358AFA61AF919AD002A0234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6358AFA81AF919B0002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		636FAA4F1B0F092C00937E23 /* DECategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DECategoryViewController.h; sourceTree = "<group>"; };
+		636FAA501B0F092C00937E23 /* DECategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DECategoryViewController.m; sourceTree = "<group>"; };
+		636FAA521B0F093A00937E23 /* DECategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DECategory.h; sourceTree = "<group>"; };
+		636FAA531B0F093A00937E23 /* DECategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DECategory.m; sourceTree = "<group>"; };
+		636FAA551B0F0D4100937E23 /* DEGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEGameViewController.h; sourceTree = "<group>"; };
+		636FAA561B0F0D4100937E23 /* DEGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEGameViewController.m; sourceTree = "<group>"; };
+		636FAA581B0F0E4800937E23 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		636FAA5A1B0F1B5200937E23 /* DETileOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DETileOverlay.h; sourceTree = "<group>"; };
+		636FAA5B1B0F1B5200937E23 /* DETileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DETileOverlay.m; sourceTree = "<group>"; };
+		636FAA5D1B0F1B7400937E23 /* MBXRasterTileRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXRasterTileRenderer.h; sourceTree = "<group>"; };
+		636FAA5E1B0F1B7400937E23 /* MBXRasterTileRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXRasterTileRenderer.m; sourceTree = "<group>"; };
 		63970AE31AF8DDC10015106D /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		63970AE41AF8E3540015106D /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		6398B7EF1AF7D00E000235FE /* PinFever.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinFever.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				636FAA591B0F0E4800937E23 /* MapKit.framework in Frameworks */,
 				63D36DB71B03615F008B3C3F /* libsqlite3.0.dylib in Frameworks */,
 				AA074DF6F7DC330072874014 /* libPods.a in Frameworks */,
 			);
@@ -133,6 +151,7 @@
 		103CF721884B9C24B27AD02D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				636FAA581B0F0E4800937E23 /* MapKit.framework */,
 				63D36DB61B03615F008B3C3F /* libsqlite3.0.dylib */,
 				6B1C09E42F865C1EF58A623B /* libPods.a */,
 			);
@@ -201,6 +220,14 @@
 				63B0CFC81B0A0545000AED84 /* DEProfileViewController.m */,
 				6314E51D1AFE1CCC00B8574E /* DELaunchViewController.h */,
 				6314E51E1AFE1CCC00B8574E /* DELaunchViewController.m */,
+				636FAA4F1B0F092C00937E23 /* DECategoryViewController.h */,
+				636FAA501B0F092C00937E23 /* DECategoryViewController.m */,
+				636FAA551B0F0D4100937E23 /* DEGameViewController.h */,
+				636FAA561B0F0D4100937E23 /* DEGameViewController.m */,
+				636FAA5A1B0F1B5200937E23 /* DETileOverlay.h */,
+				636FAA5B1B0F1B5200937E23 /* DETileOverlay.m */,
+				636FAA5D1B0F1B7400937E23 /* MBXRasterTileRenderer.h */,
+				636FAA5E1B0F1B7400937E23 /* MBXRasterTileRenderer.m */,
 				6319044C1AFA210B00E3665F /* DERoundDetailViewController.h */,
 				6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */,
 				63D060C91B0E851800D54B23 /* FriendsViewController */,
@@ -272,6 +299,8 @@
 			children = (
 				63F42B491B0E1EBD00E5CC48 /* DEPlayer.h */,
 				63F42B4A1B0E1EBD00E5CC48 /* DEPlayer.m */,
+				636FAA521B0F093A00937E23 /* DECategory.h */,
+				636FAA531B0F093A00937E23 /* DECategory.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -482,6 +511,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */,
+				636FAA5C1B0F1B5200937E23 /* DETileOverlay.m in Sources */,
 				6314E51F1AFE1CCC00B8574E /* DELaunchViewController.m in Sources */,
 				6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */,
 				63F42B4B1B0E1EBD00E5CC48 /* DEPlayer.m in Sources */,
@@ -491,14 +521,18 @@
 				6314E5231AFE1F0000B8574E /* PlayerCollectionViewCell.m in Sources */,
 				63D36DB41B036144008B3C3F /* SQLiteManager.m in Sources */,
 				6358AF8D1AF910B0002A0234 /* DEFriendsViewController.m in Sources */,
+				636FAA5F1B0F1B7400937E23 /* MBXRasterTileRenderer.m in Sources */,
 				631904521AFA27FF00E3665F /* DERoundTableViewCell.m in Sources */,
 				6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */,
 				63F782E81B00DAF700C101FC /* RegisterViewController.m in Sources */,
+				636FAA511B0F092C00937E23 /* DECategoryViewController.m in Sources */,
+				636FAA541B0F093A00937E23 /* DECategory.m in Sources */,
 				6319044E1AFA210B00E3665F /* DERoundDetailViewController.m in Sources */,
 				63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */,
 				63B0CFC91B0A0545000AED84 /* DEProfileViewController.m in Sources */,
 				63AF11BE1B008E340063D3B1 /* TLTagsControl.m in Sources */,
 				6398B7F51AF7D00E000235FE /* main.m in Sources */,
+				636FAA571B0F0D4100937E23 /* DEGameViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
