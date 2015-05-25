@@ -12,6 +12,9 @@
 		6319044E1AFA210B00E3665F /* DERoundDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */; };
 		631904521AFA27FF00E3665F /* DERoundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 631904501AFA27FF00E3665F /* DERoundTableViewCell.m */; };
 		631904531AFA27FF00E3665F /* DERoundTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 631904511AFA27FF00E3665F /* DERoundTableViewCell.xib */; };
+		631A32071B13C0860058CA06 /* DEQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631A32051B13C0860058CA06 /* DEQuestionViewController.m */; };
+		631A32091B13C0FB0058CA06 /* DEQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 631A320B1B13C0FB0058CA06 /* DEQuestionViewController.xib */; };
+		6321F3181B13B62700269028 /* WildcardGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6321F3171B13B62700269028 /* WildcardGestureRecognizer.m */; };
 		63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63275A2D1AF9696400A5881A /* DESettingsViewController.m */; };
 		63275A301AF96E9900A5881A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63275A2F1AF96E9900A5881A /* Images.xcassets */; };
 		6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */; };
@@ -66,6 +69,12 @@
 		6319044F1AFA27FF00E3665F /* DERoundTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DERoundTableViewCell.h; sourceTree = "<group>"; };
 		631904501AFA27FF00E3665F /* DERoundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DERoundTableViewCell.m; sourceTree = "<group>"; };
 		631904511AFA27FF00E3665F /* DERoundTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DERoundTableViewCell.xib; sourceTree = "<group>"; };
+		631A32041B13C0860058CA06 /* DEQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEQuestionViewController.h; sourceTree = "<group>"; };
+		631A32051B13C0860058CA06 /* DEQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEQuestionViewController.m; sourceTree = "<group>"; };
+		631A320A1B13C0FB0058CA06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DEQuestionViewController.xib; sourceTree = "<group>"; };
+		631A320D1B13C0FD0058CA06 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DEQuestionViewController.strings; sourceTree = "<group>"; };
+		6321F3161B13B62700269028 /* WildcardGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WildcardGestureRecognizer.h; sourceTree = "<group>"; };
+		6321F3171B13B62700269028 /* WildcardGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WildcardGestureRecognizer.m; sourceTree = "<group>"; };
 		63275A2C1AF9696400A5881A /* DESettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESettingsViewController.h; sourceTree = "<group>"; };
 		63275A2D1AF9696400A5881A /* DESettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DESettingsViewController.m; sourceTree = "<group>"; };
 		63275A2F1AF96E9900A5881A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -184,6 +193,21 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		636FAA601B0F262C00937E23 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				636FAA551B0F0D4100937E23 /* DEGameViewController.h */,
+				636FAA561B0F0D4100937E23 /* DEGameViewController.m */,
+				6321F3161B13B62700269028 /* WildcardGestureRecognizer.h */,
+				6321F3171B13B62700269028 /* WildcardGestureRecognizer.m */,
+				636FAA5A1B0F1B5200937E23 /* DETileOverlay.h */,
+				636FAA5B1B0F1B5200937E23 /* DETileOverlay.m */,
+				636FAA5D1B0F1B7400937E23 /* MBXRasterTileRenderer.h */,
+				636FAA5E1B0F1B7400937E23 /* MBXRasterTileRenderer.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 		6398B7E61AF7D00E000235FE = {
 			isa = PBXGroup;
 			children = (
@@ -222,12 +246,10 @@
 				6314E51E1AFE1CCC00B8574E /* DELaunchViewController.m */,
 				636FAA4F1B0F092C00937E23 /* DECategoryViewController.h */,
 				636FAA501B0F092C00937E23 /* DECategoryViewController.m */,
-				636FAA551B0F0D4100937E23 /* DEGameViewController.h */,
-				636FAA561B0F0D4100937E23 /* DEGameViewController.m */,
-				636FAA5A1B0F1B5200937E23 /* DETileOverlay.h */,
-				636FAA5B1B0F1B5200937E23 /* DETileOverlay.m */,
-				636FAA5D1B0F1B7400937E23 /* MBXRasterTileRenderer.h */,
-				636FAA5E1B0F1B7400937E23 /* MBXRasterTileRenderer.m */,
+				631A32041B13C0860058CA06 /* DEQuestionViewController.h */,
+				631A32051B13C0860058CA06 /* DEQuestionViewController.m */,
+				631A320B1B13C0FB0058CA06 /* DEQuestionViewController.xib */,
+				636FAA601B0F262C00937E23 /* Map */,
 				6319044C1AFA210B00E3665F /* DERoundDetailViewController.h */,
 				6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */,
 				63D060C91B0E851800D54B23 /* FriendsViewController */,
@@ -414,6 +436,7 @@
 				63275A301AF96E9900A5881A /* Images.xcassets in Resources */,
 				6398B8031AF7D00E000235FE /* LaunchScreen.xib in Resources */,
 				6358AF951AF918CE002A0234 /* Main.storyboard in Resources */,
+				631A32091B13C0FB0058CA06 /* DEQuestionViewController.xib in Resources */,
 				631904531AFA27FF00E3665F /* DERoundTableViewCell.xib in Resources */,
 				6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */,
 				63F42B4F1B0E2B2200E5CC48 /* pinfever_db.db in Resources */,
@@ -528,11 +551,13 @@
 				636FAA511B0F092C00937E23 /* DECategoryViewController.m in Sources */,
 				636FAA541B0F093A00937E23 /* DECategory.m in Sources */,
 				6319044E1AFA210B00E3665F /* DERoundDetailViewController.m in Sources */,
+				6321F3181B13B62700269028 /* WildcardGestureRecognizer.m in Sources */,
 				63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */,
 				63B0CFC91B0A0545000AED84 /* DEProfileViewController.m in Sources */,
 				63AF11BE1B008E340063D3B1 /* TLTagsControl.m in Sources */,
 				6398B7F51AF7D00E000235FE /* main.m in Sources */,
 				636FAA571B0F0D4100937E23 /* DEGameViewController.m in Sources */,
+				631A32071B13C0860058CA06 /* DEQuestionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +580,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		631A320B1B13C0FB0058CA06 /* DEQuestionViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				631A320A1B13C0FB0058CA06 /* Base */,
+				631A320D1B13C0FD0058CA06 /* de */,
+			);
+			name = DEQuestionViewController.xib;
+			sourceTree = "<group>";
+		};
 		6358AF971AF918CE002A0234 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

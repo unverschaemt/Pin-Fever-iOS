@@ -25,3 +25,6 @@
 "errorAddingFriend" = "An error occured while trying to add this player to your friendslist. Please try again later.";
 "deleteFriendMsg" = "An error occured while trying to delete this player from your friendslist. Please try again later.";
 "gameTitle" = "Game";
+"submit" = "Submit";
+"question" = "Question";
+"showQuestion" = "Show Question";

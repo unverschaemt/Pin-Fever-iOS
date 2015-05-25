@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface DEGameViewController : UIViewController <MKMapViewDelegate>
+@interface DEGameViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate> {
+    UIButton *submitButton;
+}
 
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
-
+@property (nonatomic,assign) NSInteger currentQuestion;
+@property (nonatomic, assign) BOOL questionCurrentlyShown;
 @end

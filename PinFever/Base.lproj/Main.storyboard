@@ -8,7 +8,7 @@
         <!--Home View Controller-->
         <scene sceneID="F0G-Az-nQq">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="VO0-KH-4l2" customClass="DEHomeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VO0-KH-4l2" customClass="DEHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OkL-KN-e6R"/>
                         <viewControllerLayoutGuide type="bottom" id="ul4-jz-Obl"/>
