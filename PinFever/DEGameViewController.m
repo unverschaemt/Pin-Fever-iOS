@@ -40,7 +40,7 @@
     WildcardGestureRecognizer * tapInterceptor = [[WildcardGestureRecognizer alloc] init];
     tapInterceptor.touchesBeganCallback = ^(NSSet * touches, UIEvent * event) {
         if(!self.questionCurrentlyShown) {
-            [self placePin:touches andEvent:event];
+            [self placePin:event];
         }
     };
     [self.mapView addGestureRecognizer:tapInterceptor];
@@ -59,13 +59,13 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeLeft];
+    NSNumber *value = @(UIInterfaceOrientationLandscapeLeft);
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    NSNumber *value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+    NSNumber *value = @(UIInterfaceOrientationPortrait);
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 }
 
@@ -121,7 +121,7 @@
     [self.view insertSubview:questionButton aboveSubview:self.mapView];
 }
 
--(void)placePin:(NSSet *)touches andEvent:(UIEvent *)event {
+-(void)placePin:(UIEvent *)event {
     UITouch *touch = [[event allTouches]anyObject];
     CGPoint point = [touch locationInView:self.mapView];
     CLLocationCoordinate2D locCoord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
@@ -153,7 +153,7 @@
 -(void)showNextQuestion {
     self.currentQuestion += 1;
     self.questionCurrentlyShown = YES;
-    NSString *question = [NSString stringWithFormat:@"%@ #%li",NSLocalizedString(@"question", nil),self.currentQuestion];
+    NSString *question = [NSString stringWithFormat:@"%@ #%li",NSLocalizedString(@"question", nil),(long)self.currentQuestion];
     DEQuestionViewController *questionViewController = [[DEQuestionViewController alloc] initWithNibName:@"DEQuestionViewController" bundle:nil];
     questionViewController.question = question;
     [self presentPopupViewController:questionViewController animated:YES completion:nil];
@@ -161,7 +161,7 @@
 
 -(void)showCurrentQuestion {
     self.questionCurrentlyShown = YES;
-    NSString *question = [NSString stringWithFormat:@"%@ #%li",NSLocalizedString(@"question", nil),self.currentQuestion];
+    NSString *question = [NSString stringWithFormat:@"%@ #%li",NSLocalizedString(@"question", nil),(long)self.currentQuestion];
     DEQuestionViewController *questionViewController = [[DEQuestionViewController alloc] initWithNibName:@"DEQuestionViewController" bundle:nil];
     questionViewController.question = question;
     [self presentPopupViewController:questionViewController animated:YES completion:nil];

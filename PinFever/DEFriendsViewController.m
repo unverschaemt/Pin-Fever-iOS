@@ -7,10 +7,8 @@
 //
 
 #import "DEFriendsViewController.h"
-#import "DEAddFriendViewController.h"
 #import "PlayerCollectionViewCell.h"
-#import "DEPlayer.h"
-#import "SQLiteManager.h"
+
 
 @interface DEFriendsViewController ()
 
@@ -66,9 +64,6 @@
     if(recognizer.state == UIGestureRecognizerStateEnded) {
         self.deleteModus = !self.deleteModus;
         if(self.deleteModus) {
-            CGPoint p = [recognizer locationInView:self.collectionView];
-            
-            NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
             if (indexPath == nil){
                 NSLog(@"couldn't find index path");
             } else {
@@ -82,9 +77,6 @@
             }
         }
         else {
-            CGPoint p = [recognizer locationInView:self.collectionView];
-            
-            NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
             if (indexPath == nil){
                 NSLog(@"couldn't find index path");
             } else {
@@ -116,13 +108,13 @@
 }
 
 -(void)deleteFriend:(NSIndexPath *)indexPath {
-    NSError *error = [sqliteManager doQuery:[NSString stringWithFormat:@"DELETE FROM Friends WHERE Friends.userId = '%li';",((DEPlayer *)self.friends[indexPath.row]).userId]];
+    NSError *error = [sqliteManager doQuery:[NSString stringWithFormat:@"DELETE FROM Friends WHERE Friends.userId = '%li';", (long) ((DEPlayer *) self.friends[(NSUInteger) indexPath.row]).userId]];
     if(error) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"deleteFriendMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
     else {
-        [self.friends removeObjectAtIndex:indexPath.row];
+        [self.friends removeObjectAtIndex:(NSUInteger) indexPath.row];
     }
 }
 
@@ -177,7 +169,7 @@
 
 -(SQLiteManager *)getSQLiteManager {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"pinfever_db.db"];
     return [[SQLiteManager alloc]initWithDatabaseNamed:writableDBPath];
 }
@@ -214,7 +206,7 @@
 #pragma mark DEAddFriendDelegate
 
 -(void)addedFriend:(DEPlayer *)player {
-    NSError *error = [sqliteManager doQuery:[NSString stringWithFormat:@"INSERT INTO Friends VALUES('%li');",player.userId]];
+    NSError *error = [sqliteManager doQuery:[NSString stringWithFormat:@"INSERT INTO Friends VALUES('%li');",(long)player.userId]];
     if(error) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"errorAddingFriend", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
@@ -240,7 +232,7 @@
 {
     PlayerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
     
-    DEPlayer *player = self.friends[indexPath.row];
+    DEPlayer *player = self.friends[(NSUInteger) indexPath.row];
     cell.playerImageView.image = [UIImage imageNamed:player.imageName];
     cell.playerNameLabel.text = player.name;
     
@@ -248,7 +240,7 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    DEPlayer *player = self.friends[indexPath.row];
+    DEPlayer *player = self.friends[(NSUInteger) indexPath.row];
     [self battleFriend:player];
 }
 

@@ -18,7 +18,7 @@
     self.rounds = [NSMutableArray new];
     for(int i = 0;i<6;i++) {
         NSMutableArray *questions = [NSMutableArray new];
-        for(int i = 0;i<3;i++) {
+        for(int j = 0;j<3;j++) {
             [questions addObject:@"QuestionPlaceholder"];
         }
         [self.rounds addObject:questions];
@@ -65,7 +65,7 @@
 
 - (NSInteger)tableView:(SKSTableView *)tableView numberOfSubRowsAtIndexPath:(NSIndexPath *)indexPath
 {
-    return ((NSMutableArray*)self.rounds[indexPath.section]).count;
+    return ((NSMutableArray*)self.rounds[(NSUInteger) indexPath.section]).count;
 }
 
 - (BOOL)tableView:(SKSTableView *)tableView shouldExpandSubRowsOfCellAtIndexPath:(NSIndexPath *)indexPath

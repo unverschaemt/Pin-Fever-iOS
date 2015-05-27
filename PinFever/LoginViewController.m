@@ -11,7 +11,6 @@
 #import "AppDelegate.h"
 #import <STHTTPRequest/STHTTPRequest.h>
 #import "KeychainItemWrapper.h"
-#import "AppDelegate.h"
 
 @interface LoginViewController ()
 
@@ -100,9 +99,9 @@
     NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
                                                              options:NSJSONReadingMutableContainers
                                                                error:nil];
-    if([response objectForKey:kErrorKey] == (id)[NSNull null]) {
+    if(response[kErrorKey] == (id)[NSNull null]) {
         //Login Success
-        NSString *token = [[response objectForKey:kDataKey]objectForKey:kTokenKey];
+        NSString *token = [response[kDataKey] objectForKey:kTokenKey];
         if(token.length != 0) {
             [self saveAuthToken:token];
             [self pushToHomeController];
@@ -142,10 +141,15 @@
 
     NSDictionary *postDict = @{ @"email":email, @"password":password };
     
-    NSError *error = nil;
+    NSError *err = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:postDict
                                                        options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
+                                                         error:&err];
+    if(err) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:NSLocalizedString(@"loginGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
     [r setHeaderWithName:@"content-type" value:@"application/json"];
     r.rawPOSTData = postData;
 

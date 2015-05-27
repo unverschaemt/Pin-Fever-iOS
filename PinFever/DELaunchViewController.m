@@ -20,6 +20,7 @@
 #define STARTBUTTON_HEIGHT 30
 #define STARTBUTTON_WIDTH 60
 #define STARTLABEL_HEIGHT 30
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -40,7 +41,7 @@
     self.footerView.alpha = 0.0;
     
     UIButton *startButton = [[UIButton alloc]initWithFrame:CGRectMake(self.footerView.frame.size.width-STARTBUTTON_WIDTH-15, (FOOTER_HEIGHT-STARTBUTTON_HEIGHT)/2, STARTBUTTON_WIDTH, STARTBUTTON_HEIGHT)];
-    UIColor *darkGrayColor = [UIColor colorWithRed:23.0/255.0 green:27.0/255.0 blue:34.0/255.0 alpha:1.0];
+    UIColor *darkGrayColor = [UIColor colorWithRed:(CGFloat) (23.0 / 255.0) green:(CGFloat) (27.0 / 255.0) blue:(CGFloat) (34.0 / 255.0) alpha:1.0];
     startButton.backgroundColor = [UIColor clearColor];
     startButton.layer.borderColor = darkGrayColor.CGColor;
     startButton.layer.borderWidth = 1.0f;
@@ -136,7 +137,7 @@
 
 #pragma mark - TLTagsControlDelegate
 - (void)tagsControl:(TLTagsControl *)tagsControl tappedAtIndex:(NSInteger)index {
-    NSLog(@"Tag \"%@\" was tapped", tagsControl.tags[index]);
+    NSLog(@"Tag \"%@\" was tapped", tagsControl.tags[(NSUInteger) index]);
 }
 
 -(void)showFooter {

@@ -58,7 +58,7 @@
     NSError *error;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"pinfever_db.db"];
 
     BOOL success = [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
@@ -78,7 +78,7 @@
 
 -(void)saveImage:(UIImage *)image {
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    NSString * basePath = ([paths count] > 0) ? paths[0] : nil;
     
     NSData * binaryImageData = UIImagePNGRepresentation(image);
     
@@ -87,7 +87,7 @@
 
 -(UIImage *)retrieveAvatar {
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    NSString * basePath = ([paths count] > 0) ? paths[0] : nil;
     NSString *filePath = [basePath stringByAppendingPathComponent:@"avatar.png"];
         
     return [UIImage imageWithContentsOfFile:filePath];
@@ -96,7 +96,7 @@
 -(BOOL)fileExistsInDocuments:(NSString *)filename {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:filename];
     return [fileManager fileExistsAtPath:fullPath];
    

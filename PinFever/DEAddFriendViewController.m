@@ -8,7 +8,6 @@
 
 #import "DEAddFriendViewController.h"
 #import "PlayerCollectionViewCell.h"
-#import "SQLiteManager.h"
 
 @interface DEAddFriendViewController ()
 
@@ -50,7 +49,7 @@
 
 -(SQLiteManager *)getSQLiteManager {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"pinfever_db.db"];
     return [[SQLiteManager alloc]initWithDatabaseNamed:writableDBPath];
 }
@@ -88,7 +87,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PlayerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
-    DEPlayer *player = self.searchResults[indexPath.row];
+    DEPlayer *player = self.searchResults[(NSUInteger) indexPath.row];
     cell.playerImageView.image = [UIImage imageNamed:player.imageName];
     cell.playerNameLabel.text = player.name;
 
@@ -115,7 +114,7 @@
   
     if ([self.delegate respondsToSelector:@selector(addedFriend:)])
     {
-        [self.delegate addedFriend:self.searchResults[indexPath.row]];
+        [self.delegate addedFriend:self.searchResults[(NSUInteger) indexPath.row]];
     }
     
     [self.navigationController popViewControllerAnimated:YES];

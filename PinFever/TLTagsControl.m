@@ -101,7 +101,7 @@
         tempViewFrame = view.frame;
         NSInteger index = [tagSubviews_ indexOfObject:view];
         if (index != 0) {
-            UIView *prevView = tagSubviews_[index - 1];
+            UIView *prevView = tagSubviews_[(NSUInteger) (index - 1)];
             tempViewFrame.origin.x = prevView.frame.origin.x + prevView.frame.size.width + 4;
         } else {
             tempViewFrame.origin.x = 0;
@@ -189,7 +189,7 @@
 
 -(NSString *)stringForTagIndex:(NSInteger)index {
     if(_tags.count < index) {
-        return [_tags objectAtIndex:index];
+        return _tags[(NSUInteger) index];
     }
     return @"";
 }
@@ -253,7 +253,7 @@
             labelFrame.origin.x = 0;
         } else {
             tagFrame.size.width = labelFrame.size.width + 5;
-            labelFrame.origin.x = (tagFrame.size.width - labelFrame.size.width) * 0.5;
+            labelFrame.origin.x = (CGFloat) ((tagFrame.size.width - labelFrame.size.width) * 0.5);
         }
         
         [tagView addSubview:tagLabel];
@@ -300,7 +300,7 @@
     [view removeFromSuperview];
     
     NSInteger index = [tagSubviews_ indexOfObject:view];
-    [_tags removeObjectAtIndex:index];
+    [_tags removeObjectAtIndex:(NSUInteger) index];
     [self reloadTagSubviews];
     if(_tags.count == 0) {
         [tagDelegate hideFooter];

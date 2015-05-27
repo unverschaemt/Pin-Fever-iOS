@@ -79,9 +79,9 @@
     NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
                                                              options:NSJSONReadingMutableContainers
                                                                error:nil];
-    if([response objectForKey:kErrorKey] == (id)[NSNull null]) {
+    if(response[kErrorKey] == (id)[NSNull null]) {
         //Register Success
-        NSString *token = [[response objectForKey:kDataKey]objectForKey:kTokenKey];
+        NSString *token = [response[kDataKey] objectForKey:kTokenKey];
         if(token.length != 0) {
             [self saveAuthToken:token];
             [self pushToHomeController];
@@ -122,7 +122,7 @@
     NSString *rePassword = self.rePasswordField.text;
     NSString *username = self.usernameField.text;
     
-    if(email.length == 0 || password.length == 0 || rePassword == 0 || username.length == 0) {
+    if(email.length == 0 || password.length == 0 || rePassword.length == 0 || username.length == 0) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil) message:NSLocalizedString(@"registerErrorMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
         return;
@@ -138,10 +138,15 @@
     STHTTPRequest *r = [STHTTPRequest requestWithURL:registerURL];
     NSDictionary *postDict = @{ @"email":email, @"password":password, @"displayName":username};
     
-    NSError *error = nil;
+    NSError *err = nil;
     NSData *postData = [NSJSONSerialization dataWithJSONObject:postDict
                                                        options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
+                                                         error:&err];
+    if(err) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil) message:NSLocalizedString(@"registerGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
     [r setHeaderWithName:@"content-type" value:@"application/json"];
     r.rawPOSTData = postData;
     NSLog(@"%@",registerURL.description);
