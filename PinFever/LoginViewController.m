@@ -76,8 +76,7 @@
     KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:kKeychainKey accessGroup:nil];
 
     NSString *token = [keychainItem objectForKey:(__bridge id)(kSecValueData)];
-    //TODO: Change Back ! 
-    if(token.length == 0) {
+    if(token.length != 0) {
         [self pushToHomeController];
     }
 }
@@ -140,7 +139,16 @@
     NSURL *loginURL = [NSURL URLWithString:kLoginEndpoint];
     NSLog(@"%@",loginURL.description);
     STHTTPRequest *r = [STHTTPRequest requestWithURL:loginURL];
-    r.POSTDictionary = @{ @"email":email, @"password":password};
+
+    NSDictionary *postDict = @{ @"email":email, @"password":password };
+    
+    NSError *error = nil;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:postDict
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    [r setHeaderWithName:@"content-type" value:@"application/json"];
+    r.rawPOSTData = postData;
+
     r.completionBlock = ^(NSDictionary *headers, NSString *body) {
         [self tryLogin:body];
     };

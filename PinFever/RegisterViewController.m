@@ -136,7 +136,14 @@
     
     NSURL *registerURL = [NSURL URLWithString:kRegisterEndpoint];
     STHTTPRequest *r = [STHTTPRequest requestWithURL:registerURL];
-    r.POSTDictionary = @{ @"email":email, @"password":password, @"displayName":username };
+    NSDictionary *postDict = @{ @"email":email, @"password":password, @"displayName":username};
+    
+    NSError *error = nil;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:postDict
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    [r setHeaderWithName:@"content-type" value:@"application/json"];
+    r.rawPOSTData = postData;
     NSLog(@"%@",registerURL.description);
     
     r.completionBlock = ^(NSDictionary *headers, NSString *body) {
