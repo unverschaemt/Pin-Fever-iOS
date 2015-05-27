@@ -17,6 +17,8 @@
 		6321F3181B13B62700269028 /* WildcardGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6321F3171B13B62700269028 /* WildcardGestureRecognizer.m */; };
 		63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63275A2D1AF9696400A5881A /* DESettingsViewController.m */; };
 		63275A301AF96E9900A5881A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63275A2F1AF96E9900A5881A /* Images.xcassets */; };
+		634AC4401B15AE6A005BF62D /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 634AC43F1B15AE6A005BF62D /* KeychainItemWrapper.m */; };
+		634AC4421B15B09B005BF62D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 634AC4411B15B09B005BF62D /* Security.framework */; };
 		6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */; };
 		6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF811AF90354002A0234 /* ActiveGamesTableViewCell.m */; };
 		6358AF841AF90354002A0234 /* ActiveGamesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF821AF90354002A0234 /* ActiveGamesTableViewCell.xib */; };
@@ -78,6 +80,10 @@
 		63275A2C1AF9696400A5881A /* DESettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESettingsViewController.h; sourceTree = "<group>"; };
 		63275A2D1AF9696400A5881A /* DESettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DESettingsViewController.m; sourceTree = "<group>"; };
 		63275A2F1AF96E9900A5881A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		634AC43E1B15AE6A005BF62D /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		634AC43F1B15AE6A005BF62D /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		634AC4411B15B09B005BF62D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		634AC4431B15B15C005BF62D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6358AF7D1AF8F5AB002A0234 /* DEHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEHomeViewController.h; sourceTree = "<group>"; };
 		6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEHomeViewController.m; sourceTree = "<group>"; };
 		6358AF801AF90354002A0234 /* ActiveGamesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveGamesTableViewCell.h; sourceTree = "<group>"; };
@@ -140,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634AC4421B15B09B005BF62D /* Security.framework in Frameworks */,
 				636FAA591B0F0E4800937E23 /* MapKit.framework in Frameworks */,
 				63D36DB71B03615F008B3C3F /* libsqlite3.0.dylib in Frameworks */,
 				AA074DF6F7DC330072874014 /* libPods.a in Frameworks */,
@@ -160,6 +167,8 @@
 		103CF721884B9C24B27AD02D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				634AC4431B15B15C005BF62D /* SystemConfiguration.framework */,
+				634AC4411B15B09B005BF62D /* Security.framework */,
 				636FAA581B0F0E4800937E23 /* MapKit.framework */,
 				63D36DB61B03615F008B3C3F /* libsqlite3.0.dylib */,
 				6B1C09E42F865C1EF58A623B /* libPods.a */,
@@ -234,6 +243,8 @@
 				6398B7F61AF7D00E000235FE /* AppDelegate.h */,
 				6398B7F71AF7D00E000235FE /* AppDelegate.m */,
 				63970AE31AF8DDC10015106D /* Constants.h */,
+				634AC43E1B15AE6A005BF62D /* KeychainItemWrapper.h */,
+				634AC43F1B15AE6A005BF62D /* KeychainItemWrapper.m */,
 				63D36DB51B036149008B3C3F /* Database */,
 				63AF11BF1B008E380063D3B1 /* TLTagsControl */,
 				6349C8EF1AF7D9C600F412CC /* Login */,
@@ -547,6 +558,7 @@
 				636FAA5F1B0F1B7400937E23 /* MBXRasterTileRenderer.m in Sources */,
 				631904521AFA27FF00E3665F /* DERoundTableViewCell.m in Sources */,
 				6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */,
+				634AC4401B15AE6A005BF62D /* KeychainItemWrapper.m in Sources */,
 				63F782E81B00DAF700C101FC /* RegisterViewController.m in Sources */,
 				636FAA511B0F092C00937E23 /* DECategoryViewController.m in Sources */,
 				636FAA541B0F093A00937E23 /* DECategory.m in Sources */,

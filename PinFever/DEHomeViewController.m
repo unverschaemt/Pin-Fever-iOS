@@ -60,6 +60,7 @@
 #pragma mark Actions
 
 -(void)showProfile:(UIGestureRecognizer *)gestureRecognizer {
+    NSLog(@"Show Profile");
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         DEProfileViewController *profileViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
         [self.navigationController pushViewController:profileViewController animated:YES];
@@ -67,6 +68,7 @@
 }
 
 -(void)newGame {
+    NSLog(@"New Game");
     DELaunchViewController *launchVc = [[self storyboard]instantiateViewControllerWithIdentifier:@"launchViewController"];
     [self.navigationController pushViewController:launchVc animated:YES];
 }

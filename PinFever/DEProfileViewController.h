@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DEProfileViewController : UIViewController
+@interface DEProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property(nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

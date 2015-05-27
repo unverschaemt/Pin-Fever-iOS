@@ -7,6 +7,9 @@
 //
 
 #import "DEProfileViewController.h"
+#import "KeychainItemWrapper.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface DEProfileViewController ()
 
@@ -34,5 +37,57 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark -
+#pragma mark UITableViewDelegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+
+#pragma mark -
+#pragma mark UITableViewDatasource
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"profileCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    cell.textLabel.text = NSLocalizedString(@"logout", nil);
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.row == 0) {
+        KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:kKeychainKey accessGroup:nil];
+        [keychainItem resetKeychainItem];
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:[NSBundle mainBundle]]instantiateInitialViewController];
+        app.window.rootViewController = loginViewController;
+
+    }
+}
+
 
 @end

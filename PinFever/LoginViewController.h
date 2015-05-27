@@ -14,7 +14,7 @@
 -(IBAction)forgotPassword:(id)sender;
 
 @property (nonatomic, weak) IBOutlet UIImageView *logoImageView;
-@property (nonatomic, weak) IBOutlet UITextField *usernameField;
+@property (nonatomic, weak) IBOutlet UITextField *emailField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordField;
 
 @property (nonatomic, weak) IBOutlet UIButton *loginButton;

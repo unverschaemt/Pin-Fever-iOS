@@ -28,3 +28,13 @@
 "submit" = "Submit";
 "question" = "Question";
 "showQuestion" = "Show Question";
+"loginErrorMsg" = "E-Mail or Password is empty. Please fill in all the information.";
+"loginFailedWith" = "Login failed with error: ";
+"loginCredentialsMsg" = "The entered login credentials were wrong. Please try again.";
+"loginGenericMsg" = "Something went wrong while trying to log you in. Please try again later.";
+"logout" = "Logout";
+"registerError" = "Register Error";
+"registerPwError" = "The entered passwords do not match.";
+"registerErrorMsg" = "E-Mail, Password or Username is empty. Please fill in all the information.";
+"registerFailedWith" = "Register failed with error: ";
+"registerGenericMsg" = "Something went wrong while trying to register you. Please try again later.";

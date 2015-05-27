@@ -28,3 +28,13 @@
 "submit" = "Bestätigen";
 "question" = "Frage";
 "showQuestion" = "Zeige Frage";
+"loginErrorMsg" = "E-Mail oder Password ist leer. Bitte fülle alle Informationen aus.";
+"loginFailedWith" = "Login fehlgeschlagen mit Error: ";
+"loginCredentialsMsg" = "Die eingegebenen Daten waren falsch. Bitte versuch es erneut.";
+"loginGenericMsg" = "Etwas ist schiefgelaufen beim Versuch dich einzuloggen. Bitte versuche es später erneut.";
+"logout" = "Ausloggen";
+"registerError" = "Registrierungs Error";
+"registerPwError" = "Die eingegebenen Passwörter stimmen nicht überein.";
+"registerErrorMsg" = "E-Mail, Passwort oder Username ist leer. Bitte fülle alle Informationen aus.";
+"registerFailedWith" = "Registrierung fehlgeschlagen mit Error: ";
+"registerGenericMsg" = "Etwas ist schiefgelaufen beim Versuch dich zu registrieren. Bitte versuche es später erneut.";

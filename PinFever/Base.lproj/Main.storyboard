@@ -337,10 +337,32 @@
                     <view key="view" contentMode="scaleToFill" id="xas-uP-4k7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zZk-MV-hvh">
+                                <rect key="frame" x="0.0" y="608" width="414" height="108"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="108" id="MJz-4C-JJf"/>
+                                </constraints>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="zf9-8d-TnY" id="98g-bP-Jh3"/>
+                                    <outlet property="delegate" destination="zf9-8d-TnY" id="AzB-X1-AZM"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QhT-93-dsM" firstAttribute="top" secondItem="zZk-MV-hvh" secondAttribute="bottom" constant="20" id="3yi-Vo-9OY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zZk-MV-hvh" secondAttribute="trailing" constant="-16" id="4fW-kb-xQ5"/>
+                            <constraint firstItem="zZk-MV-hvh" firstAttribute="leading" secondItem="xas-uP-4k7" secondAttribute="leadingMargin" constant="-16" id="e5e-Dd-r8u"/>
+                        </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="tableView" destination="zZk-MV-hvh" id="etL-up-b4H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ugI-1F-83x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -550,7 +572,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Gqc-zr-5RP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kJp-83-oTG" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="mainNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kJp-83-oTG" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JB3-kW-dMm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -563,7 +585,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SYl-TH-IsO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="309" y="467"/>
+            <point key="canvasLocation" x="458" y="381"/>
         </scene>
     </scenes>
     <resources>
