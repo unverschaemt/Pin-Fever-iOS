@@ -24,7 +24,7 @@
     DECategory *categorySport = [[DECategory alloc]initWithCategory:@"Sport"];
     DECategory *categoryMovies = [[DECategory alloc]initWithCategory:@"Movies"];
     DECategory *categoryTech = [[DECategory alloc]initWithCategory:@"Technology"];
-    
+
     [self.categories addObject:categorySport];
     [self.categories addObject:categoryMovies];
     [self.categories addObject:categoryTech];
