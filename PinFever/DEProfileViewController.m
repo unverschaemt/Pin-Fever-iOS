@@ -21,6 +21,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = NSLocalizedString(@"profileViewTitle", nil);
+    
+    self.avatarImageView.clipsToBounds = YES;
+    self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width/2;
+    self.avatarImageView.layer.borderWidth = 2.0;
+    self.avatarImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self reloadAvatar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,6 +48,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark -
+#pragma mark Methods
+-(void)reloadAvatar {
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.avatarImageView.image = [app avatarImage];
+}
+
+
 
 #pragma mark -
 #pragma mark UITableViewDelegate
@@ -73,7 +93,7 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     cell.textLabel.text = NSLocalizedString(@"logout", nil);
-    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 

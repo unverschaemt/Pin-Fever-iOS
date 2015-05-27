@@ -11,6 +11,7 @@
 #import "DERoundDetailViewController.h"
 #import "DELaunchViewController.h"
 #import "DEProfileViewController.h"
+#import "AppDelegate.h"
 
 @interface DEHomeViewController ()
 @end
@@ -34,10 +35,10 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
--(void)viewDidAppear:(BOOL)animated {
+-(void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self reloadMatches];
-    //TODO: loadAvatar if not loaded yet
+    [self reloadAvatar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,6 +55,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark -
+#pragma mark Methods
+-(void)reloadAvatar {
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.avatarImageView.image = [app avatarImage];
+}
 
 
 #pragma mark -

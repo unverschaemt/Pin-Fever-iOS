@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FXForms/FXForms.h>
 
-@interface DESettingsViewController : UIViewController
+
+@interface DESettingsViewController : UIViewController <FXFormControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
+@property (nonatomic, strong) FXFormController *formController;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end

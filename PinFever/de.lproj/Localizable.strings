@@ -38,3 +38,5 @@
 "registerErrorMsg" = "E-Mail, Passwort oder Username ist leer. Bitte fülle alle Informationen aus.";
 "registerFailedWith" = "Registrierung fehlgeschlagen mit Error: ";
 "registerGenericMsg" = "Etwas ist schiefgelaufen beim Versuch dich zu registrieren. Bitte versuche es später erneut.";
+"accountSettings" = "Kontoeinstellungen";
+"changeAvatar" = "Avatar ändern";

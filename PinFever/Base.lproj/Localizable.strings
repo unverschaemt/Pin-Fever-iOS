@@ -38,3 +38,5 @@
 "registerErrorMsg" = "E-Mail, Password or Username is empty. Please fill in all the information.";
 "registerFailedWith" = "Register failed with error: ";
 "registerGenericMsg" = "Something went wrong while trying to register you. Please try again later.";
+"accountSettings" = "Account Settings";
+"changeAvatar" = "Change Avatar";

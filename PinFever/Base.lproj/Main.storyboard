@@ -27,7 +27,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="210" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfx-04-Nvb">
-                                <rect key="frame" x="142" y="210" width="130" height="21"/>
+                                <rect key="frame" x="142" y="192" width="130" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="130" id="VEj-A7-cDQ"/>
                                 </constraints>
@@ -36,10 +36,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="bft-x2-leC">
-                                <rect key="frame" x="142" y="72" width="130" height="130"/>
+                                <rect key="frame" x="148" y="72" width="118" height="118"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="hOz-Ki-XfV"/>
-                                    <constraint firstAttribute="width" constant="130" id="o7x-YC-7YK"/>
+                                    <constraint firstAttribute="height" constant="118" id="hOz-Ki-XfV"/>
+                                    <constraint firstAttribute="width" constant="118" id="o7x-YC-7YK"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -48,8 +48,8 @@
                             <constraint firstItem="bft-x2-leC" firstAttribute="top" secondItem="OkL-KN-e6R" secondAttribute="bottom" constant="8" id="2JY-Vl-Xvn"/>
                             <constraint firstAttribute="centerY" secondItem="Pkt-uu-rFe" secondAttribute="centerY" constant="-119.5" id="BeW-lX-60D"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Pkt-uu-rFe" secondAttribute="trailing" constant="-16" id="BhZ-JI-O9Q"/>
-                            <constraint firstItem="Pkt-uu-rFe" firstAttribute="top" secondItem="Mfx-04-Nvb" secondAttribute="bottom" constant="8" id="ElC-EI-GLv"/>
-                            <constraint firstItem="Mfx-04-Nvb" firstAttribute="top" secondItem="bft-x2-leC" secondAttribute="bottom" constant="8" id="F5J-OE-iGZ"/>
+                            <constraint firstItem="Pkt-uu-rFe" firstAttribute="top" secondItem="Mfx-04-Nvb" secondAttribute="bottom" constant="26" id="ElC-EI-GLv"/>
+                            <constraint firstItem="Mfx-04-Nvb" firstAttribute="top" secondItem="bft-x2-leC" secondAttribute="bottom" constant="2" id="F5J-OE-iGZ"/>
                             <constraint firstAttribute="centerX" secondItem="bft-x2-leC" secondAttribute="centerX" id="Hfd-IN-zFs"/>
                             <constraint firstAttribute="centerX" secondItem="Mfx-04-Nvb" secondAttribute="centerX" id="Hp7-D9-4zO"/>
                             <constraint firstItem="Pkt-uu-rFe" firstAttribute="leading" secondItem="11P-g7-iwN" secondAttribute="leadingMargin" constant="-16" id="gUN-sR-tST"/>
@@ -189,13 +189,28 @@
                     <view key="view" contentMode="scaleToFill" id="1vt-tM-b6t">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="GaE-ka-HCT">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GaE-ka-HCT" firstAttribute="leading" secondItem="1vt-tM-b6t" secondAttribute="leadingMargin" constant="-16" id="3KV-9M-Aj5"/>
+                            <constraint firstItem="shi-m0-B7p" firstAttribute="top" secondItem="GaE-ka-HCT" secondAttribute="bottom" id="DX0-tj-1J2"/>
+                            <constraint firstItem="GaE-ka-HCT" firstAttribute="trailing" secondItem="1vt-tM-b6t" secondAttribute="trailingMargin" constant="16" id="tjT-VS-SCI"/>
+                            <constraint firstItem="GaE-ka-HCT" firstAttribute="top" secondItem="qTk-9x-MIf" secondAttribute="bottom" constant="-64" id="zBh-CN-4YD"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="tableView" destination="GaE-ka-HCT" id="NdR-Ox-K0t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxm-zd-AB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2003" y="376"/>
+            <point key="canvasLocation" x="2003" y="400"/>
         </scene>
         <!--Round Detail View Controller-->
         <scene sceneID="Rj5-Td-nKu">
@@ -350,17 +365,33 @@
                                     <outlet property="delegate" destination="zf9-8d-TnY" id="AzB-X1-AZM"/>
                                 </connections>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatarPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="N39-sS-X3n">
+                                <rect key="frame" x="148" y="72" width="118" height="118"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="118" id="ibJ-Fo-DIz"/>
+                                    <constraint firstAttribute="height" constant="118" id="whI-Cb-LHr"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QhT-93-dsM" firstAttribute="top" secondItem="zZk-MV-hvh" secondAttribute="bottom" constant="20" id="3yi-Vo-9OY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zZk-MV-hvh" secondAttribute="trailing" constant="-16" id="4fW-kb-xQ5"/>
+                            <constraint firstAttribute="centerY" secondItem="N39-sS-X3n" secondAttribute="centerY" constant="237" id="Cxo-Lg-J0J"/>
+                            <constraint firstAttribute="centerX" secondItem="N39-sS-X3n" secondAttribute="centerX" id="dxY-MS-FEU"/>
                             <constraint firstItem="zZk-MV-hvh" firstAttribute="leading" secondItem="xas-uP-4k7" secondAttribute="leadingMargin" constant="-16" id="e5e-Dd-r8u"/>
+                            <constraint firstItem="N39-sS-X3n" firstAttribute="top" secondItem="nPx-Mf-dro" secondAttribute="bottom" constant="8" id="wLA-8P-YGR"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Cxo-Lg-J0J"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="avatarImageView" destination="N39-sS-X3n" id="E2T-B9-wh7"/>
                         <outlet property="tableView" destination="zZk-MV-hvh" id="etL-up-b4H"/>
                     </connections>
                 </viewController>

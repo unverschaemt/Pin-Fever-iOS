@@ -11,5 +11,6 @@
 @interface DEProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
 
 @end

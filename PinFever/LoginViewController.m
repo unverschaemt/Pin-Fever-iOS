@@ -76,7 +76,8 @@
     KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:kKeychainKey accessGroup:nil];
 
     NSString *token = [keychainItem objectForKey:(__bridge id)(kSecValueData)];
-    if(token.length != 0) {
+    //TODO: Change Back ! 
+    if(token.length == 0) {
         [self pushToHomeController];
     }
 }

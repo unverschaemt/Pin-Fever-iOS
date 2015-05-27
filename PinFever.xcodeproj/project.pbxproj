@@ -42,6 +42,7 @@
 		63B0CFC91B0A0545000AED84 /* DEProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B0CFC81B0A0545000AED84 /* DEProfileViewController.m */; };
 		63D36DB41B036144008B3C3F /* SQLiteManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D36DB31B036144008B3C3F /* SQLiteManager.m */; };
 		63D36DB71B03615F008B3C3F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D36DB61B03615F008B3C3F /* libsqlite3.0.dylib */; };
+		63DC903B1B163D9800E98F7D /* DESettingsForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC903A1B163D9800E98F7D /* DESettingsForm.m */; };
 		63F42B481B0E1C6C00E5CC48 /* DEAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F42B471B0E1C6C00E5CC48 /* DEAddFriendViewController.m */; };
 		63F42B4B1B0E1EBD00E5CC48 /* DEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F42B4A1B0E1EBD00E5CC48 /* DEPlayer.m */; };
 		63F42B4F1B0E2B2200E5CC48 /* pinfever_db.db in Resources */ = {isa = PBXBuildFile; fileRef = 63F42B4E1B0E2B1E00E5CC48 /* pinfever_db.db */; };
@@ -130,6 +131,8 @@
 		63D36DB21B036144008B3C3F /* SQLiteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteManager.h; sourceTree = "<group>"; };
 		63D36DB31B036144008B3C3F /* SQLiteManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteManager.m; sourceTree = "<group>"; };
 		63D36DB61B03615F008B3C3F /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		63DC90391B163D9800E98F7D /* DESettingsForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESettingsForm.h; sourceTree = "<group>"; };
+		63DC903A1B163D9800E98F7D /* DESettingsForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DESettingsForm.m; sourceTree = "<group>"; };
 		63F42B461B0E1C6C00E5CC48 /* DEAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAddFriendViewController.h; sourceTree = "<group>"; };
 		63F42B471B0E1C6C00E5CC48 /* DEAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAddFriendViewController.m; sourceTree = "<group>"; };
 		63F42B491B0E1EBD00E5CC48 /* DEPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEPlayer.h; sourceTree = "<group>"; };
@@ -330,6 +333,8 @@
 		63D060CA1B0E852B00D54B23 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				63DC90391B163D9800E98F7D /* DESettingsForm.h */,
+				63DC903A1B163D9800E98F7D /* DESettingsForm.m */,
 				63F42B491B0E1EBD00E5CC48 /* DEPlayer.h */,
 				63F42B4A1B0E1EBD00E5CC48 /* DEPlayer.m */,
 				636FAA521B0F093A00937E23 /* DECategory.h */,
@@ -569,6 +574,7 @@
 				63AF11BE1B008E340063D3B1 /* TLTagsControl.m in Sources */,
 				6398B7F51AF7D00E000235FE /* main.m in Sources */,
 				636FAA571B0F0D4100937E23 /* DEGameViewController.m in Sources */,
+				63DC903B1B163D9800E98F7D /* DESettingsForm.m in Sources */,
 				631A32071B13C0860058CA06 /* DEQuestionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,6 +20,7 @@
     // Look to see if our application was launched from a notification
     
     [self createEditableCopyOfDatabaseIfNeeded];
+    [self loadAvatar];
     
     return YES;
 }
@@ -27,6 +28,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [self saveImage:self.avatarImage];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -49,21 +51,56 @@
 #pragma mark -
 #pragma mark Actions
 - (void)createEditableCopyOfDatabaseIfNeeded {
-    BOOL success;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"pinfever_db.db"];
-    success = [fileManager fileExistsAtPath:writableDBPath];
-    if (success) {
+    if ([self fileExistsInDocuments:@"pinfever_db.db"]) {
         return;
     }
     NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"pinfever_db.db"];
-    success = [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
+    NSError *error;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"pinfever_db.db"];
+
+    BOOL success = [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
     if (!success) {
         NSAssert1(0, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
     }
+}
+
+-(void)loadAvatar {
+    if ([self fileExistsInDocuments:@"avatar.png"]) {
+        self.avatarImage = [self retrieveAvatar];
+    }
+    else {
+        self.avatarImage = [UIImage imageNamed:@"avatarPlaceholder.png"];
+    }
+}
+
+-(void)saveImage:(UIImage *)image {
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    
+    NSData * binaryImageData = UIImagePNGRepresentation(image);
+    
+    [binaryImageData writeToFile:[basePath stringByAppendingPathComponent:@"avatar.png"] atomically:YES];
+}
+
+-(UIImage *)retrieveAvatar {
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    NSString *filePath = [basePath stringByAppendingPathComponent:@"avatar.png"];
+        
+    return [UIImage imageWithContentsOfFile:filePath];
+}
+
+-(BOOL)fileExistsInDocuments:(NSString *)filename {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:filename];
+    return [fileManager fileExistsAtPath:fullPath];
+   
+
 }
 
 @end

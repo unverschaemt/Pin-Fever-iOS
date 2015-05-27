@@ -6,6 +6,7 @@ pod 'SKSTableView'
 pod 'CWPopup', '~> 1.2.4'
 pod 'STHTTPRequest'
 pod 'TPKeyboardAvoiding'
+pod 'FXForms'
 
 target 'PinFever' do
 end
