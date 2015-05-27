@@ -9,9 +9,6 @@
 "playStateWaiting" = "Waiting...";
 "playStateActive" = "Your Turn!";
 "friendsTitle" = "Friends";
-"signInError" = "Signin process failed. Please check your entered data.";
-"loginHud" = "Logging In...";
-"errorPlayerInfo" = "Failed to retrieve information and avatar for your player. Please try again later.";
 "settingsTitle" = "Settings";
 "roundDetailTitle" = "Game Detail";
 "round" = "Round";
@@ -40,3 +37,4 @@
 "registerGenericMsg" = "Something went wrong while trying to register you. Please try again later.";
 "accountSettings" = "Account Settings";
 "changeAvatar" = "Change Avatar";
+"homeTitle" = "Pin Fever";

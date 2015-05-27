@@ -9,9 +9,6 @@
 "playStateWaiting" = "Warten...";
 "playStateActive" = "Du bist dran!";
 "friendsTitle" = "Freunde";
-"signInError" = "Fehler beim Login. Bitte überprüfe deine eingegebenen Daten.";
-"loginHud" = "Einloggen...";
-"errorPlayerInfo" = "Es konnten keine Informationen für den Spieler geladen werden. Bitte versuche es später erneut.";
 "settingsTitle" = "Einstellungen";
 "roundDetailTitle" = "Spiel Details";
 "round" = "Runde";
@@ -40,3 +37,4 @@
 "registerGenericMsg" = "Etwas ist schiefgelaufen beim Versuch dich zu registrieren. Bitte versuche es später erneut.";
 "accountSettings" = "Kontoeinstellungen";
 "changeAvatar" = "Avatar ändern";
+"homeTitle" = "Pin Fever";

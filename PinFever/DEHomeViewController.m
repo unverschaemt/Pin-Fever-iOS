@@ -29,6 +29,8 @@
     
     self.waitingGames = [NSMutableArray new];
     self.activeGames = [NSMutableArray new];
+
+    self.title = NSLocalizedString(@"homeTitle", nil);
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ActiveGamesTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"activeGamesCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
