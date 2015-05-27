@@ -87,10 +87,14 @@
                                             <segue destination="rJ9-ea-dla" kind="show" id="fxd-Ki-YSe"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lMJ-iE-3jf">
+                                        <rect key="frame" x="197" y="184" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="DnB-73-sdJ" secondAttribute="bottom" constant="352" id="1XX-fc-65G"/>
                                     <constraint firstAttribute="trailing" secondItem="U7b-EP-Zpr" secondAttribute="trailing" constant="8" id="1yq-GD-kip"/>
+                                    <constraint firstAttribute="centerX" secondItem="lMJ-iE-3jf" secondAttribute="centerX" id="7Of-H6-onN"/>
                                     <constraint firstItem="Exc-U4-Mck" firstAttribute="top" secondItem="muB-Y4-o0s" secondAttribute="top" constant="61" id="CaC-9X-Cg9"/>
                                     <constraint firstItem="lB7-ri-f0G" firstAttribute="leading" secondItem="3Wh-xU-7Pm" secondAttribute="trailing" constant="83" id="DLi-Et-IYB"/>
                                     <constraint firstItem="U7b-EP-Zpr" firstAttribute="top" secondItem="Exc-U4-Mck" secondAttribute="bottom" constant="8" id="Dtv-KZ-hxS"/>
@@ -117,6 +121,7 @@
                                     <constraint firstAttribute="trailing" secondItem="lB7-ri-f0G" secondAttribute="trailing" constant="8" id="lgT-hp-dDe"/>
                                     <constraint firstItem="3Wh-xU-7Pm" firstAttribute="width" secondItem="Lgy-VT-LQa" secondAttribute="width" id="oKk-Oj-zqf"/>
                                     <constraint firstItem="S7c-Jo-wPd" firstAttribute="leading" secondItem="muB-Y4-o0s" secondAttribute="leading" constant="8" id="qgS-iG-e4A"/>
+                                    <constraint firstAttribute="centerY" secondItem="lMJ-iE-3jf" secondAttribute="centerY" constant="91.5" id="qrP-Y2-b2h"/>
                                     <constraint firstAttribute="centerX" secondItem="DnB-73-sdJ" secondAttribute="centerX" id="rZU-AF-tNA"/>
                                     <constraint firstAttribute="trailing" secondItem="Lgy-VT-LQa" secondAttribute="trailing" constant="194" id="uHZ-qa-WxJ"/>
                                 </constraints>
@@ -154,6 +159,7 @@
                     <connections>
                         <outlet property="emailField" destination="Exc-U4-Mck" id="KqS-dW-aEU"/>
                         <outlet property="forgotPwButton" destination="Lgy-VT-LQa" id="DoO-I9-hUc"/>
+                        <outlet property="loadingView" destination="lMJ-iE-3jf" id="cg6-pg-cDH"/>
                         <outlet property="loginButton" destination="3Wh-xU-7Pm" id="xwn-is-0YF"/>
                         <outlet property="logoImageView" destination="UXn-ur-ukb" id="b0I-Lw-YI8"/>
                         <outlet property="passwordField" destination="S7c-Jo-wPd" id="VjY-Yc-PYI"/>
@@ -239,6 +245,9 @@
                                             <constraint firstAttribute="height" constant="1" id="mil-11-zk6"/>
                                         </constraints>
                                     </view>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SHG-2L-QCS">
+                                        <rect key="frame" x="197" y="200" width="20" height="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="0sU-6E-u7O" secondAttribute="trailing" constant="8" id="09w-Gz-je4"/>
@@ -262,11 +271,13 @@
                                     <constraint firstAttribute="trailing" secondItem="VlV-pw-mJ0" secondAttribute="trailing" constant="8" id="ZhS-wy-BWQ"/>
                                     <constraint firstItem="VlV-pw-mJ0" firstAttribute="leading" secondItem="4nS-VV-EKq" secondAttribute="leading" constant="8" id="aD7-tp-Pry"/>
                                     <constraint firstAttribute="trailing" secondItem="SGy-Nl-NYy" secondAttribute="trailing" constant="8" id="cGv-ze-J7c"/>
+                                    <constraint firstAttribute="centerX" secondItem="SHG-2L-QCS" secondAttribute="centerX" id="dEX-hs-VcE"/>
                                     <constraint firstItem="WDo-qK-1Ld" firstAttribute="top" secondItem="0sU-6E-u7O" secondAttribute="bottom" constant="18" id="dfE-4M-3jh"/>
                                     <constraint firstAttribute="trailing" secondItem="Js8-cx-10I" secondAttribute="trailing" constant="8" id="eu3-Ne-FiX"/>
                                     <constraint firstItem="wei-PA-G0f" firstAttribute="top" secondItem="VlV-pw-mJ0" secondAttribute="bottom" constant="18" id="jII-0v-PdU"/>
                                     <constraint firstItem="0sU-6E-u7O" firstAttribute="leading" secondItem="4nS-VV-EKq" secondAttribute="leading" constant="8" id="trL-Wf-UVX"/>
                                     <constraint firstItem="TOP-QC-gef" firstAttribute="top" secondItem="SGy-Nl-NYy" secondAttribute="bottom" constant="18" id="wkl-Om-DLe"/>
+                                    <constraint firstAttribute="centerY" secondItem="SHG-2L-QCS" secondAttribute="centerY" constant="47" id="zJ0-5o-yc9"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gsn-2N-yU2">
@@ -305,6 +316,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="emailField" destination="wei-PA-G0f" id="670-Eh-Inv"/>
+                        <outlet property="loadingView" destination="SHG-2L-QCS" id="gLG-5Z-a9h"/>
                         <outlet property="logoImageView" destination="6Lc-hj-tQW" id="eHL-gu-oyM"/>
                         <outlet property="passwordField" destination="WDo-qK-1Ld" id="rJ2-oT-bIw"/>
                         <outlet property="rePasswordField" destination="TOP-QC-gef" id="uEy-WM-aiO"/>

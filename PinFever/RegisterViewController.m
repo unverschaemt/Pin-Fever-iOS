@@ -70,6 +70,51 @@
     app.window.rootViewController = homeViewController;
 }
 
+-(void)tryRegister:(NSString *)body {
+    [self showLoading:NO];
+
+    NSLog(@"Body: %@",body);
+    NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:nil];
+    if([response objectForKey:kErrorKey] == (id)[NSNull null]) {
+        //Register Success
+        NSString *token = [[response objectForKey:kDataKey]objectForKey:kTokenKey];
+        if(token.length != 0) {
+            [self saveAuthToken:token];
+            [self pushToHomeController];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil)message:NSLocalizedString(@"registerGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil) message:NSLocalizedString(@"registerGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+
+}
+
+-(void)registerFailed:(NSError *)error {
+    [self showLoading:NO];
+
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil) message:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"registerFailedWith", nil),[error localizedDescription]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+-(void)showLoading:(BOOL)showIndicators {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:showIndicators];
+    if(showIndicators) {
+        [self.loadingView startAnimating];
+    }
+    else {
+        [self.loadingView stopAnimating];
+    }
+}
+
 
 -(IBAction)signUp:(id)sender {
     NSString *email = self.emailField.text;
@@ -95,36 +140,14 @@
     NSLog(@"%@",registerURL.description);
     
     r.completionBlock = ^(NSDictionary *headers, NSString *body) {
-        NSLog(@"Body: %@",body);
-        NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                                 options:NSJSONReadingMutableContainers
-                                                                   error:nil];
-        if([response objectForKey:kErrorKey] == (id)[NSNull null]) {
-            //Register Success
-            NSString *token = [[response objectForKey:kDataKey]objectForKey:kTokenKey];
-            if(token.length != 0) {
-                [self saveAuthToken:token];
-                [self pushToHomeController];
-            }
-            else {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil)message:NSLocalizedString(@"registerGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                [alert show];
-            }
-        }
-        else {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil) message:NSLocalizedString(@"registerGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-        
+        [self tryRegister:body];
     };
     
     r.errorBlock = ^(NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil) message:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"registerFailedWith", nil),[error localizedDescription]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
+        [self registerFailed:error];
     };
     
+    [self showLoading:YES];
     [r startAsynchronous];
 
 }

@@ -21,5 +21,6 @@
 @property (nonatomic, weak) IBOutlet UIButton *forgotPwButton;
 @property (nonatomic, weak) IBOutlet UIButton *signupButton;
 
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *loadingView;
 @end
 

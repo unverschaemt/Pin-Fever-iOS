@@ -19,4 +19,6 @@
 @property (nonatomic, weak) IBOutlet UITextField *rePasswordField;
 @property (nonatomic, weak) IBOutlet UIButton *signupButton;
 
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *loadingView;
+
 @end

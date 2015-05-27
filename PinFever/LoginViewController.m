@@ -81,6 +81,51 @@
     }
 }
 
+-(void)showLoading:(BOOL)showIndicators {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:showIndicators];
+    if(showIndicators) {
+        [self.loadingView startAnimating];
+    }
+    else {
+        [self.loadingView stopAnimating];
+    }
+}
+
+-(void)tryLogin:(NSString *)body {
+    [self showLoading:NO];
+    
+    NSLog(@"Body: %@",body);
+    NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:nil];
+    if([response objectForKey:kErrorKey] == (id)[NSNull null]) {
+        //Login Success
+        NSString *token = [[response objectForKey:kDataKey]objectForKey:kTokenKey];
+        if(token.length != 0) {
+            [self saveAuthToken:token];
+            [self pushToHomeController];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:NSLocalizedString(@"loginGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:NSLocalizedString(@"loginCredentialsMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+
+}
+
+-(void)loginFailed:(NSError *)error {
+    [self showLoading:NO];
+
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"loginFailedWith", nil),[error localizedDescription]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
 #pragma mark -
 #pragma mark IBAction's
 -(IBAction)login:(id)sender {
@@ -96,38 +141,16 @@
     STHTTPRequest *r = [STHTTPRequest requestWithURL:loginURL];
     r.POSTDictionary = @{ @"email":email, @"password":password};
     r.completionBlock = ^(NSDictionary *headers, NSString *body) {
-        NSLog(@"Body: %@",body);
-        NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
-
-        NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                                 options:NSJSONReadingMutableContainers
-                                                                   error:nil];
-        if([response objectForKey:kErrorKey] == (id)[NSNull null]) {
-            //Login Success
-            NSString *token = [[response objectForKey:kDataKey]objectForKey:kTokenKey];
-            if(token.length != 0) {
-                [self saveAuthToken:token];
-                [self pushToHomeController];
-            }
-            else {
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:NSLocalizedString(@"loginGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                [alert show];
-            }
-        }
-        else {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:NSLocalizedString(@"loginCredentialsMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-
+        [self tryLogin:body];
     };
     
     r.errorBlock = ^(NSError *error) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"loginFailedWith", nil),[error localizedDescription]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
+        [self loginFailed:error];
     };
-    
+    [self showLoading:YES];
     [r startAsynchronous];
 }
+
 
 -(IBAction)forgotPassword:(id)sender {
     
