@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "PlayerCollectionViewCell.h"
 
 @interface DEAnimator : NSObject
+
+-(void)startShivering:(PlayerCollectionViewCell *)cell;
+-(void)stopShivering:(PlayerCollectionViewCell *)cell;
 
 @end

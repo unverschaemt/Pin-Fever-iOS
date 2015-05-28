@@ -10,4 +10,9 @@
 
 @interface DEFileManager : NSObject
 
+
+-(NSString *)saveFilePathWithSuffix:(NSString *)suffix;
+-(void)saveMutableArray:(NSMutableArray *)array withFilename:(NSString *)filename;
+-(NSMutableArray *)loadMutableArray:(NSString *)filename;
+
 @end
