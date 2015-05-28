@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DEAPIWrapper.h"
 
-@interface RegisterViewController : UIViewController <UITextFieldDelegate>
-
+@interface RegisterViewController : UIViewController <UITextFieldDelegate> {
+    DEAPIWrapper *apiWrapper;
+}
 -(IBAction)signUp:(id)sender;
 
 @property (nonatomic, weak) IBOutlet UIImageView *logoImageView;

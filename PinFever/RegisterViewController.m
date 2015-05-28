@@ -7,10 +7,6 @@
 //
 
 #import "RegisterViewController.h"
-#import <STHTTPRequest/STHTTPRequest.h>
-#import "DEHomeViewController.h"
-#import "AppDelegate.h"
-#import "KeychainItemWrapper.h"
 
 @interface RegisterViewController ()
 
@@ -25,6 +21,8 @@
     self.logoImageView.layer.cornerRadius = self.logoImageView.frame.size.width/2;
     self.logoImageView.layer.borderWidth = 2.0;
     self.logoImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
+    
+    apiWrapper = [DEAPIWrapper new];
     
     [self setupTextFields];
     
@@ -57,50 +55,7 @@
 #pragma mark -
 #pragma mark Methods
 
-
--(void)saveAuthToken:(NSString *)token {
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:kKeychainKey accessGroup:nil];
-    [keychainItem setObject:token forKey:(__bridge id)(kSecValueData)];
-    
-}
-
--(void)pushToHomeController {
-    DEHomeViewController *homeViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]instantiateInitialViewController];
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    app.window.rootViewController = homeViewController;
-}
-
--(void)tryRegister:(NSString *)body {
-    [self showLoading:NO];
-
-    NSLog(@"Body: %@",body);
-    NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:nil];
-    if(response[kErrorKey] == (id)[NSNull null]) {
-        //Register Success
-        NSString *token = [response[kDataKey] objectForKey:kTokenKey];
-        if(token.length != 0) {
-            [self saveAuthToken:token];
-            [self pushToHomeController];
-        }
-        else {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil)message:NSLocalizedString(@"registerGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-    }
-    else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil) message:NSLocalizedString(@"registerGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-
-}
-
 -(void)registerFailed:(NSError *)error {
-    [self showLoading:NO];
-
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil) message:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"registerFailedWith", nil),[error localizedDescription]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alert show];
 }
@@ -133,34 +88,15 @@
         [alert show];
         return;
     }
-    
-    NSURL *registerURL = [NSURL URLWithString:kRegisterEndpoint];
-    STHTTPRequest *r = [STHTTPRequest requestWithURL:registerURL];
-    NSDictionary *postDict = @{ @"email":email, @"password":password, @"displayName":username};
-    
-    NSError *err = nil;
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:postDict
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&err];
-    if(err) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"registerError", nil) message:NSLocalizedString(@"registerGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-        return;
-    }
-    [r setHeaderWithName:@"content-type" value:@"application/json"];
-    r.rawPOSTData = postData;
-    NSLog(@"%@",registerURL.description);
-    
-    r.completionBlock = ^(NSDictionary *headers, NSString *body) {
-        [self tryRegister:body];
-    };
-    
-    r.errorBlock = ^(NSError *error) {
-        [self registerFailed:error];
-    };
-    
     [self showLoading:YES];
-    [r startAsynchronous];
+    [apiWrapper tryRegister:email andPassword:password andUsername:username completed:^(NSDictionary *headers, NSString *body)
+    {
+        [self showLoading:NO];
+
+    } failed:^(NSError *error){
+        [self showLoading:NO];
+        [self registerFailed:error];
+    }];
 
 }
 

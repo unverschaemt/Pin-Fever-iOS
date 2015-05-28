@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface LoginViewController : UIViewController<UITextFieldDelegate>
+#import "DEAPIWrapper.h"
+@interface LoginViewController : UIViewController<UITextFieldDelegate> {
+    DEAPIWrapper *apiWrapper;
+}
 
 -(IBAction)login:(id)sender;
 -(IBAction)forgotPassword:(id)sender;

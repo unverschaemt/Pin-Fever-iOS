@@ -7,10 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import "DEHomeViewController.h"
-#import "AppDelegate.h"
-#import <STHTTPRequest/STHTTPRequest.h>
-#import "KeychainItemWrapper.h"
+
 
 @interface LoginViewController ()
 
@@ -28,7 +25,8 @@
     
     [self setupTextFields];
     
-    [self checkAlreadyLoggedIn];
+    apiWrapper = [DEAPIWrapper new];
+    [apiWrapper checkLogin];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,28 +56,6 @@
     [self.emailField becomeFirstResponder];
 }
 
--(void)saveAuthToken:(NSString *)token {
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:kKeychainKey accessGroup:nil];
-    [keychainItem setObject:token forKey:(__bridge id)(kSecValueData)];
-    
-}
-
--(void)pushToHomeController {
-    DEHomeViewController *homeViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]]instantiateInitialViewController];
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    app.window.rootViewController = homeViewController;
-}
-
-
--(void)checkAlreadyLoggedIn {
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:kKeychainKey accessGroup:nil];
-
-    NSString *token = [keychainItem objectForKey:(__bridge id)(kSecValueData)];
-    if(token.length != 0) {
-        [self pushToHomeController];
-    }
-}
-
 -(void)showLoading:(BOOL)showIndicators {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:showIndicators];
     if(showIndicators) {
@@ -90,37 +66,7 @@
     }
 }
 
--(void)tryLogin:(NSString *)body {
-    [self showLoading:NO];
-    
-    NSLog(@"Body: %@",body);
-    NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
-    
-    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:nil];
-    if(response[kErrorKey] == (id)[NSNull null]) {
-        //Login Success
-        NSString *token = [response[kDataKey] objectForKey:kTokenKey];
-        if(token.length != 0) {
-            [self saveAuthToken:token];
-            [self pushToHomeController];
-        }
-        else {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:NSLocalizedString(@"loginGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-    }
-    else {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:NSLocalizedString(@"loginCredentialsMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-
-}
-
 -(void)loginFailed:(NSError *)error {
-    [self showLoading:NO];
-
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:[NSString stringWithFormat:@"%@%@",NSLocalizedString(@"loginFailedWith", nil),[error localizedDescription]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alert show];
 }
@@ -135,33 +81,17 @@
         [alert show];
         return;
     }
-    NSURL *loginURL = [NSURL URLWithString:kLoginEndpoint];
-    NSLog(@"%@",loginURL.description);
-    STHTTPRequest *r = [STHTTPRequest requestWithURL:loginURL];
-
-    NSDictionary *postDict = @{ @"email":email, @"password":password };
-    
-    NSError *err = nil;
-    NSData *postData = [NSJSONSerialization dataWithJSONObject:postDict
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&err];
-    if(err) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Login Error" message:NSLocalizedString(@"loginGenericMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-        return;
-    }
-    [r setHeaderWithName:@"content-type" value:@"application/json"];
-    r.rawPOSTData = postData;
-
-    r.completionBlock = ^(NSDictionary *headers, NSString *body) {
-        [self tryLogin:body];
-    };
-    
-    r.errorBlock = ^(NSError *error) {
-        [self loginFailed:error];
-    };
     [self showLoading:YES];
-    [r startAsynchronous];
+
+    [apiWrapper tryLogin:email andPassword:password completed:^(NSDictionary *header, NSString *body)
+    {
+        [self showLoading:NO];
+    } failed:^(NSError *error){
+        [self showLoading:NO];
+        [self loginFailed:error];
+
+    }];
+
 }
 
 
