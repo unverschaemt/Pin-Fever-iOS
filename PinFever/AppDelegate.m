@@ -19,7 +19,6 @@
     // Override point for customization after application launch.
     // Look to see if our application was launched from a notification
     
-    [self createEditableCopyOfDatabaseIfNeeded];
     [self loadAvatar];
     
     return YES;
@@ -50,22 +49,6 @@
 
 #pragma mark -
 #pragma mark Actions
-- (void)createEditableCopyOfDatabaseIfNeeded {
-    if ([self fileExistsInDocuments:@"pinfever_db.db"]) {
-        return;
-    }
-    NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"pinfever_db.db"];
-    NSError *error;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = paths[0];
-    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"pinfever_db.db"];
-
-    BOOL success = [fileManager copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
-    if (!success) {
-        NSAssert1(0, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
-    }
-}
 
 -(void)loadAvatar {
     if ([self fileExistsInDocuments:@"avatar.png"]) {
@@ -99,8 +82,10 @@
     NSString *documentsDirectory = paths[0];
     NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:filename];
     return [fileManager fileExistsAtPath:fullPath];
-   
+}
 
+-(void)setRootViewController:(UIViewController *)controller {
+    self.window.rootViewController = controller;
 }
 
 @end

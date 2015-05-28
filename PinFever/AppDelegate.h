@@ -12,5 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UIImage *avatarImage;
+
+-(void)setRootViewController:(UIViewController *)controller;
+
 @end
 
