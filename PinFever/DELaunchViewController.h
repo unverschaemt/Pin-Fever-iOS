@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "TLTagsControl.h"
+#import "DEFileManager.h"
 
-@interface DELaunchViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate,TLTagsControlDelegate>
+@interface DELaunchViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate,TLTagsControlDelegate> {
+    DEFileManager *fileManager;
+}
 
 @property(nonatomic,weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet TLTagsControl *tagControl;
-
+@property (nonatomic, strong) NSMutableArray *friendsAndRecent;
 @end

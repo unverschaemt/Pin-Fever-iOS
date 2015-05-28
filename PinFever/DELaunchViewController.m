@@ -9,6 +9,8 @@
 #import "DELaunchViewController.h"
 #import "PlayerCollectionViewCell.h"
 #import "DECategoryViewController.h"
+#import "DEPlayer.h"
+#import "AppDelegate.h"
 
 @interface DELaunchViewController ()
 @property (nonatomic,strong) UIView *footerView;
@@ -27,11 +29,45 @@
     
     self.title = NSLocalizedString(@"newGameTitle", nil);
     
+    fileManager = [DEFileManager new];
+    
     self.tagControl.tagPlaceholder = NSLocalizedString(@"tagPlaceholder", nil);
     self.tagControl.mode = TLTagsControlModeEdit;
     self.tagControl.tagDelegate = self;
     self.tagControl.maxTags = @1;
     [self setupFooterView];
+    
+    self.friendsAndRecent = [NSMutableArray new];
+    [self loadFriends];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+
+#pragma mark -
+#pragma mark Methods
+-(void)startGame {
+    //Only 1 opponent is allowed therefore always tags[0]
+    NSString *opponentName = [self.tagControl stringForTagIndex:0];
+    NSLog(@"%@",opponentName);
+    //TODO: Opponent mitübergeben
+    DECategoryViewController *categoryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
+    [self.navigationController pushViewController:categoryViewController animated:YES];
 }
 
 -(void)setupFooterView {
@@ -62,29 +98,16 @@
     [self.view insertSubview:self.footerView aboveSubview:self.collectionView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+-(void)loadFriends {
+    self.friendsAndRecent = [fileManager loadMutableArray:kFriendsFilename];
+    DEPlayer *autoMatchPlayer = [DEPlayer new];
+    autoMatchPlayer.playerId = @"";
+    autoMatchPlayer.email = @"";
+    autoMatchPlayer.displayName = NSLocalizedString(@"autoMatch", nil);
+    autoMatchPlayer.level = [NSNumber numberWithInteger:-1];
+    [self.friendsAndRecent insertObject:autoMatchPlayer atIndex:0];
 
--(void)startGame {
-    //Only 1 opponent is allowed therefore always tags[0]
-    NSString *opponentName = [self.tagControl stringForTagIndex:0];
-    NSLog(@"%@",opponentName);
-    //TODO: Opponent mitübergeben
-    DECategoryViewController *categoryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
-    [self.navigationController pushViewController:categoryViewController animated:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark -
 #pragma mark UICollectionViewDataSource & Delegate
@@ -97,20 +120,16 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 20;
+    return self.friendsAndRecent.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PlayerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
-    if(indexPath.row == 0) {
-        cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
-        cell.playerNameLabel.text = NSLocalizedString(@"autoMatch", nil);
-    }
-    else {
+    DEPlayer *player = self.friendsAndRecent[(NSUInteger)indexPath.row];
     cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
-    cell.playerNameLabel.text = @"nils_hirsekorn";
-    }
+    cell.playerNameLabel.text = player.displayName;
+    
     return cell;
 }
 
