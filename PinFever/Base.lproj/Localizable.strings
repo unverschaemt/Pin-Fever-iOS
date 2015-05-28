@@ -38,3 +38,14 @@
 "accountSettings" = "Account Settings";
 "changeAvatar" = "Change Avatar";
 "homeTitle" = "Pin Fever";
+"addFriendError" = "Couldn't reach the server while trying to add your new friend. Please try again later.";
+"deleteFriendError" = "Couldn't reach the server while trying to delete your new friend. Please try again later.";
+"getFriendsError" = "Couldn't reach the server while trying to fetch your friendslist. Please try again later.";
+"friendsParseError" = "The server response was malformed. Could not load the friendslist.";
+"searchError" = "Couldn't reach the server while trying to load your search results. Please try again later.";
+"searchParseError"  = "The server response was malformed. Therefore your search results wasn't loaded";
+"unauthorizedError" = "Your login expired. Please login again.";
+"noFriendsDetail" = "Click the + icon to add some.";
+"noFriends" = "No Friends Found";
+"noSearchResults" = "No User Found";
+"noSearchResultsDetail" = "Type a minimum of 3 characters.";
