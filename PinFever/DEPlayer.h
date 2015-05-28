@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DEPlayer : NSObject
+@interface DEPlayer : NSObject <NSCoding>
 
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *imageName;
-@property (nonatomic, assign) NSInteger userId;
+@property (nonatomic, copy) NSString *email;
+@property (nonatomic, copy) NSString *displayName;
+@property (nonatomic, copy) NSString *playerId;
+@property (nonatomic, strong) NSNumber *level;
 @end
