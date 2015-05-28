@@ -19,8 +19,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = NSLocalizedString(@"addFriendTitle", nil);
+    
+    apiWrapper = [DEAPIWrapper new];
+
+    
     self.searchResults = [NSMutableArray new];
-    sqliteManager = [self getSQLiteManager];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,6 +36,16 @@
     [self.searchBar becomeFirstResponder];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.collectionView.emptyDataSetDelegate = self;
+    self.collectionView.emptyDataSetSource = self;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    self.collectionView.emptyDataSetDelegate = nil;
+    self.collectionView.emptyDataSetSource = nil;
+}
 /*
  #pragma mark - Navigation
  
@@ -47,26 +60,68 @@
 #pragma mark -
 #pragma mark Actions
 
--(SQLiteManager *)getSQLiteManager {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = paths[0];
-    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"pinfever_db.db"];
-    return [[SQLiteManager alloc]initWithDatabaseNamed:writableDBPath];
+-(void)showLoading:(BOOL)showIndicators {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:showIndicators];
 }
 
+
 -(void)searchForName:(NSString *)searchString {
-    [self.searchResults removeAllObjects];
-    
-    NSArray *sqlResults = [sqliteManager getRowsForQuery:[NSString stringWithFormat:@"SELECT Users.name, Users.imageName, Users.userId FROM Users WHERE Users.name LIKE '%@%%';",searchString]];
-    for(NSDictionary *dict in sqlResults) {
-        DEPlayer *player = [DEPlayer new];
-        player.name = dict[@"name"];
-        player.imageName = dict[@"imageName"];
-        player.userId = [dict[@"userId"]integerValue];
-        [self.searchResults addObject:player];
+    //TODO: API Call User Suggestions based on searchString
+    if(searchString.length < 3) {
+        return;
     }
+
+    [self showLoading:YES];
+
+    //optional ?limit=100, default is 10
+    NSURL *searchURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAPISearchUsersEndpoint,searchString]];
+
+    [apiWrapper request:searchURL httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil
+              completed:^(NSDictionary *headers, NSString *body) {
+                  [self parseSearchResults:body];
+                  [self showLoading:NO];
+
+              }
+                 failed:^(NSError *error) {
+                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"searchError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                     [alert show];
+                     [self showLoading:NO];
+
+                 }];
+
+}
+
+-(void)parseSearchResults:(NSString *)body {
+
+    NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:nil];
+    if(response[kErrorKey] == (id)[NSNull null]) {
+        [self.searchResults removeAllObjects];
+
+        NSArray *players = [response[kDataKey] objectForKey:kPlayerKey];
+        if(players.count != 0) {
+            for(NSDictionary *dict in players) {
+                DEPlayer *player = [DEPlayer new];
+                player.playerId = dict[kIdKey];
+                player.displayName = dict[kDisplayName];
+                player.email = dict[kEmailKey];
+                player.level = [NSNumber numberWithInteger:[dict[kLevelKey]integerValue]];
+                
+                [self.searchResults addObject:player];
+            }
+        }
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"searchParseError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+
     
     [self.collectionView reloadData];
+
 }
 
 
@@ -88,8 +143,8 @@
 {
     PlayerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
     DEPlayer *player = self.searchResults[(NSUInteger) indexPath.row];
-    cell.playerImageView.image = [UIImage imageNamed:player.imageName];
-    cell.playerNameLabel.text = player.name;
+    cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
+    cell.playerNameLabel.text = player.displayName;
 
     return cell;
 }
@@ -143,6 +198,59 @@
     [searchBar setShowsCancelButton:NO animated:YES];
     [searchBar resignFirstResponder];
 }
+
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
+
+#pragma mark -
+#pragma mark EmptySetDelegate & Datasource
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = NSLocalizedString(@"noSearchResults", nil);
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = NSLocalizedString(@"noSearchResultsDetail", nil);
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return [UIImage imageNamed:@"search"];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return [UIColor whiteColor];
+}
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
+{
+    return NO;
+}
+
 
 
 

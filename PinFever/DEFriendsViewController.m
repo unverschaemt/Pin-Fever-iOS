@@ -8,7 +8,7 @@
 
 #import "DEFriendsViewController.h"
 #import "PlayerCollectionViewCell.h"
-
+#import "AppDelegate.h"
 
 @interface DEFriendsViewController ()
 
@@ -16,25 +16,21 @@
 
 @implementation DEFriendsViewController
 
-#define kWiggleBounceY 2.0f
-#define kWiggleBounceDuration 0.12
-#define kWiggleBounceDurationVariance 0.025
-
-#define kWiggleRotateAngle 0.08f
-#define kWiggleRotateDuration 0.1
-#define kWiggleRotateDurationVariance 0.025
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = NSLocalizedString(@"friendsTitle", nil);
     
+    apiWrapper = [DEAPIWrapper new];
+    animator = [DEAnimator new];
+    fileManager = [DEFileManager new];
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(activateDeletionMode:)];
     longPress.minimumPressDuration = .5; //seconds
     [self.collectionView addGestureRecognizer:longPress];
     
     self.friends = [NSMutableArray new];
-    sqliteManager = [self getSQLiteManager];
+    [self loadFriendsFromDisk];
     [self loadFriends];
 }
 
@@ -43,6 +39,25 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.collectionView.emptyDataSetDelegate = self;
+    self.collectionView.emptyDataSetSource = self;
+    [self.collectionView reloadData];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    self.collectionView.emptyDataSetDelegate = nil;
+    self.collectionView.emptyDataSetSource = nil;
+    
+    [self saveFriends];
+}
+
+-(void)showLoading:(BOOL)showIndicators {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:showIndicators];
+}
+
 
 #pragma mark -
 #pragma mark Delete
@@ -53,7 +68,7 @@
     
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
     if (indexPath == nil){
-        NSLog(@"couldn't find index path");
+        return;
     } else {
         PlayerCollectionViewCell* cell =
         (PlayerCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
@@ -65,26 +80,26 @@
         self.deleteModus = !self.deleteModus;
         if(self.deleteModus) {
             if (indexPath == nil){
-                NSLog(@"couldn't find index path");
+                return;
             } else {
                 PlayerCollectionViewCell* cell =
                 (PlayerCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
                 [cell.deleteButton setHidden:NO];
                 [cell.deleteButton addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
-                [self startShivering:cell];
+                [animator startShivering:cell];
                 cell.alpha = 0.7;
                 
             }
         }
         else {
             if (indexPath == nil){
-                NSLog(@"couldn't find index path");
+                return;
             } else {
                 PlayerCollectionViewCell* cell =
                 (PlayerCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
                 [cell.deleteButton setHidden:YES];
                 [cell.deleteButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-                [self stopShivering:cell];
+                [animator stopShivering:cell];
                 cell.alpha = 1.0;
             }
         }
@@ -100,92 +115,78 @@
     PlayerCollectionViewCell *cell = (PlayerCollectionViewCell *)parent;
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
     [self deleteFriend:indexPath];
-    [self.collectionView reloadData];
     
     [sender setHidden:YES];
     [sender removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-    [self stopShivering:cell];
+    [animator stopShivering:cell];
 }
 
 -(void)deleteFriend:(NSIndexPath *)indexPath {
-    NSError *error = [sqliteManager doQuery:[NSString stringWithFormat:@"DELETE FROM Friends WHERE Friends.userId = '%li';", (long) ((DEPlayer *) self.friends[(NSUInteger) indexPath.row]).userId]];
-    if(error) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"deleteFriendMsg", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    else {
-        [self.friends removeObjectAtIndex:(NSUInteger) indexPath.row];
-    }
+
+    DEPlayer *player = [self.friends objectAtIndex:(NSUInteger)indexPath.row];
+    NSURL *deleteURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAPIDeleteFriendsEndpoint,player.playerId]];
+    [self showLoading:YES];
+    [apiWrapper request:deleteURL httpMethod:@"POST" optionalJSONData:nil optionalContentType:@"application/json"
+              completed:^(NSDictionary *headers, NSString *body) {
+                  [self.friends removeObjectAtIndex:(NSUInteger) indexPath.row];
+                  [self.collectionView reloadData];
+                  [self showLoading:NO];
+              }
+              failed:^(NSError *error) {
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"deleteFriendError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [alert show];
+                  [self showLoading:NO];
+    }];
+    
+    
 }
 
 #pragma mark -
-#pragma mark Delete Animations
-
--(CAAnimation*)rotationAnimation {
-    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
-    animation.values = @[@(-kWiggleRotateAngle), @(kWiggleRotateAngle)];
-    
-    animation.autoreverses = YES;
-    animation.duration = [self randomizeInterval:kWiggleRotateDuration
-                                    withVariance:kWiggleRotateDurationVariance];
-    animation.repeatCount = HUGE_VALF;
-    
-    return animation;
-}
-
--(CAAnimation*)bounceAnimation {
-    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.y"];
-    animation.values = @[@(kWiggleBounceY), @(0.0)];
-    
-    animation.autoreverses = YES;
-    animation.duration = [self randomizeInterval:kWiggleBounceDuration
-                                    withVariance:kWiggleBounceDurationVariance];
-    animation.repeatCount = HUGE_VALF;
-    
-    return animation;
-}
-
--(NSTimeInterval)randomizeInterval:(NSTimeInterval)interval withVariance:(double)variance {
-    double random = (arc4random_uniform(1000) - 500.0) / 500.0;
-    return interval + variance * random;
-}
-
--(void)startShivering:(PlayerCollectionViewCell *)cell {
-    [UIView animateWithDuration:0
-                     animations:^{
-                         [cell.layer addAnimation:[self rotationAnimation] forKey:@"rotation"];
-                         [cell.layer addAnimation:[self bounceAnimation] forKey:@"bounce"];
-                         cell.transform = CGAffineTransformIdentity;
-                     }];
-}
-
--(void)stopShivering:(PlayerCollectionViewCell *)cell {
-    [cell.layer removeAnimationForKey:@"rotation"];
-    [cell.layer removeAnimationForKey:@"bounce"];
-}
-
-#pragma mark -
-#pragma mark Database
-
--(SQLiteManager *)getSQLiteManager {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = paths[0];
-    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"pinfever_db.db"];
-    return [[SQLiteManager alloc]initWithDatabaseNamed:writableDBPath];
-}
+#pragma mark Load Friends
 
 -(void)loadFriends {
-    [self.friends removeAllObjects];
-    NSArray *friendResults = [sqliteManager getRowsForQuery:[NSString stringWithFormat:@"SELECT Users.name, Users.imageName,Users.userId from Friends JOIN Users ON Friends.userId = Users.userId;"]];
-    
-    for(NSDictionary *dict in friendResults) {
-        DEPlayer *player = [[DEPlayer alloc]init];
-        player.name = dict[@"name"];
-        player.imageName = dict[@"imageName"];
-        player.userId = [dict[@"userId"]integerValue];
-        [self.friends addObject:player];
-    }
-    [self.collectionView reloadData];
+    NSURL *friendsURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@",kAPIFriendsEndpoint]];
+    [self showLoading:YES];
+
+    [apiWrapper request:friendsURL httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil
+              completed:^(NSDictionary *headers, NSString *body) {
+                  [self parseFriends:body];
+                  [self showLoading:NO];
+
+              }
+                 failed:^(NSError *error) {
+                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"getFriendsError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                     [alert show];
+                     [self showLoading:NO];
+                 }];
+
+}
+
+- (void)parseFriends:(NSString *)body {
+        NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                 options:NSJSONReadingMutableContainers
+                                                                   error:nil];
+        if(response[kErrorKey] == (id)[NSNull null]) {
+            [self.friends removeAllObjects];
+            NSArray *friends = [response[kDataKey] objectForKey:kFriendKey];
+            if(friends.count != 0) {
+                for(NSDictionary *dict in friends) {
+                    DEPlayer *player = [DEPlayer new];
+                    player.playerId = dict[kIdKey];
+                    player.displayName = dict[kDisplayName];
+                    player.email = dict[kEmailKey];
+                    player.level = [NSNumber numberWithInteger:[dict[kLevelKey]integerValue]];
+                    [self.friends addObject:player];
+                }
+            }
+            [self.collectionView reloadData];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"friendsParseError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
 }
 
 
@@ -199,19 +200,37 @@
 }
 
 -(void)battleFriend:(DEPlayer *)player {
-    NSLog(@"Battle with: %@",player.name);
+    NSLog(@"Battle with: %@",player.displayName);
 }
+
 
 #pragma mark -
 #pragma mark DEAddFriendDelegate
 
 -(void)addedFriend:(DEPlayer *)player {
-    NSError *error = [sqliteManager doQuery:[NSString stringWithFormat:@"INSERT INTO Friends VALUES('%li');",(long)player.userId]];
-    if(error) {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"errorAddingFriend", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
-    [self loadFriends];
+    [self showLoading:YES];
+    NSURL *addURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAPIAddFriendsEndpoint,player.playerId]];
+    [apiWrapper request:addURL httpMethod:@"POST" optionalJSONData:nil optionalContentType:@"application/json"
+              completed:^(NSDictionary *headers, NSString *body) {
+                  [self.friends addObject:player];
+                  [self.collectionView reloadData];
+                  [self showLoading:NO];
+
+              }
+                 failed:^(NSError *error) {
+                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"addFriendError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                     [alert show];
+                     [self showLoading:NO];
+
+                 }];
+}
+
+-(void)saveFriends {
+    [fileManager saveMutableArray:self.friends withFilename:kFriendsFilename];
+}
+
+-(void)loadFriendsFromDisk {
+    self.friends = [fileManager loadMutableArray:kFriendsFilename];
 }
 
 #pragma mark -
@@ -233,8 +252,8 @@
     PlayerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
     
     DEPlayer *player = self.friends[(NSUInteger) indexPath.row];
-    cell.playerImageView.image = [UIImage imageNamed:player.imageName];
-    cell.playerNameLabel.text = player.name;
+    cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
+    cell.playerNameLabel.text = player.displayName;
     
     return cell;
 }
@@ -242,6 +261,54 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     DEPlayer *player = self.friends[(NSUInteger) indexPath.row];
     [self battleFriend:player];
+}
+
+#pragma mark -
+#pragma mark EmptySetDelegate & Datasource
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = NSLocalizedString(@"noFriends", nil);
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *text = NSLocalizedString(@"noFriendsDetail", nil);
+    
+    NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
+    paragraph.lineBreakMode = NSLineBreakByWordWrapping;
+    paragraph.alignment = NSTextAlignmentCenter;
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor],
+                                 NSParagraphStyleAttributeName: paragraph};
+    
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return [UIImage imageNamed:@"friends"];
+}
+
+- (UIColor *)backgroundColorForEmptyDataSet:(UIScrollView *)scrollView
+{
+    return [UIColor whiteColor];
+}
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
+{
+    return NO;
 }
 
 @end

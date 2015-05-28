@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DEPlayer.h"
-#import "SQLiteManager.h"
+#import "DEAPIWrapper.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
 @protocol DEAddFriendDelegate <NSObject>
 
@@ -16,8 +17,8 @@
 - (void)addedFriend:(DEPlayer *)player;
 @end
 
-@interface DEAddFriendViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate> {
-    SQLiteManager *sqliteManager;
+@interface DEAddFriendViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate> {
+    DEAPIWrapper *apiWrapper;
 }
 
 @property(nonatomic,weak) IBOutlet UICollectionView *collectionView;

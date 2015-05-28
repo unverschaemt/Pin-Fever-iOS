@@ -8,15 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "DEAddFriendViewController.h"
-#import "SQLiteManager.h"
+#import "DEAPIWrapper.h"
+#import "DEAnimator.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "DEFileManager.h"
 
-@interface DEFriendsViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource,DEAddFriendDelegate> {
-    SQLiteManager *sqliteManager;
+@interface DEFriendsViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource,DEAddFriendDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource> {
+    DEAPIWrapper *apiWrapper;
+    DEAnimator *animator;
+    DEFileManager *fileManager;
 }
 
 @property(nonatomic,weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *friends;
 @property (nonatomic,assign) BOOL deleteModus;
+
 -(IBAction)addFriend:(id)sender;
 
 @end
