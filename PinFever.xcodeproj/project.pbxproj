@@ -34,6 +34,8 @@
 		636FAA591B0F0E4800937E23 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636FAA581B0F0E4800937E23 /* MapKit.framework */; };
 		636FAA5C1B0F1B5200937E23 /* DETileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA5B1B0F1B5200937E23 /* DETileOverlay.m */; };
 		636FAA5F1B0F1B7400937E23 /* MBXRasterTileRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA5E1B0F1B7400937E23 /* MBXRasterTileRenderer.m */; };
+		63788D5D1B183F4E00CFE410 /* DEProfileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63788D5C1B183F4E00CFE410 /* DEProfileManager.m */; };
+		63788D601B18494F00CFE410 /* DEImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 63788D5F1B18494F00CFE410 /* DEImageUtility.m */; };
 		6398B7F51AF7D00E000235FE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F41AF7D00E000235FE /* main.m */; };
 		6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7F71AF7D00E000235FE /* AppDelegate.m */; };
 		6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6398B7FA1AF7D00E000235FE /* LoginViewController.m */; };
@@ -115,6 +117,10 @@
 		636FAA5B1B0F1B5200937E23 /* DETileOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DETileOverlay.m; sourceTree = "<group>"; };
 		636FAA5D1B0F1B7400937E23 /* MBXRasterTileRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBXRasterTileRenderer.h; sourceTree = "<group>"; };
 		636FAA5E1B0F1B7400937E23 /* MBXRasterTileRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBXRasterTileRenderer.m; sourceTree = "<group>"; };
+		63788D5B1B183F4E00CFE410 /* DEProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEProfileManager.h; sourceTree = "<group>"; };
+		63788D5C1B183F4E00CFE410 /* DEProfileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEProfileManager.m; sourceTree = "<group>"; };
+		63788D5E1B18494F00CFE410 /* DEImageUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEImageUtility.h; sourceTree = "<group>"; };
+		63788D5F1B18494F00CFE410 /* DEImageUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEImageUtility.m; sourceTree = "<group>"; };
 		63970AE31AF8DDC10015106D /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		63970AE41AF8E3540015106D /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		6398B7EF1AF7D00E000235FE /* PinFever.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinFever.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +264,10 @@
 				631B7C771B17573300EEA931 /* DEAnimator.m */,
 				631B7C791B17626200EEA931 /* DEFileManager.h */,
 				631B7C7A1B17626200EEA931 /* DEFileManager.m */,
+				63788D5B1B183F4E00CFE410 /* DEProfileManager.h */,
+				63788D5C1B183F4E00CFE410 /* DEProfileManager.m */,
+				63788D5E1B18494F00CFE410 /* DEImageUtility.h */,
+				63788D5F1B18494F00CFE410 /* DEImageUtility.m */,
 				63AF11BF1B008E380063D3B1 /* TLTagsControl */,
 				6349C8EF1AF7D9C600F412CC /* Login */,
 				63D060CA1B0E852B00D54B23 /* Models */,
@@ -545,6 +555,8 @@
 				6358AF8D1AF910B0002A0234 /* DEFriendsViewController.m in Sources */,
 				631B7C751B17443B00EEA931 /* DEAPIWrapper.m in Sources */,
 				636FAA5F1B0F1B7400937E23 /* MBXRasterTileRenderer.m in Sources */,
+				63788D601B18494F00CFE410 /* DEImageUtility.m in Sources */,
+				63788D5D1B183F4E00CFE410 /* DEProfileManager.m in Sources */,
 				631904521AFA27FF00E3665F /* DERoundTableViewCell.m in Sources */,
 				631B7C7B1B17626200EEA931 /* DEFileManager.m in Sources */,
 				6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */,

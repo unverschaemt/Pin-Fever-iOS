@@ -66,7 +66,6 @@
 
 
 -(void)searchForName:(NSString *)searchString {
-    //TODO: API Call User Suggestions based on searchString
     if(searchString.length < 3) {
         return;
     }
@@ -101,13 +100,15 @@
     if(response[kErrorKey] == (id)[NSNull null]) {
         [self.searchResults removeAllObjects];
 
-        NSArray *players = [response[kDataKey] objectForKey:kPlayerKey];
+        NSArray *players = [response[kDataKey] objectForKey:kPlayersKey];
         if(players.count != 0) {
             for(NSDictionary *dict in players) {
                 DEPlayer *player = [DEPlayer new];
                 player.playerId = dict[kIdKey];
                 player.displayName = dict[kDisplayName];
-                player.email = dict[kEmailKey];
+                if(dict[kEmailKey] != nil) {
+                    player.email = dict[kEmailKey];
+                }
                 player.level = [NSNumber numberWithInteger:[dict[kLevelKey]integerValue]];
                 
                 [self.searchResults addObject:player];

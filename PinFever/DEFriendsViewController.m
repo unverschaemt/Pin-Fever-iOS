@@ -176,7 +176,9 @@
                     DEPlayer *player = [DEPlayer new];
                     player.playerId = dict[kIdKey];
                     player.displayName = dict[kDisplayName];
-                    player.email = dict[kEmailKey];
+                    if(dict[kEmailKey] != nil) {
+                        player.email = dict[kEmailKey];
+                    }
                     player.level = [NSNumber numberWithInteger:[dict[kLevelKey]integerValue]];
                     [self.friends addObject:player];
                 }

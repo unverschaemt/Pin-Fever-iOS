@@ -64,7 +64,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="Wmz-V6-5en">
                             <connections>
-                                <segue destination="BhU-8D-Kb5" kind="show" id="xc9-x4-co1"/>
+                                <segue destination="BhU-8D-Kb5" kind="show" identifier="showSettings" id="xc9-x4-co1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -176,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ou6-OD-odt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1577" y="376"/>
+            <point key="canvasLocation" x="1560" y="830"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="jXQ-Qx-BpQ">

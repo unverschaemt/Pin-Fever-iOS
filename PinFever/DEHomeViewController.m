@@ -11,6 +11,8 @@
 #import "DELaunchViewController.h"
 #import "DEProfileViewController.h"
 #import "AppDelegate.h"
+#import "DERoundDetailViewController.h"
+#import "DECategoryViewController.h"
 
 @interface DEHomeViewController ()
 @end
@@ -27,6 +29,9 @@
     self.avatarImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
     [self.avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showProfile:)]];
     
+    apiWrapper = [DEAPIWrapper new];
+    fileManager = [DEFileManager new];
+    
     self.waitingGames = [NSMutableArray new];
     self.activeGames = [NSMutableArray new];
 
@@ -34,13 +39,18 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ActiveGamesTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"activeGamesCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    profileManager = [DEProfileManager sharedManager];
+    [self loadPlayer];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self reloadMatches];
     [self reloadAvatar];
+    [self updateUI];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -58,10 +68,37 @@
 */
 
 #pragma mark -
-#pragma mark Methods
--(void)reloadAvatar {
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.avatarImageView.image = [app avatarImage];
+#pragma mark Player API Call
+
+-(void)loadPlayer {
+    NSURL *playerURL = [NSURL URLWithString:kAPIPlayerEndpoint];
+    [apiWrapper request:playerURL httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body){
+        [self parsePlayer:body];
+    } failed:^(NSError *error){
+        
+    }];
+}
+
+-(void)parsePlayer:(NSString *)body {
+    NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:nil];
+    if(response[kErrorKey] == (id)[NSNull null]) {
+        NSDictionary *dict = [response[kDataKey] objectForKey:kPlayerKey];
+        [profileManager me].playerId = dict[kIdKey];
+        [profileManager me].displayName = dict[kDisplayName];
+        if(dict[kEmailKey] != nil) {
+              [profileManager me].email = dict[kEmailKey];
+        }
+        [profileManager me].level = [NSNumber numberWithInteger:[dict[kLevelKey]integerValue]];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"playerParseError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
 }
 
 
@@ -69,7 +106,6 @@
 #pragma mark Actions
 
 -(void)showProfile:(UIGestureRecognizer *)gestureRecognizer {
-    NSLog(@"Show Profile");
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         DEProfileViewController *profileViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"profileViewController"];
         [self.navigationController pushViewController:profileViewController animated:YES];
@@ -77,7 +113,6 @@
 }
 
 -(void)newGame {
-    NSLog(@"New Game");
     DELaunchViewController *launchVc = [[self storyboard]instantiateViewControllerWithIdentifier:@"launchViewController"];
     [self.navigationController pushViewController:launchVc animated:YES];
 }
@@ -85,6 +120,14 @@
 -(void)reloadMatches {
     //TODO reloadArrays and afterwards TableView
     [self.tableView reloadData];
+}
+
+-(void)reloadAvatar {
+    self.avatarImageView.image = [[profileManager me]avatarImg];
+}
+
+-(void)updateUI {
+    [self.scoreLabel setText:[[[profileManager me]level]stringValue]];
 }
 
 #pragma mark -
@@ -160,7 +203,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //TODO: Je nach Section Detail oder Game pushen
+
+    //TODO: Jeweils GameDetails mit übergeben
+    if(indexPath.section == 0) {
+        DECategoryViewController *categoryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
+        [self.navigationController pushViewController:categoryViewController animated:YES];
+        
+    }
+    else {
+        DERoundDetailViewController *roundDetailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"roundDetailViewController"];
+        [self.navigationController pushViewController:roundDetailViewController animated:YES];
+    }
 }
 
 @end
