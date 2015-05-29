@@ -10,4 +10,17 @@
 
 @implementation DEImageUtility
 
+
++(UIImage *)cropToJPEG:(UIImage *)image size:(CGSize)size quality:(CGFloat)quality {
+    //TODO: resize to size
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    newImage = [UIImage imageWithData:UIImageJPEGRepresentation(newImage, quality)];
+    
+    return newImage;
+}
+
 @end

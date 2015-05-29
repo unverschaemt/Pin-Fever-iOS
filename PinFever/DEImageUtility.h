@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface DEImageUtility : NSObject
+
+//Crops to size and a specified quality
++(UIImage *)cropToJPEG:(UIImage *)image size:(CGSize)size quality:(CGFloat)quality;
 
 @end

@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DEPlayer.h"
 
 @interface DEProfileManager : NSObject
+
+@property (nonatomic, strong) DEPlayer *me;
+
++ (id)sharedManager;
 
 @end

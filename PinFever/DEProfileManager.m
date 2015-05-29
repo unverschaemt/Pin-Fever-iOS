@@ -10,4 +10,13 @@
 
 @implementation DEProfileManager
 
++ (id)sharedManager {
+    static DEProfileManager *sharedMyManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [[self alloc] init];
+    });
+    return sharedMyManager;
+}
+
 @end
