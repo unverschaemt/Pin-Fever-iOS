@@ -14,12 +14,18 @@
 #define kAPIDeleteFriendsEndpoint (kAPIEndpointHost @"/players/me/removefriend/")
 #define kAPIAddFriendsEndpoint (kAPIEndpointHost @"/players/me/addfriend/")
 #define kAPISearchUsersEndpoint (kAPIEndpointHost @"/players/search/")
+#define kAPIPlayerEndpoint (kAPIEndpointHost @"/players/me")
+#define kAPISomePlayerEndpoint (kAPIEndpointHost @"/players/")
+#define kAPISetPlayerEndpoint (kAPIEndpointHost @"/players/me/set")
+#define kAPIUploadAvatarEndpoint (kAPIEndpointHost @"/players/me/avatarupload")
+
 
 #define kErrorKey @"err"
 #define kDataKey @"data"
 #define kTokenKey @"token"
 #define kFriendKey @"friends"
-#define kPlayerKey @"players"
+#define kPlayersKey @"players"
+#define kPlayerKey @"player"
 
 #define kIdKey @"_id"
 #define kDisplayName @"displayName"
@@ -31,3 +37,4 @@
 #define kAPIAuthToken @"api-auth-token"
 
 #define kFriendsFilename @"friends.pinfever"
+#define kPlayerFilename @"player.pinfever"
