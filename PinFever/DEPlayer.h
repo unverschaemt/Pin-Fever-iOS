@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKIT/UIKIT.h>
 
 @interface DEPlayer : NSObject <NSCoding>
 
@@ -14,4 +15,5 @@
 @property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, copy) NSString *playerId;
 @property (nonatomic, strong) NSNumber *level;
+@property (nonatomic, strong) UIImage *avatarImg;
 @end

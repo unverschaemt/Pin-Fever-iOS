@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DEFileManager.h"
+#import "DEProfileManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UIImage *avatarImage;
 
 -(void)setRootViewController:(UIViewController *)controller;
 

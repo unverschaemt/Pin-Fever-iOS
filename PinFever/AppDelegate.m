@@ -18,16 +18,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     // Look to see if our application was launched from a notification
-    
-    [self loadAvatar];
-    
+    [self loadPlayerFromDisk];
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    [self saveImage:self.avatarImage];
+    [self savePlayer];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -50,42 +48,21 @@
 #pragma mark -
 #pragma mark Actions
 
--(void)loadAvatar {
-    if ([self fileExistsInDocuments:@"avatar.png"]) {
-        self.avatarImage = [self retrieveAvatar];
-    }
-    else {
-        self.avatarImage = [UIImage imageNamed:@"avatarPlaceholder.png"];
-    }
-}
-
--(void)saveImage:(UIImage *)image {
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * basePath = ([paths count] > 0) ? paths[0] : nil;
-    
-    NSData * binaryImageData = UIImagePNGRepresentation(image);
-    
-    [binaryImageData writeToFile:[basePath stringByAppendingPathComponent:@"avatar.png"] atomically:YES];
-}
-
--(UIImage *)retrieveAvatar {
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * basePath = ([paths count] > 0) ? paths[0] : nil;
-    NSString *filePath = [basePath stringByAppendingPathComponent:@"avatar.png"];
-        
-    return [UIImage imageWithContentsOfFile:filePath];
-}
-
--(BOOL)fileExistsInDocuments:(NSString *)filename {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = paths[0];
-    NSString *fullPath = [documentsDirectory stringByAppendingPathComponent:filename];
-    return [fileManager fileExistsAtPath:fullPath];
-}
-
 -(void)setRootViewController:(UIViewController *)controller {
     self.window.rootViewController = controller;
 }
+
+-(void)loadPlayerFromDisk {
+    DEFileManager *fileManager = [DEFileManager new];
+    DEProfileManager *profileManager = [DEProfileManager sharedManager];
+    [profileManager setMe:[fileManager loadPlayer:kPlayerFilename]];
+}
+
+-(void)savePlayer {
+    DEFileManager *fileManager = [DEFileManager new];
+    DEProfileManager *profileManager = [DEProfileManager sharedManager];
+    [fileManager savePlayer:[profileManager me] withFilename:kPlayerFilename];
+}
+
 
 @end
