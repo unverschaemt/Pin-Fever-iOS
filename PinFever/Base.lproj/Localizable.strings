@@ -49,3 +49,6 @@
 "noFriends" = "No Friends Found";
 "noSearchResults" = "No User Found";
 "noSearchResultsDetail" = "Type a minimum of 3 characters.";
+"playerParseError" = "The server response was malformed. Therefore the player information couldn't be loaded";
+"setPlayerInfoError" = "Couldn't set the new display name properly. Please try again with a different display name.";
+"uploadAvatarError" = "An error occured while trying to upload your avatar to our servers. Please try again later.";

@@ -42,10 +42,13 @@
 "deleteFriendError" = "Der Server konnte nicht erreicht werden beim Versuch deinen Freund zu löschen. Bitte versuche es später erneut.";
 "getFriendsError" = "Der Server konnte nicht erreicht werden beim Versuch deine Freunde zu laden. Bitte versuche es später erneut.";
 "friendsParseError" = "Die Antwort vom Server konnte nicht gelesen werden. Freunde konnten daher nicht geladen werden.";
-"searchError" = "Der Server konnte nicht erreiciht werden beim Versuch deine Suchergebnisse zu laden. Bitte versuche es später erneut.";
+"searchError" = "Der Server konnte nicht erreicht werden beim Versuch deine Suchergebnisse zu laden. Bitte versuche es später erneut.";
 "searchParseError"  = "Die Antwort vom Server konnte nicht gelesen werden. Die Suchergebnisse konnten daher nicht geladen werden.";
 "unauthorizedError" = "Dein Login ist nicht mehr gültig bitte logge dich erneut ein.";
 "noFriendsDetail" = "Klick das +, um welche hinzuzufügen.";
 "noFriends" = "Keine Freunde gefunden";
 "noSearchResults" = "Keine User gefunden";
 "noSearchResultsDetail" = "Tippe mindestens 3 Zeichen ein.";
+"playerParseError" = "Die Antwort des Servers konnte nicht gelesen werden. Die User Informationen konnten daher nicht gelesen werden.";
+"setPlayerInfoError" = "Der neue Username konnte nicht gesetzt werden. Bitte versuche es mit einem anderen erneut.";
+"uploadAvatarError" = "Ein Fehler ist aufgetreten beim Versuch dein Avatar hochzuladen. Bitte versuche es später erneut.";
