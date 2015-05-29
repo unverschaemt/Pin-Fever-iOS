@@ -11,4 +11,6 @@
 
 @interface DESettingsForm : NSObject <FXForm>
 
+@property (nonatomic, copy) NSString *displayName;
+
 @end

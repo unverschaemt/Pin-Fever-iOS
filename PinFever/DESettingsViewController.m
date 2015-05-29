@@ -8,7 +8,7 @@
 
 #import "DESettingsViewController.h"
 #import "DESettingsForm.h"
-#import "AppDelegate.h"
+#import "DEImageUtility.h"
 
 @interface DESettingsViewController ()
 
@@ -24,6 +24,9 @@
     self.formController.delegate = self;
     self.formController.tableView = self.tableView;
     self.formController.form = [[DESettingsForm alloc] init];
+    
+    profileManager = [DEProfileManager sharedManager];
+    apiWrapper = [DEAPIWrapper new];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
@@ -63,9 +66,45 @@
 }
 
 -(void)setNewImage:(UIImage *)image {
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [app setAvatarImage:image];
+    [[profileManager me]setAvatarImg:image];
+    UIImage *compressedImage = [DEImageUtility cropToJPEG:image size:CGSizeMake(200, 200) quality:0.7];
 
+    NSURL *uploadURL = [NSURL URLWithString:kAPIUploadAvatarEndpoint];
+    [apiWrapper request:uploadURL httpMethod:@"POST" optionalFormData:UIImageJPEGRepresentation(compressedImage, 1.0) completed:^(NSDictionary *headers, NSString *body) {
+        
+    } failed:^(NSError *error){
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"uploadAvatarError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }];
+
+}
+
+-(void)displayNameChanged:(UITableViewCell<FXFormFieldCell> *)cell {
+    DESettingsForm *form = cell.field.form;
+    NSString *newDisplayName = form.displayName;
+    NSURL *setPlayerURL = [NSURL URLWithString:kAPISetPlayerEndpoint];
+    
+    NSDictionary *postDict = @{ @"displayName":newDisplayName};
+    
+    NSError *err = nil;
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:postDict
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&err];
+    if(err) {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"setPlayerInfoError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+
+    [apiWrapper request:setPlayerURL httpMethod:@"POST" optionalJSONData:postData optionalContentType:@"application/json" completed:^(NSDictionary *headers, NSString *body) {
+        [[profileManager me]setDisplayName:newDisplayName];
+    } failed:^(NSError *error){
+        if(error) {
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"setPlayerInfoError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }];
+    
 }
 
 #pragma mark -

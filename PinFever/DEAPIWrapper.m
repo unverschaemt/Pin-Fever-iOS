@@ -168,6 +168,28 @@
     [r startAsynchronous];
 }
 
+-(void)request:(NSURL *)url httpMethod:(NSString *)httpMethod optionalFormData:(NSData *)formData completed:(RequestCompletionBlock)completionBlock failed:(RequestFailedBlock)failureBlock {
+    NSLog(@"%@",[url description]);
+    STHTTPRequest *r = [STHTTPRequest requestWithURL:url];
+    [r setHTTPMethod:httpMethod];
+    [r setHeaderWithName:kAPIAuthToken value:[keychainWrapper objectForKey:(__bridge id)(kSecAttrAccount)]];
+    [r addDataToUpload:formData parameterName:@"Datei" mimeType:@"image/jpeg" fileName:@"img.jpeg"];
+
+    __weak typeof(r) wr = r;
+    
+    r.completionBlock = ^(NSDictionary *headers, NSString *body) {
+        completionBlock(headers, body);
+    };
+    
+    r.errorBlock = ^(NSError *error) {
+        if(![self checkUnauthorized:wr.responseStatus]) {
+            failureBlock(error);
+        }
+    };
+    [r startAsynchronous];
+    
+}
+
 
 #pragma mark -
 #pragma mark Helper methods

@@ -17,6 +17,7 @@
 
 @implementation DEProfileViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -27,11 +28,15 @@
     self.avatarImageView.layer.borderWidth = 2.0;
     self.avatarImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    fileManager = [DEFileManager new];
+    apiWrapper = [DEAPIWrapper new];
+    profileManager = [DEProfileManager sharedManager];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self reloadAvatar];
+    [self updateUI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,11 +56,11 @@
 
 #pragma mark -
 #pragma mark Methods
--(void)reloadAvatar {
-    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.avatarImageView.image = [app avatarImage];
-}
 
+-(void)updateUI {
+    //TODO: Show Player information on UI
+    self.avatarImageView.image = [[profileManager me]avatarImg];
+}
 
 
 #pragma mark -
@@ -102,6 +107,7 @@
     if(indexPath.row == 0) {
         KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc] initWithIdentifier:kKeychainKey accessGroup:nil];
         [keychainItem resetKeychainItem];
+        [fileManager deleteAllFiles];
         AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         LoginViewController *loginViewController = [[UIStoryboard storyboardWithName:@"Login" bundle:[NSBundle mainBundle]]instantiateInitialViewController];
         app.window.rootViewController = loginViewController;

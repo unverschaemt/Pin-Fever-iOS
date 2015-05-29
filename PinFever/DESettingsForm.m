@@ -7,6 +7,7 @@
 //
 
 #import "DESettingsForm.h"
+#import "DEProfileManager.h"
 
 @implementation DESettingsForm
 
@@ -15,7 +16,20 @@
 {
     return @[
              @{FXFormFieldTitle: NSLocalizedString(@"changeAvatar", nil), FXFormFieldAction: @"changeAvatar:", FXFormFieldHeader:NSLocalizedString(@"accountSettings", nil),@"textLabel.font": [UIFont systemFontOfSize:16]},
-             ];
+             @"displayName"];
+}
+
+- (NSDictionary *)displayNameField
+{
+    NSString *name = [[[DEProfileManager sharedManager] me]displayName];
+    if(name == nil) {
+        name = @"";
+    }
+    return @{@"textField.autocapitalizationType": @(UITextAutocapitalizationTypeNone),
+             @"textLabel.font": [UIFont systemFontOfSize:16],
+             FXFormFieldAction:@"displayNameChanged:",
+             @"textField.text" : name
+             };
 }
 
 @end

@@ -23,4 +23,6 @@ typedef void (^RequestFailedBlock)(NSError *);
 -(void)tryRegister:(NSString *)email andPassword:(NSString *)password andUsername:(NSString *)username completed:(RequestCompletionBlock)completionBlock failed:(RequestFailedBlock)failureBlock;
 
 -(void)checkLogin;
+
+-(void)request:(NSURL *)url httpMethod:(NSString *)httpMethod optionalFormData:(NSData *)formData completed:(RequestCompletionBlock)completionBlock failed:(RequestFailedBlock)failureBlock;
 @end
