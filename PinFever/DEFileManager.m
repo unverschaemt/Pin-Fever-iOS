@@ -40,4 +40,35 @@
 
 }
 
+-(DEPlayer *)loadPlayer:(NSString *)filename {
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:[self saveFilePathWithSuffix:filename]];
+    
+    if (fileExists) {
+        DEPlayer *player = [NSKeyedUnarchiver unarchiveObjectWithFile:[self saveFilePathWithSuffix:filename]];
+        
+        if(player) {
+            return player;
+        }
+    }
+    return nil;
+
+}
+-(void)savePlayer:(DEPlayer *)player withFilename:(NSString *)filename {
+    [NSKeyedArchiver archiveRootObject:player toFile:[self saveFilePathWithSuffix:filename]];
+}
+
+-(void)deleteAllFiles {
+    BOOL friendsFileExists = [[NSFileManager defaultManager] fileExistsAtPath:[self saveFilePathWithSuffix:kFriendsFilename]];
+    BOOL playerFileExists = [[NSFileManager defaultManager] fileExistsAtPath:[self saveFilePathWithSuffix:kPlayerFilename]];
+    
+    if(friendsFileExists) {
+        [[NSFileManager defaultManager]removeItemAtPath:[self saveFilePathWithSuffix:kFriendsFilename] error:nil];
+    }
+    
+    if(playerFileExists) {
+        [[NSFileManager defaultManager]removeItemAtPath:[self saveFilePathWithSuffix:kPlayerFilename] error:nil];
+    }
+
+}
+
 @end
