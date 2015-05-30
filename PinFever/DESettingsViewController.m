@@ -67,12 +67,17 @@
 
 -(void)setNewImage:(UIImage *)image {
     [[profileManager me]setAvatarImg:image];
-    UIImage *compressedImage = [DEImageUtility cropToJPEG:image size:CGSizeMake(200, 200) quality:0.7];
-
+    UIImage *compressedImage = [DEImageUtility cropToJPEG:image size:CGSizeMake(200, 200) quality:0.5];
+    
     NSURL *uploadURL = [NSURL URLWithString:kAPIUploadAvatarEndpoint];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
     [apiWrapper request:uploadURL httpMethod:@"POST" optionalFormData:UIImageJPEGRepresentation(compressedImage, 1.0) completed:^(NSDictionary *headers, NSString *body) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
     } failed:^(NSError *error){
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"uploadAvatarError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }];

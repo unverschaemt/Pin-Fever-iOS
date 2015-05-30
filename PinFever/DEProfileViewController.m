@@ -30,7 +30,6 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     fileManager = [DEFileManager new];
-    apiWrapper = [DEAPIWrapper new];
     profileManager = [DEProfileManager sharedManager];
 }
 

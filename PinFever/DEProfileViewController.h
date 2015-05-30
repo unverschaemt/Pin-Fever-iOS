@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DEApiWrapper.h"
 #import "DEProfileManager.h"
 #import "DEFileManager.h"
 
 @interface DEProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-    DEAPIWrapper *apiWrapper;
     DEProfileManager *profileManager;
     DEFileManager *fileManager;
 }

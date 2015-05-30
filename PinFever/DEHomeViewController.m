@@ -72,9 +72,13 @@
 
 -(void)loadPlayer {
     NSURL *playerURL = [NSURL URLWithString:kAPIPlayerEndpoint];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [apiWrapper request:playerURL httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body){
         [self parsePlayer:body];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
     } failed:^(NSError *error){
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
     }];
 }
