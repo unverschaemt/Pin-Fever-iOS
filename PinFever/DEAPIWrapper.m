@@ -49,6 +49,32 @@
 
 }
 
+-(void)dataRequest:(NSURL *)url httpMethod:(NSString *)httpMethod optionalJSONData:(NSData *)jsonData optionalContentType:(NSString *)contentType completed:(RequestCompletionDataBlock)completionBlock failed:(RequestFailedBlock)failureBlock {
+    
+    STHTTPRequest *r = [STHTTPRequest requestWithURL:url];
+    [r setHTTPMethod:httpMethod];
+    if([httpMethod isEqualToString:@"POST"] && jsonData != nil) {
+        r.rawPOSTData = jsonData;
+    }
+    if(contentType != nil) {
+        [r setHeaderWithName:@"content-type" value:contentType];
+    }
+    [r setHeaderWithName:kAPIAuthToken value:[keychainWrapper objectForKey:(__bridge id)(kSecAttrAccount)]];
+    __weak typeof(r) wr = r;
+    
+    r.completionBlock = ^(NSDictionary *headers, NSString *body) {
+        completionBlock(headers, body, wr.responseData);
+    };
+    
+    r.errorBlock = ^(NSError *error) {
+        if(![self checkUnauthorized:wr.responseStatus]) {
+            failureBlock(error);
+        }
+    };
+    [r startAsynchronous];
+    
+}
+
 -(BOOL)checkUnauthorized:(NSInteger)responseStatus {
     if(responseStatus == 401) {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"unauthorizedError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

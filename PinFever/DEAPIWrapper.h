@@ -14,9 +14,12 @@
 }
 
 typedef void (^RequestCompletionBlock)(NSDictionary *headers, NSString *body);
+typedef void (^RequestCompletionDataBlock)(NSDictionary *headers, NSString *body, NSData *requestData);
 typedef void (^RequestFailedBlock)(NSError *);
 
 -(void)request:(NSURL *)url httpMethod:(NSString *)httpMethod optionalJSONData:(NSData *)jsonData optionalContentType:(NSString *)contentType completed:(RequestCompletionBlock)completionBlock failed:(RequestFailedBlock)failureBlock;
+
+-(void)dataRequest:(NSURL *)url httpMethod:(NSString *)httpMethod optionalJSONData:(NSData *)jsonData optionalContentType:(NSString *)contentType completed:(RequestCompletionDataBlock)completionBlock failed:(RequestFailedBlock)failureBlock;
 
 -(void)tryLogin:(NSString *)email andPassword:(NSString * )password completed:(RequestCompletionBlock)completionBlock failed:(RequestFailedBlock)failureBlock;
 

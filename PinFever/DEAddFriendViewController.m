@@ -110,7 +110,6 @@
                     player.email = dict[kEmailKey];
                 }
                 player.level = [NSNumber numberWithInteger:[dict[kLevelKey]integerValue]];
-                
                 [self.searchResults addObject:player];
             }
         }
@@ -120,9 +119,7 @@
         [alert show];
     }
 
-    
     [self.collectionView reloadData];
-
 }
 
 
@@ -144,7 +141,20 @@
 {
     PlayerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
     DEPlayer *player = self.searchResults[(NSUInteger) indexPath.row];
+    
     cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
+    if(player.avatarImg == nil) {
+        [self showLoading:YES];
+        
+        [apiWrapper dataRequest:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@/img.jpeg",kAPISomePlayerEndpoint,player.playerId]] httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body, NSData *responseData){
+            player.avatarImg = [UIImage imageWithData:responseData];
+            cell.playerImageView.image = player.avatarImg;
+            [self showLoading:NO];
+        } failed:^(NSError *error) {
+            [self showLoading:NO];
+        }];
+    }
+    
     cell.playerNameLabel.text = player.displayName;
 
     return cell;

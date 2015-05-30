@@ -180,10 +180,27 @@
                         player.email = dict[kEmailKey];
                     }
                     player.level = [NSNumber numberWithInteger:[dict[kLevelKey]integerValue]];
-                    [self.friends addObject:player];
+                    __block NSInteger outstandingRequests = [friends count];
+
+                    [apiWrapper dataRequest:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@/img.jpeg",kAPISomePlayerEndpoint,player.playerId]] httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body, NSData *responseData){
+                        player.avatarImg = [UIImage imageWithData:responseData];
+                        [self.friends addObject:player];
+                        outstandingRequests--;
+                        if(outstandingRequests == 0) {
+                            [self.collectionView reloadData];
+                        }
+
+                    } failed:^(NSError *error) {
+                        [self.friends addObject:player];
+                        outstandingRequests--;
+                        if(outstandingRequests == 0) {
+                            [self.collectionView reloadData];
+                        }
+
+
+                    }];
                 }
             }
-            [self.collectionView reloadData];
         }
         else {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"friendsParseError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -212,6 +229,7 @@
 -(void)addedFriend:(DEPlayer *)player {
     [self showLoading:YES];
     NSURL *addURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kAPIAddFriendsEndpoint,player.playerId]];
+    
     [apiWrapper request:addURL httpMethod:@"POST" optionalJSONData:nil optionalContentType:@"application/json"
               completed:^(NSDictionary *headers, NSString *body) {
                   [self.friends addObject:player];
@@ -254,7 +272,12 @@
     PlayerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
     
     DEPlayer *player = self.friends[(NSUInteger) indexPath.row];
-    cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
+    if(player.avatarImg != nil) {
+        cell.playerImageView.image = player.avatarImg;
+    }
+    else {
+        cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
+    }
     cell.playerNameLabel.text = player.displayName;
     
     return cell;

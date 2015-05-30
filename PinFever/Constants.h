@@ -18,6 +18,7 @@
 #define kAPISomePlayerEndpoint (kAPIEndpointHost @"/players/")
 #define kAPISetPlayerEndpoint (kAPIEndpointHost @"/players/me/set")
 #define kAPIUploadAvatarEndpoint (kAPIEndpointHost @"/players/me/avatarupload")
+#define kAPIDownloadAvatarEndpoint (kAPIEndpointHost @"/players/me/img.jpeg")
 
 
 #define kErrorKey @"err"
