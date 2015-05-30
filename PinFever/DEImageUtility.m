@@ -12,15 +12,40 @@
 
 
 +(UIImage *)cropToJPEG:(UIImage *)image size:(CGSize)size quality:(CGFloat)quality {
-    //TODO: resize to size
-    UIGraphicsBeginImageContext(size);
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    float actualHeight = image.size.height;
+    float actualWidth = image.size.width;
+    float maxHeight = size.height;
+    float maxWidth = size.width;
+    float imgRatio = actualWidth/actualHeight;
+    float maxRatio = maxWidth/maxHeight;
+    
+    if (actualHeight > maxHeight || actualWidth > maxWidth){
+        if(imgRatio < maxRatio){
+            //adjust width according to maxHeight
+            imgRatio = maxHeight / actualHeight;
+            actualWidth = imgRatio * actualWidth;
+            actualHeight = maxHeight;
+        }
+        else if(imgRatio > maxRatio){
+            //adjust height according to maxWidth
+            imgRatio = maxWidth / actualWidth;
+            actualHeight = imgRatio * actualHeight;
+            actualWidth = maxWidth;
+        }
+        else{
+            actualHeight = maxHeight;
+            actualWidth = maxWidth;
+        }
+    }
+    
+    CGRect rect = CGRectMake(0.0, 0.0, actualWidth, actualHeight);
+    UIGraphicsBeginImageContext(rect.size);
+    [image drawInRect:rect];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    NSData *imageData = UIImageJPEGRepresentation(img, quality);
     UIGraphicsEndImageContext();
     
-    newImage = [UIImage imageWithData:UIImageJPEGRepresentation(newImage, quality)];
-    
-    return newImage;
+    return [UIImage imageWithData:imageData];
 }
 
 @end
