@@ -32,7 +32,8 @@
     [self.categoryButton1 setTitle:((DECategory *)self.categories[0]).categoryName forState:UIControlStateNormal];
     [self.categoryButton2 setTitle:((DECategory *)self.categories[1]).categoryName forState:UIControlStateNormal];
     [self.categoryButton3 setTitle:((DECategory *)self.categories[2]).categoryName forState:UIControlStateNormal];
-
+    
+    NSLog(@"%@",self.game);
 
 }
 

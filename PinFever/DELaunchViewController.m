@@ -11,6 +11,7 @@
 #import "DECategoryViewController.h"
 #import "DEPlayer.h"
 #import "AppDelegate.h"
+#import "DEUtility.h"
 
 @interface DELaunchViewController ()
 @property (nonatomic,strong) UIView *footerView;
@@ -30,13 +31,15 @@
     self.title = NSLocalizedString(@"newGameTitle", nil);
     
     fileManager = [DEFileManager new];
+    apiWrapper = [DEAPIWrapper new];
+    self.game = [DEGame new];
     
     self.tagControl.tagPlaceholder = NSLocalizedString(@"tagPlaceholder", nil);
     self.tagControl.mode = TLTagsControlModeEdit;
     self.tagControl.tagDelegate = self;
     self.tagControl.maxTags = @1;
     [self setupFooterView];
-    
+
     self.friendsAndRecent = [NSMutableArray new];
     [self loadFriends];
 }
@@ -61,12 +64,78 @@
 
 #pragma mark -
 #pragma mark Methods
--(void)startGame {
-    //Only 1 opponent is allowed therefore always tags[0]
-    NSString *opponentName = [self.tagControl stringForTagIndex:0];
-    NSLog(@"%@",opponentName);
-    //TODO: Opponent mitübergeben
+-(void)startGame{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
+    if(selectedIndexPath.row == 0) {
+        [apiWrapper request:[NSURL URLWithString:kAPIFindAutoGameEndpoint] httpMethod:@"POST" optionalJSONData:nil optionalContentType:@"application/json" completed:^(NSDictionary *headers, NSString *body) {
+            [self parseAutoGame:body];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
+        } failed:^(NSError *error) {
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"failedAutoGame", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alertView show];
+
+        }];
+    }
+    
+    else {
+        DEPlayer *opponent = [self.friendsAndRecent objectAtIndex:selectedIndexPath.row];
+        NSArray *rollArray = [NSArray arrayWithObjects:opponent.playerId, nil];
+        NSMutableDictionary *postDict = [[NSMutableDictionary alloc]init];
+        [postDict setValue:rollArray forKey:@"participants"];
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:postDict options:0 error:nil];
+        
+        [apiWrapper request:[NSURL URLWithString:kAPICreateGameEndpoint] httpMethod:@"POST" optionalJSONData:jsonData optionalContentType:@"application/json" completed:^(NSDictionary *headers, NSString *body) {
+            [self parseGame:body];
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            
+        } failed:^(NSError *error) {
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"failedGame", nil) delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alertView show];
+            
+        }];
+    }
+}
+
+-(void)parseAutoGame:(NSString *)body {
+    NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                             options:NSJSONReadingMutableContainers
+                                                               error:nil];
+    NSDictionary *response = dict[kDataKey][kAutoGame];
+    self.game.gameId = response[kIdKey];
+    self.game.state = response[kStateKey];
+    self.game.mode = response[kModeKey];
+    self.game.matchId = response[kMatchIdKey];
+    self.game.participants = response[kParticipantsKey];
+    self.game.numberOfPlayers = [NSNumber numberWithInteger:[response[kNumberOfPlayersKey]integerValue]];
+    self.game.minLevel = [NSNumber numberWithInteger:[response[kMinLevelKey]integerValue]];
+    self.game.date = [DEUtility dateFromJSONString:[response[kCreatedKey]stringValue]];
+    [self showCategories];
+
+}
+
+-(void)parseGame:(NSString *)body {
+    NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:nil];
+    NSDictionary *response = dict[kDataKey][kTurnBasedMatchKey];
+    self.game.gameId = response[kIdKey];
+    self.game.state = response[kStateKey];
+    self.game.participants = response[kParticipantsKey];
+    self.game.turns = response[kTurnsKey];
+    [self showCategories];
+}
+
+-(void)showCategories {
     DECategoryViewController *categoryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"categoryViewController"];
+    categoryViewController.game = self.game;
     [self.navigationController pushViewController:categoryViewController animated:YES];
 }
 
@@ -127,7 +196,13 @@
 {
     PlayerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PlayerCell" forIndexPath:indexPath];
     DEPlayer *player = self.friendsAndRecent[(NSUInteger)indexPath.row];
-    cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
+    if(player.avatarImg == nil) {
+        cell.playerImageView.image = [UIImage imageNamed:@"avatarPlaceholder"];
+        
+    }
+    else {
+        cell.playerImageView.image = player.avatarImg;
+    }
     cell.playerNameLabel.text = player.displayName;
     
     return cell;
@@ -152,6 +227,7 @@
     PlayerCollectionViewCell *cell = (PlayerCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [self.tagControl addTag:cell.playerNameLabel.text];
     [self.tagControl reloadTagSubviews];
+    selectedIndexPath = indexPath;
 }
 
 #pragma mark - TLTagsControlDelegate

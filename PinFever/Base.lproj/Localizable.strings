@@ -52,3 +52,5 @@
 "playerParseError" = "The server response was malformed. Therefore the player information couldn't be loaded";
 "setPlayerInfoError" = "Couldn't set the new display name properly. Please try again with a different display name.";
 "uploadAvatarError" = "An error occured while trying to upload your avatar to our servers. Please try again later.";
+"failedAutoGame" = "An error occured while trying to search for a random player. Please try again.";
+"failedGame" = "An error occured while trying to create the game. Please try again.";

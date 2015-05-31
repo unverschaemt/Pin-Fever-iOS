@@ -10,4 +10,6 @@
 
 @interface DEUtility : NSObject
 
++ (NSDate*) dateFromJSONString:(NSString *)dateString;
+
 @end

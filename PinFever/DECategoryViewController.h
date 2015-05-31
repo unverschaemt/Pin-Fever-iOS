@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DEGame.h"
 
 @interface DECategoryViewController : UIViewController
 
@@ -15,6 +16,7 @@
 @property (nonatomic,strong) IBOutlet UIButton *categoryButton2;
 @property (nonatomic,strong) IBOutlet UIButton *categoryButton3;
 
+@property (nonatomic, strong) DEGame *game;
 -(IBAction)startGame:(id)sender;
 
 @end

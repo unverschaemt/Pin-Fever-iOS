@@ -52,3 +52,5 @@
 "playerParseError" = "Die Antwort des Servers konnte nicht gelesen werden. Die User Informationen konnten daher nicht gelesen werden.";
 "setPlayerInfoError" = "Der neue Username konnte nicht gesetzt werden. Bitte versuche es mit einem anderen erneut.";
 "uploadAvatarError" = "Ein Fehler ist aufgetreten beim Versuch dein Avatar hochzuladen. Bitte versuche es später erneut.";
+"failedAutoGame" = "Ein Fehler ist aufgetreten beim Versuch einen zufälligen Spieler zu finden. Bitte versuche es erneut.";
+"failedGame" = "Ein Fehler ist aufgetreten beim Versuch das Spiel zu erstellen. Bitte versuche es erneut.";

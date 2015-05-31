@@ -10,4 +10,17 @@
 
 @implementation DEUtility
 
+
++ (NSDate*) dateFromJSONString:(NSString *)dateString
+{
+    NSCharacterSet *charactersToRemove = [[ NSCharacterSet decimalDigitCharacterSet ] invertedSet ];
+    NSString* milliseconds = [dateString stringByTrimmingCharactersInSet:charactersToRemove];
+    
+    if (milliseconds != nil && ![milliseconds isEqualToString:@"62135596800000"]) {
+        NSTimeInterval  seconds = [milliseconds doubleValue] / 1000;
+        return [NSDate dateWithTimeIntervalSince1970:seconds];
+    }
+    return nil;
+}
+
 @end

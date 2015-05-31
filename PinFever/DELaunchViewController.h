@@ -9,12 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "TLTagsControl.h"
 #import "DEFileManager.h"
+#import "DEAPIWrapper.h"
+#import "DEGame.h"
+#import "DEPlayer.h"
 
 @interface DELaunchViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate,TLTagsControlDelegate> {
     DEFileManager *fileManager;
+    NSIndexPath *selectedIndexPath;
+    DEAPIWrapper *apiWrapper;
 }
 
 @property(nonatomic,weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet TLTagsControl *tagControl;
 @property (nonatomic, strong) NSMutableArray *friendsAndRecent;
+@property (nonatomic, strong) DEGame *game;
+@property (nonatomic, strong) DEPlayer *me;
 @end
