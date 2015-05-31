@@ -27,6 +27,7 @@
     self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width/2;
     self.avatarImageView.layer.borderWidth = 2.0;
     self.avatarImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
+    self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showProfile:)]];
     
     apiWrapper = [DEAPIWrapper new];
@@ -42,6 +43,7 @@
     
     profileManager = [DEProfileManager sharedManager];
     [self loadPlayer];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -71,6 +73,7 @@
 #pragma mark Player API Call
 
 -(void)loadPlayer {
+
     NSURL *playerURL = [NSURL URLWithString:kAPIPlayerEndpoint];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [apiWrapper request:playerURL httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body){
@@ -97,12 +100,27 @@
               [profileManager me].email = dict[kEmailKey];
         }
         [profileManager me].level = [NSNumber numberWithInteger:[dict[kLevelKey]integerValue]];
+        [self refreshAvatar];
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"playerParseError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
     
+}
+
+-(void)refreshAvatar {
+    //Avatar refresh
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
+    [apiWrapper dataRequest:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@/img.jpeg",kAPISomePlayerEndpoint,[profileManager me].playerId]] httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body, NSData *responseData){
+        [[profileManager me]setAvatarImg:[UIImage imageWithData:responseData]];
+        [self reloadAvatar];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+
+    } failed:^(NSError *error) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }];
 }
 
 
@@ -118,6 +136,7 @@
 
 -(void)newGame {
     DELaunchViewController *launchVc = [[self storyboard]instantiateViewControllerWithIdentifier:@"launchViewController"];
+    launchVc.me = [profileManager me];
     [self.navigationController pushViewController:launchVc animated:YES];
 }
 

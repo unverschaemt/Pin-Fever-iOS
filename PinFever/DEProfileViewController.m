@@ -27,6 +27,8 @@
     self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width/2;
     self.avatarImageView.layer.borderWidth = 2.0;
     self.avatarImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
+    self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     fileManager = [DEFileManager new];
