@@ -10,4 +10,7 @@
 
 @interface DECategory : NSObject
 
+@property (nonatomic, copy) NSString *categoryId;
+@property (nonatomic, copy) NSString *name;
+
 @end

@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DEAnswer.h"
 
 @interface DEQuestion : NSObject
 
+@property (nonatomic, copy) NSString *question;
+@property (nonatomic, strong) DEAnswer *answer;
+@property (nonatomic, copy) NSString *categoryId;
 @end
