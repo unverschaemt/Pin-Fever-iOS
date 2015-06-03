@@ -8,12 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "DEGame.h"
+#import "DECategory.h"
+#import "DEAPIWrapper.h"
 
 @interface DEGameViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate> {
     UIButton *submitButton;
+    DEAPIWrapper *apiWrapper;
 }
 
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
 @property (nonatomic,assign) NSInteger currentQuestion;
 @property (nonatomic, assign) BOOL questionCurrentlyShown;
+
+@property (nonatomic,strong) DEGame *game;
+@property (nonatomic, strong) DECategory *category;
+@property (nonatomic, strong) NSMutableArray *questions;
+
+@property (nonatomic, strong) MKPolyline *routeLine; //line
+@property (nonatomic, strong) MKPolylineView *routeLineView; //overlay view
+@property (nonatomic, strong) MKPointAnnotation *userPlacePin;
+
 @end

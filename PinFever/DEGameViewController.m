@@ -12,6 +12,7 @@
 #import "WildcardGestureRecognizer.h"
 #import "UIViewController+CWPopup.h"
 #import "DEQuestionViewController.h"
+#import "DEQuestion.h"
 
 @interface DEGameViewController ()
 
@@ -25,11 +26,15 @@
 #define QUESTION_BUTTON_WIDTH 135
 #define QUESTION_BUTTON_HEIGHT 35
 
+#define kQuestionAmount 3
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = NSLocalizedString(@"gameTitle", nil);
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.questions = [NSMutableArray new];
     
     self.mapView.delegate = self;
     NSString *template = @"http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg";
@@ -54,13 +59,15 @@
     [self setupSubmitButton];
     [self setupQuestionButton];
     [self setupQuestionPopup];
-    [self performSelector:@selector(showNextQuestion) withObject:nil afterDelay:2.0];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     NSNumber *value = @(UIInterfaceOrientationLandscapeLeft);
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    
+    [self loadQuestions];
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -87,6 +94,45 @@
 
 #pragma mark -
 #pragma mark Actions
+
+-(void)loadQuestions {
+    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+
+    [apiWrapper request:[NSURL URLWithString:[NSString stringWithFormat:@"%@?amount=%i&language=%@&category=%@",kAPIRandomQuestions,kQuestionAmount,language,self.category.categoryId]] httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        [self parseQuestions:body];
+    } failed:^(NSError *error){
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"loadQuestionsError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+    }];
+}
+
+-(void)parseQuestions:(NSString *)body {
+    NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                         options:NSJSONReadingMutableContainers
+                                                           error:nil];
+    NSArray *response = dict[kDataKey][kQuestionsKey];
+    
+    for(NSDictionary *questionsDict in response) {
+        DEQuestion *question = [DEQuestion new];
+        question.categoryId = questionsDict[kCategoryId];
+        question.question = questionsDict[kQuestionKey];
+        DEAnswer *answer = [DEAnswer new];
+        answer.text = questionsDict[kAnswerKey][kTextKey];
+        answer.coordinate = CLLocationCoordinate2DMake([questionsDict[kAnswerKey][kCoordinatesKey][kLatitudeKey]doubleValue], [questionsDict[kAnswerKey][kCoordinatesKey][kLongitudeKey]doubleValue]);
+        question.answer = answer;
+        [self.questions addObject:question];
+    }
+    [self performSelector:@selector(showNextQuestion) withObject:nil afterDelay:1.0];
+
+
+    
+}
 
 -(void)setupQuestionPopup {
     self.useBlurForPopup = YES;
@@ -125,10 +171,10 @@
     UITouch *touch = [[event allTouches]anyObject];
     CGPoint point = [touch locationInView:self.mapView];
     CLLocationCoordinate2D locCoord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
-    MKPointAnnotation *dropPin = [[MKPointAnnotation alloc] init];
-    dropPin.coordinate = locCoord;
+    self.userPlacePin = [[MKPointAnnotation alloc] init];
+    self.userPlacePin.coordinate = locCoord;
     [self.mapView removeAnnotations:self.mapView.annotations];
-    [self.mapView addAnnotation:dropPin];
+    [self.mapView addAnnotation:self.userPlacePin];
     [self showSubmitButton];
     
 }
@@ -145,12 +191,30 @@
         [self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"homeViewController"] animated:YES];
     }
     else {
-        [self showNextQuestion];
+        [self showAnswerPin];
     }
+}
+
+-(void)showAnswerPin {
+    DEQuestion *question = self.questions[(NSUInteger) self.currentQuestion];
+    MKPointAnnotation *dropPin = [[MKPointAnnotation alloc] init];
+    dropPin.coordinate = question.answer.coordinate;
+    [self.mapView addAnnotation:dropPin];
+    CLLocationCoordinate2D coordinateArray[2];
+    coordinateArray[0] = self.userPlacePin.coordinate;
+    coordinateArray[1] = dropPin.coordinate;
     
+    self.routeLine = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
+    [self.mapView setVisibleMapRect:[self.routeLine boundingMapRect]];
+    
+    [self.mapView addOverlay:self.routeLine];
+    [self performSelector:@selector(showNextQuestion) withObject:nil afterDelay:4.0];
 }
 
 -(void)showNextQuestion {
+    //remove route
+    [self.mapView removeOverlay:self.routeLine];
+
     self.currentQuestion += 1;
     self.questionCurrentlyShown = YES;
     NSString *question = [NSString stringWithFormat:@"%@ #%li",NSLocalizedString(@"question", nil),(long)self.currentQuestion];
@@ -180,6 +244,25 @@
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
     return [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
+}
+
+-(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
+{
+    if(overlay == self.routeLine)
+    {
+        if(nil == self.routeLineView)
+        {
+            self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
+            self.routeLineView.fillColor = [UIColor redColor];
+            self.routeLineView.strokeColor = [UIColor redColor];
+            self.routeLineView.lineWidth = 2;
+            
+        }
+        
+        return self.routeLineView;
+    }
+    
+    return nil;
 }
 
 @end

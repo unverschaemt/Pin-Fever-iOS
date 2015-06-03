@@ -18,9 +18,12 @@
 #define kAPISomePlayerEndpoint (kAPIEndpointHost @"/players/")
 #define kAPISetPlayerEndpoint (kAPIEndpointHost @"/players/me/set")
 #define kAPIUploadAvatarEndpoint (kAPIEndpointHost @"/players/me/avatarupload")
-#define kAPIDownloadAvatarEndpoint (kAPIEndpointHost @"/players/me/img.jpeg")
 #define kAPIFindAutoGameEndpoint (kAPIEndpointHost @"/turnbasedmatch/findauto")
 #define kAPICreateGameEndpoint (kAPIEndpointHost @"/turnbasedmatch/create")
+#define kAPIRandomCategories (kAPIEndpointHost @"/question/randomcategories")
+#define kAPIRandomQuestions (kAPIEndpointHost @"/question/random")
+
+
 #define kErrorKey @"err"
 #define kDataKey @"data"
 #define kTokenKey @"token"
@@ -28,6 +31,9 @@
 #define kPlayersKey @"players"
 #define kPlayerKey @"player"
 #define kAutoGame @"autoGame"
+#define kCategoriesKey @"categories"
+#define kQuestionsKey @"questions"
+#define kAnswerKey @"answer"
 
 #define kIdKey @"_id"
 #define kDisplayName @"displayName"
@@ -42,6 +48,14 @@
 #define kCreatedKey @"created"
 #define kTurnsKey @"turns"
 #define kTurnBasedMatchKey @"TurnBasedMatch"
+#define kNameKey @"name"
+#define kCategoryId @"category"
+#define kQuestionKey @"question"
+#define kCoordinatesKey @"coordinates"
+#define kTextKey @"text"
+#define kLatitudeKey @"latitude"
+#define kLongitudeKey @"longitude"
+
 
 #define kKeychainKey @"PinFeverKeychain"
 
