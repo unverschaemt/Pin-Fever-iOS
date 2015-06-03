@@ -137,7 +137,7 @@
                                     </mask>
                                 </variation>
                             </scrollView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UXn-ur-ukb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UXn-ur-ukb" customClass="DERoundImageView">
                                 <rect key="frame" x="149" y="39" width="118" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="118" id="GTb-SN-lsb"/>
@@ -289,7 +289,7 @@
                                     <action selector="signUp:" destination="rJ9-ea-dla" eventType="touchUpInside" id="dq0-OG-Bpg"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Lc-hj-tQW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Lc-hj-tQW" customClass="DERoundImageView">
                                 <rect key="frame" x="148" y="38" width="118" height="118"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="118" id="AZv-j4-wL3"/>

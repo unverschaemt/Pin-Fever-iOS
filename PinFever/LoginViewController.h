@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DEAPIWrapper.h"
+#import "DERoundImageView.h"
+
 @interface LoginViewController : UIViewController<UITextFieldDelegate> {
     DEAPIWrapper *apiWrapper;
 }
@@ -15,7 +17,7 @@
 -(IBAction)login:(id)sender;
 -(IBAction)forgotPassword:(id)sender;
 
-@property (nonatomic, weak) IBOutlet UIImageView *logoImageView;
+@property (nonatomic, weak) IBOutlet DERoundImageView *logoImageView;
 @property (nonatomic, weak) IBOutlet UITextField *emailField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordField;
 

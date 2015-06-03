@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5AF0EDE914EF8095A96BB167 /* DERoundImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E9B62FE79F06CDD143A7 /* DERoundImageView.m */; };
 		6314E51F1AFE1CCC00B8574E /* DELaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6314E51E1AFE1CCC00B8574E /* DELaunchViewController.m */; };
 		6314E5231AFE1F0000B8574E /* PlayerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6314E5211AFE1F0000B8574E /* PlayerCollectionViewCell.m */; };
 		6319044E1AFA210B00E3665F /* DERoundDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6319044D1AFA210B00E3665F /* DERoundDetailViewController.m */; };
@@ -20,6 +21,9 @@
 		6321F3181B13B62700269028 /* WildcardGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6321F3171B13B62700269028 /* WildcardGestureRecognizer.m */; };
 		63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63275A2D1AF9696400A5881A /* DESettingsViewController.m */; };
 		63275A301AF96E9900A5881A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63275A2F1AF96E9900A5881A /* Images.xcassets */; };
+		633B7BAE1B1DCA1D0082DC33 /* DECategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 633B7BAD1B1DCA1D0082DC33 /* DECategory.m */; };
+		633B7BB11B1DCC930082DC33 /* DEQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 633B7BB01B1DCC930082DC33 /* DEQuestion.m */; };
+		633B7BB41B1DCD3C0082DC33 /* DEAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 633B7BB31B1DCD3C0082DC33 /* DEAnswer.m */; };
 		634AC4401B15AE6A005BF62D /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 634AC43F1B15AE6A005BF62D /* KeychainItemWrapper.m */; };
 		634AC4421B15B09B005BF62D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 634AC4411B15B09B005BF62D /* Security.framework */; };
 		6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6358AF7E1AF8F5AB002A0234 /* DEHomeViewController.m */; };
@@ -29,7 +33,6 @@
 		6358AF951AF918CE002A0234 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6358AF971AF918CE002A0234 /* Main.storyboard */; };
 		6358AFA51AF919AD002A0234 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6358AFA71AF919AD002A0234 /* Localizable.strings */; };
 		636FAA511B0F092C00937E23 /* DECategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA501B0F092C00937E23 /* DECategoryViewController.m */; };
-		636FAA541B0F093A00937E23 /* DECategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA531B0F093A00937E23 /* DECategory.m */; };
 		636FAA571B0F0D4100937E23 /* DEGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA561B0F0D4100937E23 /* DEGameViewController.m */; };
 		636FAA591B0F0E4800937E23 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 636FAA581B0F0E4800937E23 /* MapKit.framework */; };
 		636FAA5C1B0F1B5200937E23 /* DETileOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 636FAA5B1B0F1B5200937E23 /* DETileOverlay.m */; };
@@ -68,6 +71,8 @@
 
 /* Begin PBXFileReference section */
 		23246D62D85BC0918686BF90 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		5AF0E8B7404EA5BA80E1829E /* DERoundImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DERoundImageView.h; sourceTree = "<group>"; };
+		5AF0E9B62FE79F06CDD143A7 /* DERoundImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DERoundImageView.m; sourceTree = "<group>"; };
 		6314E51D1AFE1CCC00B8574E /* DELaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DELaunchViewController.h; sourceTree = "<group>"; };
 		6314E51E1AFE1CCC00B8574E /* DELaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DELaunchViewController.m; sourceTree = "<group>"; };
 		6314E5201AFE1F0000B8574E /* PlayerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerCollectionViewCell.h; sourceTree = "<group>"; };
@@ -92,6 +97,12 @@
 		63275A2C1AF9696400A5881A /* DESettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESettingsViewController.h; sourceTree = "<group>"; };
 		63275A2D1AF9696400A5881A /* DESettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DESettingsViewController.m; sourceTree = "<group>"; };
 		63275A2F1AF96E9900A5881A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		633B7BAC1B1DCA1D0082DC33 /* DECategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DECategory.h; sourceTree = "<group>"; };
+		633B7BAD1B1DCA1D0082DC33 /* DECategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DECategory.m; sourceTree = "<group>"; };
+		633B7BAF1B1DCC930082DC33 /* DEQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEQuestion.h; sourceTree = "<group>"; };
+		633B7BB01B1DCC930082DC33 /* DEQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEQuestion.m; sourceTree = "<group>"; };
+		633B7BB21B1DCD3C0082DC33 /* DEAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAnswer.h; sourceTree = "<group>"; };
+		633B7BB31B1DCD3C0082DC33 /* DEAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAnswer.m; sourceTree = "<group>"; };
 		634AC43E1B15AE6A005BF62D /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		634AC43F1B15AE6A005BF62D /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		634AC4411B15B09B005BF62D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -110,8 +121,6 @@
 		6358AFA81AF919B0002A0234 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		636FAA4F1B0F092C00937E23 /* DECategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DECategoryViewController.h; sourceTree = "<group>"; };
 		636FAA501B0F092C00937E23 /* DECategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DECategoryViewController.m; sourceTree = "<group>"; };
-		636FAA521B0F093A00937E23 /* DECategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DECategory.h; sourceTree = "<group>"; };
-		636FAA531B0F093A00937E23 /* DECategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DECategory.m; sourceTree = "<group>"; };
 		636FAA551B0F0D4100937E23 /* DEGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEGameViewController.h; sourceTree = "<group>"; };
 		636FAA561B0F0D4100937E23 /* DEGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEGameViewController.m; sourceTree = "<group>"; };
 		636FAA581B0F0E4800937E23 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -276,6 +285,8 @@
 				63788D5F1B18494F00CFE410 /* DEImageUtility.m */,
 				63C05D6A1B1BBF0200E39AAB /* DEUtility.h */,
 				63C05D6B1B1BBF0200E39AAB /* DEUtility.m */,
+				5AF0E8B7404EA5BA80E1829E /* DERoundImageView.h */,
+				5AF0E9B62FE79F06CDD143A7 /* DERoundImageView.m */,
 				63AF11BF1B008E380063D3B1 /* TLTagsControl */,
 				6349C8EF1AF7D9C600F412CC /* Login */,
 				63D060CA1B0E852B00D54B23 /* Models */,
@@ -363,10 +374,14 @@
 				63DC903A1B163D9800E98F7D /* DESettingsForm.m */,
 				63F42B491B0E1EBD00E5CC48 /* DEPlayer.h */,
 				63F42B4A1B0E1EBD00E5CC48 /* DEPlayer.m */,
-				636FAA521B0F093A00937E23 /* DECategory.h */,
-				636FAA531B0F093A00937E23 /* DECategory.m */,
 				63C05D671B1BB39B00E39AAB /* DEGame.h */,
 				63C05D681B1BB39B00E39AAB /* DEGame.m */,
+				633B7BAC1B1DCA1D0082DC33 /* DECategory.h */,
+				633B7BAD1B1DCA1D0082DC33 /* DECategory.m */,
+				633B7BAF1B1DCC930082DC33 /* DEQuestion.h */,
+				633B7BB01B1DCC930082DC33 /* DEQuestion.m */,
+				633B7BB21B1DCD3C0082DC33 /* DEAnswer.h */,
+				633B7BB31B1DCD3C0082DC33 /* DEAnswer.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -567,25 +582,28 @@
 				63C05D6C1B1BBF0200E39AAB /* DEUtility.m in Sources */,
 				631B7C751B17443B00EEA931 /* DEAPIWrapper.m in Sources */,
 				636FAA5F1B0F1B7400937E23 /* MBXRasterTileRenderer.m in Sources */,
+				633B7BB11B1DCC930082DC33 /* DEQuestion.m in Sources */,
 				63788D601B18494F00CFE410 /* DEImageUtility.m in Sources */,
 				63788D5D1B183F4E00CFE410 /* DEProfileManager.m in Sources */,
 				631904521AFA27FF00E3665F /* DERoundTableViewCell.m in Sources */,
 				631B7C7B1B17626200EEA931 /* DEFileManager.m in Sources */,
 				6358AF831AF90354002A0234 /* ActiveGamesTableViewCell.m in Sources */,
+				633B7BAE1B1DCA1D0082DC33 /* DECategory.m in Sources */,
 				634AC4401B15AE6A005BF62D /* KeychainItemWrapper.m in Sources */,
 				63F782E81B00DAF700C101FC /* RegisterViewController.m in Sources */,
 				636FAA511B0F092C00937E23 /* DECategoryViewController.m in Sources */,
-				636FAA541B0F093A00937E23 /* DECategory.m in Sources */,
 				6319044E1AFA210B00E3665F /* DERoundDetailViewController.m in Sources */,
 				6321F3181B13B62700269028 /* WildcardGestureRecognizer.m in Sources */,
 				63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */,
 				63B0CFC91B0A0545000AED84 /* DEProfileViewController.m in Sources */,
+				633B7BB41B1DCD3C0082DC33 /* DEAnswer.m in Sources */,
 				63AF11BE1B008E340063D3B1 /* TLTagsControl.m in Sources */,
 				631B7C781B17573300EEA931 /* DEAnimator.m in Sources */,
 				6398B7F51AF7D00E000235FE /* main.m in Sources */,
 				636FAA571B0F0D4100937E23 /* DEGameViewController.m in Sources */,
 				63DC903B1B163D9800E98F7D /* DESettingsForm.m in Sources */,
 				631A32071B13C0860058CA06 /* DEQuestionViewController.m in Sources */,
+				5AF0EDE914EF8095A96BB167 /* DERoundImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

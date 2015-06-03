@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DEFileManager.h"
 #import "DEAPIWrapper.h"
 #import "DEProfileManager.h"
+#import "DERoundImageView.h"
 
 @interface DEHomeViewController : UIViewController <UITableViewDataSource,UITableViewDelegate> {
     DEAPIWrapper *apiWrapper;
-    DEFileManager *fileManager;
     DEProfileManager *profileManager;
 }
 
@@ -21,7 +20,7 @@
 @property (nonatomic,strong) NSMutableArray *activeGames;
 @property (nonatomic,strong) NSMutableArray *waitingGames;
 
-@property (nonatomic, weak) IBOutlet UIImageView *avatarImageView;
+@property (nonatomic, weak) IBOutlet DERoundImageView *avatarImageView;
 @property (nonatomic, weak) IBOutlet UILabel *scoreLabel;
 
 @end

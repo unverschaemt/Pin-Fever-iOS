@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "DEAPIWrapper.h"
+#import "DERoundImageView.h"
 
 @interface RegisterViewController : UIViewController <UITextFieldDelegate> {
     DEAPIWrapper *apiWrapper;
 }
 -(IBAction)signUp:(id)sender;
 
-@property (nonatomic, weak) IBOutlet UIImageView *logoImageView;
+@property (nonatomic, weak) IBOutlet DERoundImageView *logoImageView;
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
 @property (nonatomic, weak) IBOutlet UITextField *emailField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordField;

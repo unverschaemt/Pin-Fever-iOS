@@ -4,7 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-
-@interface DERoundImageView : NSObject
+@interface DERoundImageView : UIImageView
 @end

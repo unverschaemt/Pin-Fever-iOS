@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DERoundImageView.h"
 
 @interface ActiveGamesTableViewCell : UITableViewCell
 
-@property (nonatomic,weak) IBOutlet UIImageView *playerImageView;
+@property (nonatomic,weak) IBOutlet DERoundImageView *playerImageView;
 @property (nonatomic,weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic,weak) IBOutlet UILabel *scoreLabel;
 

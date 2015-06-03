@@ -17,10 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.logoImageView.clipsToBounds = YES;
-    self.logoImageView.layer.cornerRadius = self.logoImageView.frame.size.width/2;
-    self.logoImageView.layer.borderWidth = 2.0;
-    self.logoImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
     
     apiWrapper = [DEAPIWrapper new];
     

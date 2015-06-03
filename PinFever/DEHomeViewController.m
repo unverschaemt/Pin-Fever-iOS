@@ -10,7 +10,6 @@
 #import "ActiveGamesTableViewCell.h"
 #import "DELaunchViewController.h"
 #import "DEProfileViewController.h"
-#import "AppDelegate.h"
 #import "DERoundDetailViewController.h"
 #import "DECategoryViewController.h"
 
@@ -23,16 +22,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.avatarImageView.clipsToBounds = YES;
-    self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.size.width/2;
-    self.avatarImageView.layer.borderWidth = 2.0;
-    self.avatarImageView.layer.borderColor = [UIColor colorWithWhite:0.97 alpha:1.0].CGColor;
-    self.avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showProfile:)]];
     
     apiWrapper = [DEAPIWrapper new];
-    fileManager = [DEFileManager new];
-    
+
     self.waitingGames = [NSMutableArray new];
     self.activeGames = [NSMutableArray new];
 
@@ -47,7 +40,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     [self reloadMatches];
     [self reloadAvatar];
     [self updateUI];
@@ -99,7 +92,7 @@
         if(dict[kEmailKey] != nil) {
               [profileManager me].email = dict[kEmailKey];
         }
-        [profileManager me].level = [NSNumber numberWithInteger:[dict[kLevelKey]integerValue]];
+        [profileManager me].level = @([dict[kLevelKey] integerValue]);
         [self refreshAvatar];
     }
     else {

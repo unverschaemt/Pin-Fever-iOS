@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DERoundImageView.h"
 
 @interface PlayerCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic,weak) IBOutlet UIImageView *playerImageView;
+@property (nonatomic,weak) IBOutlet DERoundImageView *playerImageView;
 @property (nonatomic,weak) IBOutlet UILabel *playerNameLabel;
 @property (nonatomic,weak) IBOutlet UIButton *deleteButton;
 @end
