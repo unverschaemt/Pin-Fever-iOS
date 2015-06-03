@@ -9,8 +9,6 @@
 #import "DELaunchViewController.h"
 #import "PlayerCollectionViewCell.h"
 #import "DECategoryViewController.h"
-#import "DEPlayer.h"
-#import "AppDelegate.h"
 #import "DEUtility.h"
 
 @interface DELaunchViewController ()
@@ -81,7 +79,7 @@
     }
     
     else {
-        DEPlayer *opponent = [self.friendsAndRecent objectAtIndex:selectedIndexPath.row];
+        DEPlayer *opponent = self.friendsAndRecent[(NSUInteger) selectedIndexPath.row];
         NSArray *rollArray = [NSArray arrayWithObjects:opponent.playerId, nil];
         NSMutableDictionary *postDict = [[NSMutableDictionary alloc]init];
         [postDict setValue:rollArray forKey:@"participants"];

@@ -54,3 +54,5 @@
 "uploadAvatarError" = "An error occured while trying to upload your avatar to our servers. Please try again later.";
 "failedAutoGame" = "An error occured while trying to search for a random player. Please try again.";
 "failedGame" = "An error occured while trying to create the game. Please try again.";
+"loadQuestionsError" = "An error occured whily trying to load questions for your game. Try again with a working internet connection.";
+"loadCategoriesError" = "An error occured whily trying to load categories for your game. Try again with a working internet connection.";

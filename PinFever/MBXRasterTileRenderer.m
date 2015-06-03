@@ -65,9 +65,9 @@
     MKTileOverlay *tileOverlay = (MKTileOverlay *)self.overlay;
     CGFloat factor = tileOverlay.tileSize.width / 256;
 
-    NSInteger x = round(mapRect.origin.x * zoomScale / (tileOverlay.tileSize.width / factor));
-    NSInteger y = round(mapRect.origin.y * zoomScale / (tileOverlay.tileSize.width / factor));
-    NSInteger z = log2(zoomScale) + 20;
+    NSInteger x = (NSInteger) round(mapRect.origin.x * zoomScale / (tileOverlay.tileSize.width / factor));
+    NSInteger y = (NSInteger) round(mapRect.origin.y * zoomScale / (tileOverlay.tileSize.width / factor));
+    NSInteger z = (NSInteger) (log2(zoomScale) + 20);
 
     MKTileOverlayPath path = {
         .x = x,
@@ -160,20 +160,12 @@
 
 + (BOOL)dataIsPNG:(NSData *)data {
     unsigned char *b = (unsigned char *)data.bytes;
-    if (data.length > 4 && b[0] == 0x89 && b[1] == 0x50 && b[2] == 0x4e && b[3] == 0x47) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return data.length > 4 && b[0] == 0x89 && b[1] == 0x50 && b[2] == 0x4e && b[3] == 0x47;
 }
 
 + (BOOL)dataIsJPEG:(NSData *)data {
     unsigned char *b = (unsigned char *)data.bytes;
-    if (data.length > 4 && b[0] == 0xff && b[1] == 0xd8 && b[2] == 0xff && b[3] == 0xe0) {
-        return YES;
-    } else {
-        return NO;
-    }
+    return data.length > 4 && b[0] == 0xff && b[1] == 0xd8 && b[2] == 0xff && b[3] == 0xe0;
 }
 
 #pragma mark - MKOverlayRenderer Overrides

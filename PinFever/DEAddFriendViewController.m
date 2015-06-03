@@ -43,6 +43,7 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     self.collectionView.emptyDataSetDelegate = nil;
     self.collectionView.emptyDataSetSource = nil;
 }

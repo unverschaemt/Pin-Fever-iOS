@@ -7,8 +7,6 @@
 //
 
 #import "DEFriendsViewController.h"
-#import "PlayerCollectionViewCell.h"
-#import "AppDelegate.h"
 
 @interface DEFriendsViewController ()
 
@@ -48,6 +46,7 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     self.collectionView.emptyDataSetDelegate = nil;
     self.collectionView.emptyDataSetSource = nil;
     
@@ -67,42 +66,28 @@
     CGPoint p = [recognizer locationInView:self.collectionView];
     
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
-    if (indexPath == nil){
-        return;
-    } else {
         PlayerCollectionViewCell* cell =
         (PlayerCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-        if(recognizer.state == UIGestureRecognizerStateBegan) {
+
+    if(recognizer.state == UIGestureRecognizerStateBegan) {
             cell.alpha = 0.7;
-        }
     }
-    if(recognizer.state == UIGestureRecognizerStateEnded) {
+
+    else if(recognizer.state == UIGestureRecognizerStateEnded) {
         self.deleteModus = !self.deleteModus;
         if(self.deleteModus) {
-            if (indexPath == nil){
-                return;
-            } else {
-                PlayerCollectionViewCell* cell =
-                (PlayerCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+
                 [cell.deleteButton setHidden:NO];
                 [cell.deleteButton addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
                 [animator startShivering:cell];
                 cell.alpha = 0.7;
-                
-            }
         }
         else {
-            if (indexPath == nil){
-                return;
-            } else {
-                PlayerCollectionViewCell* cell =
-                (PlayerCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
                 [cell.deleteButton setHidden:YES];
                 [cell.deleteButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
                 [animator stopShivering:cell];
                 cell.alpha = 1.0;
             }
-        }
     }
 }
 
@@ -162,8 +147,8 @@
 
 }
 
-- (void)parseFriends:(NSString *)body {
-        NSData *jsonData = [body dataUsingEncoding:NSUTF8StringEncoding];
+- (void)parseFriends:(NSString *)bodyString {
+        NSData *jsonData = [bodyString dataUsingEncoding:NSUTF8StringEncoding];
         
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData
                                                                  options:NSJSONReadingMutableContainers
