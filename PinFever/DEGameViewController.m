@@ -81,6 +81,16 @@
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -159,6 +169,9 @@
     submitButton.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.5];
     [submitButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [submitButton setTitle:NSLocalizedString(@"submit", nil) forState:UIControlStateNormal];
+    submitButton.titleLabel.numberOfLines = 1;
+    submitButton.titleLabel.adjustsFontSizeToFitWidth = YES;
+    submitButton.titleLabel.lineBreakMode = NSLineBreakByClipping;
     submitButton.layer.borderWidth = 1.0;
     submitButton.layer.borderColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5].CGColor;
     submitButton.layer.cornerRadius = 5.0;

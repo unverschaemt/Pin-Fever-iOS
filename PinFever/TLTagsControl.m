@@ -159,6 +159,9 @@
 
 - (void)addTag:(NSString *)tag {
     if(_maxTags != nil && _tags.count >= _maxTags.integerValue) {
+        _tags [_tags.count-1] = tag;
+        [self reloadTagSubviews];
+        [self calcContentOffset];
         return;
     }
     for (NSString *oldTag in _tags) {
@@ -169,7 +172,10 @@
     [tagDelegate showFooter];
     [_tags addObject:tag];
     [self reloadTagSubviews];
-    
+    [self calcContentOffset];
+}
+
+-(void)calcContentOffset {
     CGSize contentSize = self.contentSize;
     CGPoint offset = self.contentOffset;
     
