@@ -16,9 +16,7 @@
 		631A32071B13C0860058CA06 /* DEQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631A32051B13C0860058CA06 /* DEQuestionViewController.m */; };
 		631A32091B13C0FB0058CA06 /* DEQuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 631A320B1B13C0FB0058CA06 /* DEQuestionViewController.xib */; };
 		631B7C751B17443B00EEA931 /* DEAPIWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 631B7C741B17443B00EEA931 /* DEAPIWrapper.m */; };
-		631B7C781B17573300EEA931 /* DEAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 631B7C771B17573300EEA931 /* DEAnimator.m */; };
 		631B7C7B1B17626200EEA931 /* DEFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 631B7C7A1B17626200EEA931 /* DEFileManager.m */; };
-		6321F3181B13B62700269028 /* WildcardGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6321F3171B13B62700269028 /* WildcardGestureRecognizer.m */; };
 		63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63275A2D1AF9696400A5881A /* DESettingsViewController.m */; };
 		63275A301AF96E9900A5881A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63275A2F1AF96E9900A5881A /* Images.xcassets */; };
 		633B7BAE1B1DCA1D0082DC33 /* DECategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 633B7BAD1B1DCA1D0082DC33 /* DECategory.m */; };
@@ -52,6 +50,8 @@
 		63C05D6C1B1BBF0200E39AAB /* DEUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C05D6B1B1BBF0200E39AAB /* DEUtility.m */; };
 		63D36DB71B03615F008B3C3F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D36DB61B03615F008B3C3F /* libsqlite3.0.dylib */; };
 		63DC903B1B163D9800E98F7D /* DESettingsForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 63DC903A1B163D9800E98F7D /* DESettingsForm.m */; };
+		63E25CF61B25BDB600C76FAD /* DEAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E25CF51B25BDB600C76FAD /* DEAnimator.m */; };
+		63E25CF91B25CA7900C76FAD /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E25CF81B25CA7900C76FAD /* MKMapView+ZoomLevel.m */; };
 		63F42B481B0E1C6C00E5CC48 /* DEAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F42B471B0E1C6C00E5CC48 /* DEAddFriendViewController.m */; };
 		63F42B4B1B0E1EBD00E5CC48 /* DEPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F42B4A1B0E1EBD00E5CC48 /* DEPlayer.m */; };
 		63F782E81B00DAF700C101FC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63F782E71B00DAF700C101FC /* RegisterViewController.m */; };
@@ -88,12 +88,8 @@
 		631A320D1B13C0FD0058CA06 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/DEQuestionViewController.strings; sourceTree = "<group>"; };
 		631B7C731B17443B00EEA931 /* DEAPIWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAPIWrapper.h; sourceTree = "<group>"; };
 		631B7C741B17443B00EEA931 /* DEAPIWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAPIWrapper.m; sourceTree = "<group>"; };
-		631B7C761B17573300EEA931 /* DEAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAnimator.h; sourceTree = "<group>"; };
-		631B7C771B17573300EEA931 /* DEAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAnimator.m; sourceTree = "<group>"; };
 		631B7C791B17626200EEA931 /* DEFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEFileManager.h; sourceTree = "<group>"; };
 		631B7C7A1B17626200EEA931 /* DEFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEFileManager.m; sourceTree = "<group>"; };
-		6321F3161B13B62700269028 /* WildcardGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WildcardGestureRecognizer.h; sourceTree = "<group>"; };
-		6321F3171B13B62700269028 /* WildcardGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WildcardGestureRecognizer.m; sourceTree = "<group>"; };
 		63275A2C1AF9696400A5881A /* DESettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESettingsViewController.h; sourceTree = "<group>"; };
 		63275A2D1AF9696400A5881A /* DESettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DESettingsViewController.m; sourceTree = "<group>"; };
 		63275A2F1AF96E9900A5881A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -159,6 +155,10 @@
 		63D36DB61B03615F008B3C3F /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		63DC90391B163D9800E98F7D /* DESettingsForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DESettingsForm.h; sourceTree = "<group>"; };
 		63DC903A1B163D9800E98F7D /* DESettingsForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DESettingsForm.m; sourceTree = "<group>"; };
+		63E25CF41B25BDB600C76FAD /* DEAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAnimator.h; sourceTree = "<group>"; };
+		63E25CF51B25BDB600C76FAD /* DEAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAnimator.m; sourceTree = "<group>"; };
+		63E25CF71B25CA7900C76FAD /* MKMapView+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ZoomLevel.h"; sourceTree = "<group>"; };
+		63E25CF81B25CA7900C76FAD /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
 		63F42B461B0E1C6C00E5CC48 /* DEAddFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEAddFriendViewController.h; sourceTree = "<group>"; };
 		63F42B471B0E1C6C00E5CC48 /* DEAddFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEAddFriendViewController.m; sourceTree = "<group>"; };
 		63F42B491B0E1EBD00E5CC48 /* DEPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEPlayer.h; sourceTree = "<group>"; };
@@ -235,8 +235,6 @@
 			children = (
 				636FAA551B0F0D4100937E23 /* DEGameViewController.h */,
 				636FAA561B0F0D4100937E23 /* DEGameViewController.m */,
-				6321F3161B13B62700269028 /* WildcardGestureRecognizer.h */,
-				6321F3171B13B62700269028 /* WildcardGestureRecognizer.m */,
 				636FAA5A1B0F1B5200937E23 /* DETileOverlay.h */,
 				636FAA5B1B0F1B5200937E23 /* DETileOverlay.m */,
 				636FAA5D1B0F1B7400937E23 /* MBXRasterTileRenderer.h */,
@@ -275,8 +273,6 @@
 				634AC43F1B15AE6A005BF62D /* KeychainItemWrapper.m */,
 				631B7C731B17443B00EEA931 /* DEAPIWrapper.h */,
 				631B7C741B17443B00EEA931 /* DEAPIWrapper.m */,
-				631B7C761B17573300EEA931 /* DEAnimator.h */,
-				631B7C771B17573300EEA931 /* DEAnimator.m */,
 				631B7C791B17626200EEA931 /* DEFileManager.h */,
 				631B7C7A1B17626200EEA931 /* DEFileManager.m */,
 				63788D5B1B183F4E00CFE410 /* DEProfileManager.h */,
@@ -287,6 +283,10 @@
 				63C05D6B1B1BBF0200E39AAB /* DEUtility.m */,
 				5AF0E8B7404EA5BA80E1829E /* DERoundImageView.h */,
 				5AF0E9B62FE79F06CDD143A7 /* DERoundImageView.m */,
+				63E25CF41B25BDB600C76FAD /* DEAnimator.h */,
+				63E25CF51B25BDB600C76FAD /* DEAnimator.m */,
+				63E25CF71B25CA7900C76FAD /* MKMapView+ZoomLevel.h */,
+				63E25CF81B25CA7900C76FAD /* MKMapView+ZoomLevel.m */,
 				63AF11BF1B008E380063D3B1 /* TLTagsControl */,
 				6349C8EF1AF7D9C600F412CC /* Login */,
 				63D060CA1B0E852B00D54B23 /* Models */,
@@ -569,6 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6398B7FB1AF7D00E000235FE /* LoginViewController.m in Sources */,
+				63E25CF91B25CA7900C76FAD /* MKMapView+ZoomLevel.m in Sources */,
 				636FAA5C1B0F1B5200937E23 /* DETileOverlay.m in Sources */,
 				6314E51F1AFE1CCC00B8574E /* DELaunchViewController.m in Sources */,
 				6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */,
@@ -593,13 +594,12 @@
 				63F782E81B00DAF700C101FC /* RegisterViewController.m in Sources */,
 				636FAA511B0F092C00937E23 /* DECategoryViewController.m in Sources */,
 				6319044E1AFA210B00E3665F /* DERoundDetailViewController.m in Sources */,
-				6321F3181B13B62700269028 /* WildcardGestureRecognizer.m in Sources */,
 				63275A2E1AF9696400A5881A /* DESettingsViewController.m in Sources */,
 				63B0CFC91B0A0545000AED84 /* DEProfileViewController.m in Sources */,
 				633B7BB41B1DCD3C0082DC33 /* DEAnswer.m in Sources */,
 				63AF11BE1B008E340063D3B1 /* TLTagsControl.m in Sources */,
-				631B7C781B17573300EEA931 /* DEAnimator.m in Sources */,
 				6398B7F51AF7D00E000235FE /* main.m in Sources */,
+				63E25CF61B25BDB600C76FAD /* DEAnimator.m in Sources */,
 				636FAA571B0F0D4100937E23 /* DEGameViewController.m in Sources */,
 				63DC903B1B163D9800E98F7D /* DESettingsForm.m in Sources */,
 				631A32071B13C0860058CA06 /* DEQuestionViewController.m in Sources */,

@@ -18,6 +18,8 @@
 
 @implementation DEHomeViewController
 
+#define SECTION_HEADER_HEIGHT 22
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -29,6 +31,10 @@
     self.waitingGames = [NSMutableArray new];
     self.activeGames = [NSMutableArray new];
 
+    //TODO: Test data
+    [self.waitingGames addObject:@"test"];
+    [self.activeGames addObject:@"test"];
+    
     self.title = NSLocalizedString(@"homeTitle", nil);
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ActiveGamesTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"activeGamesCell"];
@@ -168,16 +174,18 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
-    headerView.backgroundColor = [UIColor whiteColor];
-    UILabel *sectionTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 200, 44)];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, SECTION_HEADER_HEIGHT)];
+    headerView.backgroundColor = [UIColor colorWithWhite:0.893 alpha:1.000];
+    
+    UILabel *sectionTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 200, SECTION_HEADER_HEIGHT)];
     sectionTitleLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
     [headerView addSubview:sectionTitleLabel];
     
     if(section == 0)
     {
         sectionTitleLabel.text = NSLocalizedString(@"playStateActive", nil);
-        UIButton *addButton = [[UIButton alloc]initWithFrame:CGRectMake(self.tableView.frame.size.width-50, 7, 30, 30)];
+        int buttonYPosition = 1;
+        UIButton *addButton = [[UIButton alloc]initWithFrame:CGRectMake(self.tableView.frame.size.width-35, buttonYPosition, SECTION_HEADER_HEIGHT-(2*buttonYPosition), SECTION_HEADER_HEIGHT-(2*buttonYPosition))];
         addButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
         [addButton setImage:[UIImage imageNamed:@"newGame"] forState:UIControlStateNormal];
         [addButton addTarget:self action:@selector(newGame) forControlEvents:UIControlEventTouchUpInside];
@@ -190,7 +198,15 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 44.0;
+    return SECTION_HEADER_HEIGHT;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01f;
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [UIView new];
 }
 
 

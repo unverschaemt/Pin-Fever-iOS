@@ -37,14 +37,14 @@
 }
 
 -(void)setupButtonTags {
-    self.categoryButton1.tag = 1;
-    self.categoryButton2.tag = 2;
-    self.categoryButton3.tag = 3;
+    self.categoryButton1.tag = 0;
+    self.categoryButton2.tag = 1;
+    self.categoryButton3.tag = 2;
 }
 
 -(IBAction)startGame:(id)sender {
     UIButton *button = (UIButton *)sender;
-    if(self.categories.count >= button.tag) {
+    if(self.categories.count-1 >= button.tag) {
         DEGameViewController *gameViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"gameViewController"];
         gameViewController.game = self.game;
         gameViewController.category = self.categories[(NSUInteger) button.tag];

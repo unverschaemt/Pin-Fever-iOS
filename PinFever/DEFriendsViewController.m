@@ -23,9 +23,12 @@
     apiWrapper = [DEAPIWrapper new];
     animator = [DEAnimator new];
     fileManager = [DEFileManager new];
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(activateDeletionMode:)];
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(toggleDeletionMode:)];
     longPress.minimumPressDuration = .5; //seconds
     [self.collectionView addGestureRecognizer:longPress];
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(deactivateDeletionMode:)];
+    [self.collectionView addGestureRecognizer:tapGestureRecognizer];
     
     self.friends = [NSMutableArray new];
     [self loadFriendsFromDisk];
@@ -61,7 +64,7 @@
 #pragma mark -
 #pragma mark Delete
 
--(void)activateDeletionMode:(UIGestureRecognizer *)recognizer {
+-(void)toggleDeletionMode:(UIGestureRecognizer *)recognizer {
     
     CGPoint p = [recognizer locationInView:self.collectionView];
     
@@ -76,7 +79,7 @@
     else if(recognizer.state == UIGestureRecognizerStateEnded) {
         self.deleteModus = !self.deleteModus;
         if(self.deleteModus) {
-
+                self.cellToDelete = cell;
                 [cell.deleteButton setHidden:NO];
                 [cell.deleteButton addTarget:self action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
                 [animator startShivering:cell];
@@ -88,6 +91,15 @@
                 [animator stopShivering:cell];
                 cell.alpha = 1.0;
             }
+    }
+}
+
+-(void)deactivateDeletionMode:(UIGestureRecognizer *)recognizer {
+    if(self.deleteModus && self.cellToDelete != nil) {
+        [self.cellToDelete.deleteButton setHidden:YES];
+        [self.cellToDelete.deleteButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+        [animator stopShivering:self.cellToDelete];
+        self.cellToDelete.alpha = 1.0;
     }
 }
 
@@ -171,14 +183,14 @@
                         player.avatarImg = [UIImage imageWithData:responseData];
                         [self.friends addObject:player];
                         outstandingRequests--;
-                        if(outstandingRequests == 0) {
+                        if(outstandingRequests <= 0) {
                             [self.collectionView reloadData];
                         }
 
                     } failed:^(NSError *error) {
                         [self.friends addObject:player];
                         outstandingRequests--;
-                        if(outstandingRequests == 0) {
+                        if(outstandingRequests <= 0) {
                             [self.collectionView reloadData];
                         }
 
@@ -236,6 +248,7 @@
 
 -(void)loadFriendsFromDisk {
     self.friends = [fileManager loadMutableArray:kFriendsFilename];
+    [self.collectionView reloadData];
 }
 
 #pragma mark -
