@@ -11,10 +11,12 @@
 #import "DEGame.h"
 #import "DECategory.h"
 #import "DEAPIWrapper.h"
+#import "DETileOverlay.h"
 
 @interface DEGameViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate> {
     UIButton *submitButton;
     DEAPIWrapper *apiWrapper;
+    DETileOverlay *mapOverlay;
 }
 
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
@@ -26,7 +28,6 @@
 @property (nonatomic, strong) NSMutableArray *questions;
 
 @property (nonatomic, strong) MKPolyline *routeLine; //line
-@property (nonatomic, strong) MKPolylineView *routeLineView; //overlay view
 @property (nonatomic, strong) MKPointAnnotation *userPlacePin;
 
 @end

@@ -7,12 +7,11 @@
 //
 
 #import "DEGameViewController.h"
-#import "DETileOverlay.h"
 #import "MBXRasterTileRenderer.h"
-#import "WildcardGestureRecognizer.h"
 #import "UIViewController+CWPopup.h"
 #import "DEQuestionViewController.h"
 #import "DEQuestion.h"
+#import "MKMapView+ZoomLevel.h"
 
 @interface DEGameViewController ()
 
@@ -28,6 +27,12 @@
 
 #define kQuestionAmount 3
 
+//TEST
+#define GEORGIA_TECH_LATITUDE 33.777328
+#define GEORGIA_TECH_LONGITUDE -84.397348
+
+#define ZOOM_LEVEL 1
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -35,27 +40,29 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
     self.questions = [NSMutableArray new];
+    apiWrapper = [DEAPIWrapper new];
     
     self.mapView.delegate = self;
-    NSString *template = @"http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg";
-    DETileOverlay *overlay = [[DETileOverlay alloc] initWithURLTemplate:template];
-    overlay.canReplaceMapContent = YES;
-    [self.mapView addOverlay:overlay level:MKOverlayLevelAboveLabels];
     
-    WildcardGestureRecognizer * tapInterceptor = [[WildcardGestureRecognizer alloc] init];
-    tapInterceptor.touchesBeganCallback = ^(NSSet * touches, UIEvent * event) {
-        if(!self.questionCurrentlyShown) {
-            [self placePin:event];
-        }
-    };
+    NSString *template = @"http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg";
+    mapOverlay = [[DETileOverlay alloc] initWithURLTemplate:template];
+    mapOverlay.canReplaceMapContent = YES;
+  
+    [self.mapView addOverlay:mapOverlay level:MKOverlayLevelAboveLabels];
+    
+    //TODO: zwei TapRecognizer => daher popup nicht disabled wenn nebendran geklickt
+    UITapGestureRecognizer * tapInterceptor = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
+    
     [self.mapView addGestureRecognizer:tapInterceptor];
     
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPopup)];
     tapRecognizer.numberOfTapsRequired = 1;
     tapRecognizer.delegate = self;
     [self.view addGestureRecognizer:tapRecognizer];
-
     
+    CLLocationCoordinate2D centerCoord = { GEORGIA_TECH_LATITUDE, GEORGIA_TECH_LONGITUDE };
+    [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
+
     [self setupSubmitButton];
     [self setupQuestionButton];
     [self setupQuestionPopup];
@@ -65,9 +72,7 @@
     [super viewDidAppear:animated];
     NSNumber *value = @(UIInterfaceOrientationLandscapeLeft);
     [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
-    
     [self loadQuestions];
-
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -95,14 +100,25 @@
 #pragma mark -
 #pragma mark Actions
 
--(void)loadQuestions {
-    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+-(void)didTap:(UITapGestureRecognizer *)recognizer {
+    if(!self.questionCurrentlyShown) {
+        CGPoint point = [recognizer locationInView:self.mapView];
+        [self placePin:point];
+    }
+}
 
-    [apiWrapper request:[NSURL URLWithString:[NSString stringWithFormat:@"%@?amount=%i&language=%@&category=%@",kAPIRandomQuestions,kQuestionAmount,language,self.category.categoryId]] httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+-(void)loadQuestions {
+    NSLog(@"question loading");
+    NSString * language = @"en";
+    //TODO:[[NSLocale preferredLanguages] objectAtIndex:0];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    NSLog(@"question url: %@",[NSString stringWithFormat:@"%@?amount=%i&language=%@&category=%@",kAPIRandomQuestions,kQuestionAmount,language,self.category.categoryId]);
+    [apiWrapper request:[NSURL URLWithString:[NSString stringWithFormat:@"%@?amount=%i&language=%@&category=%@",kAPIRandomQuestions,kQuestionAmount,language,self.category.categoryId]] httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body){
+        NSLog(@"success");
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [self parseQuestions:body];
-    } failed:^(NSError *error){
+    } failed:^(NSError *error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"loadQuestionsError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
@@ -128,10 +144,7 @@
         question.answer = answer;
         [self.questions addObject:question];
     }
-    [self performSelector:@selector(showNextQuestion) withObject:nil afterDelay:1.0];
-
-
-    
+    [self performSelector:@selector(showCurrentQuestion) withObject:nil afterDelay:1.0];
 }
 
 -(void)setupQuestionPopup {
@@ -167,13 +180,12 @@
     [self.view insertSubview:questionButton aboveSubview:self.mapView];
 }
 
--(void)placePin:(UIEvent *)event {
-    UITouch *touch = [[event allTouches]anyObject];
-    CGPoint point = [touch locationInView:self.mapView];
+-(void)placePin:(CGPoint)point {
+    [self.mapView removeAnnotation:self.userPlacePin];
+
     CLLocationCoordinate2D locCoord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
     self.userPlacePin = [[MKPointAnnotation alloc] init];
     self.userPlacePin.coordinate = locCoord;
-    [self.mapView removeAnnotations:self.mapView.annotations];
     [self.mapView addAnnotation:self.userPlacePin];
     [self showSubmitButton];
     
@@ -185,7 +197,6 @@
 
 -(void)submit:(id)sender {
     [submitButton setHidden:YES];
-    [self.mapView removeAnnotations:self.mapView.annotations];
 
     if(self.currentQuestion >= 3) {
         [self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"homeViewController"] animated:YES];
@@ -198,34 +209,48 @@
 -(void)showAnswerPin {
     DEQuestion *question = self.questions[(NSUInteger) self.currentQuestion];
     MKPointAnnotation *dropPin = [[MKPointAnnotation alloc] init];
+    NSLog(@"%f, %f",question.answer.coordinate.latitude, question.answer.coordinate.longitude);
     dropPin.coordinate = question.answer.coordinate;
+    dropPin.title = question.answer.text;
     [self.mapView addAnnotation:dropPin];
+    
     CLLocationCoordinate2D coordinateArray[2];
     coordinateArray[0] = self.userPlacePin.coordinate;
     coordinateArray[1] = dropPin.coordinate;
-    
+    NSLog(@"%f %f", self.userPlacePin.coordinate.latitude, self.userPlacePin.coordinate.longitude);
+    NSLog(@"%f %f", dropPin.coordinate.latitude, dropPin.coordinate.longitude);
+
     self.routeLine = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
-    [self.mapView setVisibleMapRect:[self.routeLine boundingMapRect]];
-    
     [self.mapView addOverlay:self.routeLine];
+    [self.mapView setNeedsDisplay];
+    [self.mapView setCenterCoordinate:dropPin.coordinate zoomLevel:1 animated:YES];
+    
     [self performSelector:@selector(showNextQuestion) withObject:nil afterDelay:4.0];
 }
 
 -(void)showNextQuestion {
+    
     //remove route
     [self.mapView removeOverlay:self.routeLine];
-
+    [self.mapView removeAnnotations:self.mapView.annotations];
     self.currentQuestion += 1;
+    
+    if(self.currentQuestion >= kQuestionAmount) {
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+        return;
+    }
+    
     self.questionCurrentlyShown = YES;
-    NSString *question = [NSString stringWithFormat:@"%@ #%li",NSLocalizedString(@"question", nil),(long)self.currentQuestion];
+    NSString *question = [NSString stringWithFormat:@"%@",((DEQuestion *)self.questions[self.currentQuestion]).question];
     DEQuestionViewController *questionViewController = [[DEQuestionViewController alloc] initWithNibName:@"DEQuestionViewController" bundle:nil];
+    NSLog(@"%@",question);
     questionViewController.question = question;
     [self presentPopupViewController:questionViewController animated:YES completion:nil];
 }
 
 -(void)showCurrentQuestion {
     self.questionCurrentlyShown = YES;
-    NSString *question = [NSString stringWithFormat:@"%@ #%li",NSLocalizedString(@"question", nil),(long)self.currentQuestion];
+    NSString *question = [NSString stringWithFormat:@"%@",((DEQuestion *)self.questions[self.currentQuestion]).question];
     DEQuestionViewController *questionViewController = [[DEQuestionViewController alloc] initWithNibName:@"DEQuestionViewController" bundle:nil];
     questionViewController.question = question;
     [self presentPopupViewController:questionViewController animated:YES completion:nil];
@@ -243,26 +268,41 @@
 #pragma mark MapKitDelegate
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay {
-    return [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
+    if([overlay isKindOfClass:[DETileOverlay class]]) {
+        return [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
+    }
+    else {
+        MKPolylineRenderer* lineView = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
+        lineView.fillColor = [UIColor redColor];
+        lineView.strokeColor = [UIColor redColor];
+        lineView.lineWidth = 3;
+        return lineView;
+    }
 }
 
--(MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id<MKOverlay>)overlay
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotationPoint
 {
-    if(overlay == self.routeLine)
-    {
-        if(nil == self.routeLineView)
-        {
-            self.routeLineView = [[MKPolylineView alloc] initWithPolyline:self.routeLine];
-            self.routeLineView.fillColor = [UIColor redColor];
-            self.routeLineView.strokeColor = [UIColor redColor];
-            self.routeLineView.lineWidth = 2;
-            
-        }
-        
-        return self.routeLineView;
+    static NSString *annotationIdentifier = @"pinIdentifier";
+    
+    MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc]initWithAnnotation:annotationPoint reuseIdentifier:annotationIdentifier];
+    
+    if(annotationPoint == self.userPlacePin) {
+        pinView.pinColor = MKPinAnnotationColorRed;
+    }
+    else {
+        pinView.pinColor = MKPinAnnotationColorPurple;
     }
     
-    return nil;
+    return pinView;
 }
+
+#pragma mark -
+#pragma mark UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
 
 @end
