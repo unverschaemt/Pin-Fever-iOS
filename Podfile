@@ -8,6 +8,7 @@ pod 'STHTTPRequest'
 pod 'TPKeyboardAvoiding'
 pod 'FXForms'
 pod 'DZNEmptyDataSet'
+pod 'TWMessageBarManager'
 
 target 'PinFever' do
 end

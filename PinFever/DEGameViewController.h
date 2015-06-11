@@ -12,6 +12,7 @@
 #import "DECategory.h"
 #import "DEAPIWrapper.h"
 #import "DETileOverlay.h"
+#import <TWMessageBarManager/TWMessageBarManager.h>
 
 @interface DEGameViewController : UIViewController <MKMapViewDelegate, UIGestureRecognizerDelegate> {
     UIButton *submitButton;
@@ -22,6 +23,9 @@
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
 @property (nonatomic,assign) NSInteger currentQuestion;
 @property (nonatomic, assign) BOOL questionCurrentlyShown;
+@property (nonatomic, assign) BOOL beforeFirstQuestion;
+@property (nonatomic, assign) BOOL answerCurrentlyShown;
+
 
 @property (nonatomic,strong) DEGame *game;
 @property (nonatomic, strong) DECategory *category;
@@ -29,5 +33,8 @@
 
 @property (nonatomic, strong) MKPolyline *routeLine; //line
 @property (nonatomic, strong) MKPointAnnotation *userPlacePin;
+
+//Since self.navigationController is nil in viewWillDisappear because the viewcontroller is deleted from the stack we need to keep a local reference
+@property (nonatomic, weak) UINavigationController *localNavigationController;
 
 @end

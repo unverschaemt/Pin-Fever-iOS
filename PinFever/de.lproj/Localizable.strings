@@ -56,3 +56,5 @@
 "failedGame" = "Ein Fehler ist aufgetreten beim Versuch das Spiel zu erstellen. Bitte versuche es erneut.";
 "loadQuestionsError" = "Ein Fehler ist aufgetreten beim Versuch Fragen für das Spiel zu laden. Komme wieder wenn deine Internetverbindung funktioniert.";
 "loadCategoriesError" = "Ein Fehler ist aufgetreten beim Versuch Kategorien für das Spiel zu laden. Komme wieder wenn deine Internetverbindung funktioniert.";
+"distance" = "Entfernung";
+"searchedPlace" = "Gesuchter Ort";

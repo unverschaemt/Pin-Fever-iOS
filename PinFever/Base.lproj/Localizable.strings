@@ -56,3 +56,5 @@
 "failedGame" = "An error occured while trying to create the game. Please try again.";
 "loadQuestionsError" = "An error occured whily trying to load questions for your game. Try again with a working internet connection.";
 "loadCategoriesError" = "An error occured whily trying to load categories for your game. Try again with a working internet connection.";
+"distance" = "Distance";
+"searchedPlace" = "Searched Place";

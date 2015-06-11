@@ -46,6 +46,7 @@
 		63AF11BE1B008E340063D3B1 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AF11BD1B008E340063D3B1 /* TLTagsControl.m */; };
 		63AF11C21B0097950063D3B1 /* DEDeleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 63AF11C11B0097950063D3B1 /* DEDeleteTextField.m */; };
 		63B0CFC91B0A0545000AED84 /* DEProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B0CFC81B0A0545000AED84 /* DEProfileViewController.m */; };
+		63B5985D1B29FF400066AC24 /* DENotificationStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B5985C1B29FF400066AC24 /* DENotificationStylesheet.m */; };
 		63C05D691B1BB39B00E39AAB /* DEGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C05D681B1BB39B00E39AAB /* DEGame.m */; };
 		63C05D6C1B1BBF0200E39AAB /* DEUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C05D6B1B1BBF0200E39AAB /* DEUtility.m */; };
 		63D36DB71B03615F008B3C3F /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D36DB61B03615F008B3C3F /* libsqlite3.0.dylib */; };
@@ -148,6 +149,8 @@
 		63AF11C11B0097950063D3B1 /* DEDeleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEDeleteTextField.m; sourceTree = "<group>"; };
 		63B0CFC71B0A0545000AED84 /* DEProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEProfileViewController.h; sourceTree = "<group>"; };
 		63B0CFC81B0A0545000AED84 /* DEProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEProfileViewController.m; sourceTree = "<group>"; };
+		63B5985B1B29FF400066AC24 /* DENotificationStylesheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DENotificationStylesheet.h; sourceTree = "<group>"; };
+		63B5985C1B29FF400066AC24 /* DENotificationStylesheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DENotificationStylesheet.m; sourceTree = "<group>"; };
 		63C05D671B1BB39B00E39AAB /* DEGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEGame.h; sourceTree = "<group>"; };
 		63C05D681B1BB39B00E39AAB /* DEGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DEGame.m; sourceTree = "<group>"; };
 		63C05D6A1B1BBF0200E39AAB /* DEUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DEUtility.h; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				63E25CF51B25BDB600C76FAD /* DEAnimator.m */,
 				63E25CF71B25CA7900C76FAD /* MKMapView+ZoomLevel.h */,
 				63E25CF81B25CA7900C76FAD /* MKMapView+ZoomLevel.m */,
+				63B5985B1B29FF400066AC24 /* DENotificationStylesheet.h */,
+				63B5985C1B29FF400066AC24 /* DENotificationStylesheet.m */,
 				63AF11BF1B008E380063D3B1 /* TLTagsControl */,
 				6349C8EF1AF7D9C600F412CC /* Login */,
 				63D060CA1B0E852B00D54B23 /* Models */,
@@ -573,6 +578,7 @@
 				636FAA5C1B0F1B5200937E23 /* DETileOverlay.m in Sources */,
 				6314E51F1AFE1CCC00B8574E /* DELaunchViewController.m in Sources */,
 				6398B7F81AF7D00E000235FE /* AppDelegate.m in Sources */,
+				63B5985D1B29FF400066AC24 /* DENotificationStylesheet.m in Sources */,
 				63F42B4B1B0E1EBD00E5CC48 /* DEPlayer.m in Sources */,
 				6358AF7F1AF8F5AB002A0234 /* DEHomeViewController.m in Sources */,
 				63C05D691B1BB39B00E39AAB /* DEGame.m in Sources */,

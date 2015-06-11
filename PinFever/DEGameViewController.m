@@ -12,9 +12,9 @@
 #import "DEQuestionViewController.h"
 #import "DEQuestion.h"
 #import "MKMapView+ZoomLevel.h"
+#import "DENotificationStylesheet.h"
 
 @interface DEGameViewController ()
-
 @end
 
 @implementation DEGameViewController
@@ -50,18 +50,15 @@
   
     [self.mapView addOverlay:mapOverlay level:MKOverlayLevelAboveLabels];
     
-    //TODO: zwei TapRecognizer => daher popup nicht disabled wenn nebendran geklickt
+    self.beforeFirstQuestion = YES;
+    //if question is shown dismiss question , else place pin
     UITapGestureRecognizer * tapInterceptor = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
-    
     [self.mapView addGestureRecognizer:tapInterceptor];
-    
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissPopup)];
-    tapRecognizer.numberOfTapsRequired = 1;
-    tapRecognizer.delegate = self;
-    [self.view addGestureRecognizer:tapRecognizer];
-    
+  
     CLLocationCoordinate2D centerCoord = { GEORGIA_TECH_LATITUDE, GEORGIA_TECH_LONGITUDE };
     [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
+
+    [TWMessageBarManager sharedInstance].styleSheet = [DENotificationStylesheet styleSheet];
 
     [self setupSubmitButton];
     [self setupQuestionButton];
@@ -83,12 +80,17 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    NSLog(@"%@",self.navigationController);
+    self.localNavigationController = self.navigationController;
     [self.navigationController setNavigationBarHidden:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+    NSLog(@"viewwilldisappear");
+    //TODO: navigationbar trotzdem hidden FIXEN
+    NSLog(@"%@",self.localNavigationController);
+    [self.localNavigationController setNavigationBarHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,8 +114,13 @@
 
 -(void)didTap:(UITapGestureRecognizer *)recognizer {
     if(!self.questionCurrentlyShown) {
-        CGPoint point = [recognizer locationInView:self.mapView];
-        [self placePin:point];
+        if(!self.answerCurrentlyShown) {
+            CGPoint point = [recognizer locationInView:self.mapView];
+            [self placePin:point];
+        }
+    }
+    else {
+        [self dismissPopup];
     }
 }
 
@@ -161,6 +168,7 @@
     self.useBlurForPopup = YES;
 }
 
+
 -(void)setupSubmitButton {
     submitButton = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width-SUBMIT_BUTTON_WIDTH-15,self.view.frame.size.height-SUBMIT_BUTTON_HEIGHT-15,SUBMIT_BUTTON_WIDTH,SUBMIT_BUTTON_HEIGHT)];
     [submitButton addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
@@ -194,13 +202,16 @@
 }
 
 -(void)placePin:(CGPoint)point {
-    [self.mapView removeAnnotation:self.userPlacePin];
+    //Don't place a pin before the first question was shown
+    if(!self.beforeFirstQuestion) {
+        [self.mapView removeAnnotation:self.userPlacePin];
 
-    CLLocationCoordinate2D locCoord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
-    self.userPlacePin = [[MKPointAnnotation alloc] init];
-    self.userPlacePin.coordinate = locCoord;
-    [self.mapView addAnnotation:self.userPlacePin];
-    [self showSubmitButton];
+        CLLocationCoordinate2D locCoord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
+        self.userPlacePin = [[MKPointAnnotation alloc] init];
+        self.userPlacePin.coordinate = locCoord;
+        [self.mapView addAnnotation:self.userPlacePin];
+        [self showSubmitButton];
+    }
     
 }
 
@@ -210,16 +221,10 @@
 
 -(void)submit:(id)sender {
     [submitButton setHidden:YES];
-
-    if(self.currentQuestion >= 3) {
-        [self.navigationController pushViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"homeViewController"] animated:YES];
-    }
-    else {
-        [self showAnswerPin];
-    }
+    [self showAnswer];
 }
 
--(void)showAnswerPin {
+-(void)showAnswer {
     DEQuestion *question = self.questions[(NSUInteger) self.currentQuestion];
     MKPointAnnotation *dropPin = [[MKPointAnnotation alloc] init];
     NSLog(@"%f, %f",question.answer.coordinate.latitude, question.answer.coordinate.longitude);
@@ -234,22 +239,47 @@
     NSLog(@"%f %f", dropPin.coordinate.latitude, dropPin.coordinate.longitude);
 
     self.routeLine = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
+    
     [self.mapView addOverlay:self.routeLine];
+    
+    //Answer View
+    CLLocation *userLoc = [[CLLocation alloc] initWithCoordinate: coordinateArray[0] altitude:1 horizontalAccuracy:1 verticalAccuracy:-1 timestamp:nil];
+    CLLocation *answerLoc = [[CLLocation alloc] initWithCoordinate: coordinateArray[1] altitude:1 horizontalAccuracy:1 verticalAccuracy:-1 timestamp:nil];
+
+    CLLocationDistance distance = [userLoc distanceFromLocation:answerLoc]/1000;
+    [self showAnswerView:question.answer.text withDistance:distance];
+    
     [self.mapView setNeedsDisplay];
     [self.mapView setCenterCoordinate:dropPin.coordinate zoomLevel:1 animated:YES];
-    
     [self performSelector:@selector(showNextQuestion) withObject:nil afterDelay:4.0];
 }
 
+-(void)dismissAnswerView {
+    self.answerCurrentlyShown = NO;
+    [[TWMessageBarManager sharedInstance] hideAllAnimated:YES];
+}
+
+-(void)showAnswerView:(NSString *)answer withDistance:(CLLocationDistance)distance {
+    self.answerCurrentlyShown = YES;
+
+    [[TWMessageBarManager sharedInstance] showMessageWithTitle:[NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"searchedPlace", nil),answer]
+                                                   description:[NSString stringWithFormat:@"%@: %.0fkm",NSLocalizedString(@"distance",nil), distance]
+                                                          type:TWMessageBarMessageTypeInfo
+                                                      duration:6.0];
+}
+
 -(void)showNextQuestion {
-    
+    [self dismissAnswerView];
     //remove route
     [self.mapView removeOverlay:self.routeLine];
     [self.mapView removeAnnotations:self.mapView.annotations];
     self.currentQuestion += 1;
     
     if(self.currentQuestion >= kQuestionAmount) {
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+        NSLog(@"%@",self.navigationController);
+        NSLog(@"%@",self.navigationController.viewControllers);
+
+        [self.navigationController popToRootViewControllerAnimated:YES];
         return;
     }
     
@@ -266,6 +296,7 @@
     NSString *question = [NSString stringWithFormat:@"%@",((DEQuestion *)self.questions[self.currentQuestion]).question];
     DEQuestionViewController *questionViewController = [[DEQuestionViewController alloc] initWithNibName:@"DEQuestionViewController" bundle:nil];
     questionViewController.question = question;
+    self.beforeFirstQuestion = NO;
     [self presentPopupViewController:questionViewController animated:YES completion:nil];
 }
 
@@ -309,13 +340,6 @@
     return pinView;
 }
 
-#pragma mark -
-#pragma mark UIGestureRecognizerDelegate
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    return YES;
-}
 
 
 @end
