@@ -93,6 +93,10 @@
     [self.localNavigationController setNavigationBarHidden:NO];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -265,7 +269,7 @@
     [[TWMessageBarManager sharedInstance] showMessageWithTitle:[NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"searchedPlace", nil),answer]
                                                    description:[NSString stringWithFormat:@"%@: %.0fkm",NSLocalizedString(@"distance",nil), distance]
                                                           type:TWMessageBarMessageTypeInfo
-                                                      duration:6.0];
+                                                      duration:6.0 statusBarHidden:YES callback:nil];
 }
 
 -(void)showNextQuestion {
