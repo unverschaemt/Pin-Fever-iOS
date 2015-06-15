@@ -20,6 +20,7 @@
     DETileOverlay *mapOverlay;
 }
 
+
 @property (nonatomic,weak) IBOutlet MKMapView *mapView;
 @property (nonatomic,assign) NSInteger currentQuestion;
 @property (nonatomic, assign) BOOL questionCurrentlyShown;
@@ -31,10 +32,12 @@
 @property (nonatomic, strong) DECategory *category;
 @property (nonatomic, strong) NSMutableArray *questions;
 
-@property (nonatomic, strong) MKPolyline *routeLine; //line
+
+@property (nonatomic, strong) MKPolyline *routeLine;
 @property (nonatomic, strong) MKPointAnnotation *userPlacePin;
 
-//Since self.navigationController is nil in viewWillDisappear because the viewcontroller is deleted from the stack we need to keep a local reference
+//Since self.navigationController is nil in viewWillDisappear because the viewcontroller
+//is deleted from the stack we need to keep a local reference
 @property (nonatomic, weak) UINavigationController *localNavigationController;
 
 @end

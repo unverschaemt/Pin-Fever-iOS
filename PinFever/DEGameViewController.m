@@ -27,12 +27,15 @@
 
 #define kQuestionAmount 3
 
-//TEST
-#define GEORGIA_TECH_LATITUDE 33.777328
-#define GEORGIA_TECH_LONGITUDE -84.397348
+#define KARLSRUHE_LATITUDE 49.0
+#define KARLSRUHE_LONGITUDE 8.0
 
 #define ZOOM_LEVEL 1
 
+
+//TODO: based on self.game.state show answers of opponent or not (first, second move), show all question and answers no pin placing (finished game)
+//TODO: to make it easier, new viewcontroller for finished game (push from derounddetailviewcontroller), show second answer if state is accordingly
+//TODO: or all with this viewcontroller, submit button to next question button
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -42,22 +45,14 @@
     self.questions = [NSMutableArray new];
     apiWrapper = [DEAPIWrapper new];
     
-    self.mapView.delegate = self;
-    
-    NSString *template = @"http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg";
-    mapOverlay = [[DETileOverlay alloc] initWithURLTemplate:template];
-    mapOverlay.canReplaceMapContent = YES;
-  
-    [self.mapView addOverlay:mapOverlay level:MKOverlayLevelAboveLabels];
+    [self setupMap];
     
     self.beforeFirstQuestion = YES;
+
     //if question is shown dismiss question , else place pin
     UITapGestureRecognizer * tapInterceptor = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
     [self.mapView addGestureRecognizer:tapInterceptor];
   
-    CLLocationCoordinate2D centerCoord = { GEORGIA_TECH_LATITUDE, GEORGIA_TECH_LONGITUDE };
-    [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
-
     [TWMessageBarManager sharedInstance].styleSheet = [DENotificationStylesheet styleSheet];
 
     [self setupSubmitButton];
@@ -67,29 +62,21 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSNumber *value = @(UIInterfaceOrientationLandscapeLeft);
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
     [self loadQuestions];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    NSNumber *value = @(UIInterfaceOrientationPortrait);
-    [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"%@",self.navigationController);
     self.localNavigationController = self.navigationController;
     [self.navigationController setNavigationBarHidden:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    NSLog(@"viewwilldisappear");
-    //TODO: navigationbar trotzdem hidden FIXEN
-    NSLog(@"%@",self.localNavigationController);
     [self.localNavigationController setNavigationBarHidden:NO];
 }
 
@@ -102,19 +89,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 #pragma mark -
 #pragma mark Actions
+
+-(void)setupMap {
+    self.mapView.delegate = self;
+    NSString *template = @"http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg";
+    mapOverlay = [[DETileOverlay alloc] initWithURLTemplate:template];
+    mapOverlay.canReplaceMapContent = YES;
+    [self.mapView addOverlay:mapOverlay level:MKOverlayLevelAboveLabels];
+    CLLocationCoordinate2D centerCoord = { KARLSRUHE_LATITUDE, KARLSRUHE_LONGITUDE };
+    [self.mapView setCenterCoordinate:centerCoord zoomLevel:ZOOM_LEVEL animated:NO];
+}
 
 -(void)didTap:(UITapGestureRecognizer *)recognizer {
     if(!self.questionCurrentlyShown) {
@@ -129,14 +116,11 @@
 }
 
 -(void)loadQuestions {
-    NSLog(@"question loading");
-    NSString * language = @"en";
-    //TODO:[[NSLocale preferredLanguages] objectAtIndex:0];
+    //test with en
+    NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
-    NSLog(@"question url: %@",[NSString stringWithFormat:@"%@?amount=%i&language=%@&category=%@",kAPIRandomQuestions,kQuestionAmount,language,self.category.categoryId]);
+    DLog(@"%@",language);
     [apiWrapper request:[NSURL URLWithString:[NSString stringWithFormat:@"%@?amount=%i&language=%@&category=%@",kAPIRandomQuestions,kQuestionAmount,language,self.category.categoryId]] httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body){
-        NSLog(@"success");
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [self parseQuestions:body];
     } failed:^(NSError *error) {
@@ -165,7 +149,7 @@
         question.answer = answer;
         [self.questions addObject:question];
     }
-    [self performSelector:@selector(showCurrentQuestion) withObject:nil afterDelay:1.0];
+    [self showCurrentQuestion];
 }
 
 -(void)setupQuestionPopup {
@@ -231,17 +215,14 @@
 -(void)showAnswer {
     DEQuestion *question = self.questions[(NSUInteger) self.currentQuestion];
     MKPointAnnotation *dropPin = [[MKPointAnnotation alloc] init];
-    NSLog(@"%f, %f",question.answer.coordinate.latitude, question.answer.coordinate.longitude);
     dropPin.coordinate = question.answer.coordinate;
     dropPin.title = question.answer.text;
     [self.mapView addAnnotation:dropPin];
-    
+    //TODO: add opponent pin
     CLLocationCoordinate2D coordinateArray[2];
     coordinateArray[0] = self.userPlacePin.coordinate;
     coordinateArray[1] = dropPin.coordinate;
-    NSLog(@"%f %f", self.userPlacePin.coordinate.latitude, self.userPlacePin.coordinate.longitude);
-    NSLog(@"%f %f", dropPin.coordinate.latitude, dropPin.coordinate.longitude);
-
+  
     self.routeLine = [MKPolyline polylineWithCoordinates:coordinateArray count:2];
     
     [self.mapView addOverlay:self.routeLine];
@@ -251,6 +232,7 @@
     CLLocation *answerLoc = [[CLLocation alloc] initWithCoordinate: coordinateArray[1] altitude:1 horizontalAccuracy:1 verticalAccuracy:-1 timestamp:nil];
 
     CLLocationDistance distance = [userLoc distanceFromLocation:answerLoc]/1000;
+    //TODO: show also opponent distance
     [self showAnswerView:question.answer.text withDistance:distance];
     
     [self.mapView setNeedsDisplay];
@@ -265,7 +247,7 @@
 
 -(void)showAnswerView:(NSString *)answer withDistance:(CLLocationDistance)distance {
     self.answerCurrentlyShown = YES;
-
+    //TODO: show answer of opponent and his distance
     [[TWMessageBarManager sharedInstance] showMessageWithTitle:[NSString stringWithFormat:@"%@ : %@",NSLocalizedString(@"searchedPlace", nil),answer]
                                                    description:[NSString stringWithFormat:@"%@: %.0fkm",NSLocalizedString(@"distance",nil), distance]
                                                           type:TWMessageBarMessageTypeInfo
@@ -276,13 +258,11 @@
     [self dismissAnswerView];
     //remove route
     [self.mapView removeOverlay:self.routeLine];
+    //TODO: remove opponent route
     [self.mapView removeAnnotations:self.mapView.annotations];
     self.currentQuestion += 1;
     
     if(self.currentQuestion >= kQuestionAmount) {
-        NSLog(@"%@",self.navigationController);
-        NSLog(@"%@",self.navigationController.viewControllers);
-
         [self.navigationController popToRootViewControllerAnimated:YES];
         return;
     }
@@ -290,7 +270,6 @@
     self.questionCurrentlyShown = YES;
     NSString *question = [NSString stringWithFormat:@"%@",((DEQuestion *)self.questions[self.currentQuestion]).question];
     DEQuestionViewController *questionViewController = [[DEQuestionViewController alloc] initWithNibName:@"DEQuestionViewController" bundle:nil];
-    NSLog(@"%@",question);
     questionViewController.question = question;
     [self presentPopupViewController:questionViewController animated:YES completion:nil];
 }
@@ -320,6 +299,7 @@
         return [[MBXRasterTileRenderer alloc] initWithTileOverlay:overlay];
     }
     else {
+        //TODO: opponent route in different color
         MKPolylineRenderer* lineView = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
         lineView.fillColor = [UIColor redColor];
         lineView.strokeColor = [UIColor redColor];
@@ -337,6 +317,7 @@
     if(annotationPoint == self.userPlacePin) {
         pinView.pinColor = MKPinAnnotationColorRed;
     }
+    //TODO: opponent pinColor in different color
     else {
         pinView.pinColor = MKPinAnnotationColorPurple;
     }

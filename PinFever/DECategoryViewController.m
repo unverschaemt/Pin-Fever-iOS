@@ -55,13 +55,12 @@
 -(void)loadRandomCategories {
     NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    NSLog(@"%@",[NSString stringWithFormat:@"%@?amount=%i&language=%@",kAPIRandomCategories,kCategoryAmount,language]);
+
     [apiWrapper request:[NSURL URLWithString:[NSString stringWithFormat:@"%@?amount=%i&language=%@",kAPIRandomCategories,kCategoryAmount,language]] httpMethod:@"GET" optionalJSONData:nil optionalContentType:nil completed:^(NSDictionary *headers, NSString *body) {
         [self parseCategories:body];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
     } failed:^(NSError *error){
-        NSLog(@"%@",error);
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:NSLocalizedString(@"loadCategoriesError", nil) delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];

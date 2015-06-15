@@ -36,7 +36,6 @@
     [self.activeGames addObject:@"test"];
     
     self.title = NSLocalizedString(@"homeTitle", nil);
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"ActiveGamesTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"activeGamesCell"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     

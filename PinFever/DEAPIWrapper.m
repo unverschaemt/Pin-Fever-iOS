@@ -24,7 +24,7 @@
 }
 
 -(void)request:(NSURL *)url httpMethod:(NSString *)httpMethod optionalJSONData:(NSData *)jsonData optionalContentType:(NSString *)contentType completed:(RequestCompletionBlock)completionBlock failed:(RequestFailedBlock)failureBlock {
-    NSLog(@"REQUEST START");
+
     STHTTPRequest *r = [STHTTPRequest requestWithURL:url];
     [r setHTTPMethod:httpMethod];
     if([httpMethod isEqualToString:@"POST"] && jsonData != nil) {
@@ -38,11 +38,9 @@
     
     r.completionBlock = ^(NSDictionary *headers, NSString *body) {
         completionBlock(headers, body);
-        NSLog(@"success request");
     };
     
     r.errorBlock = ^(NSError *error) {
-        NSLog(@"error request, %@",error.localizedDescription);
         if(![self checkUnauthorized:wr.responseStatus]) {
             failureBlock(error);
         }
@@ -197,7 +195,7 @@
 }
 
 -(void)request:(NSURL *)url httpMethod:(NSString *)httpMethod optionalFormData:(NSData *)formData completed:(RequestCompletionBlock)completionBlock failed:(RequestFailedBlock)failureBlock {
-    NSLog(@"%@",[url description]);
+
     STHTTPRequest *r = [STHTTPRequest requestWithURL:url];
     [r setHTTPMethod:httpMethod];
     [r setHeaderWithName:kAPIAuthToken value:[keychainWrapper objectForKey:(__bridge id)(kSecAttrAccount)]];

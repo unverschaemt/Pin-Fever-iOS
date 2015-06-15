@@ -15,7 +15,6 @@
 - (void)loadTileAtPath:(MKTileOverlayPath)path
                 result:(void (^)(NSData *data, NSError *error))result {
     if (!result) {
-        NSLog(@"return");
         return;
     }
 
