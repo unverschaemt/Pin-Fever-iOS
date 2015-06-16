@@ -1,4 +1,5 @@
 #Pin-Fever-iOS
+ [![Build Status](https://travis-ci.org/unverschaemt/Pin-Fever-iOS.svg?branch=development)](https://travis-ci.org/unverschaemt/Pin-Fever-iOS)
 
 Pin Fever is a turn based geography quiz built with love by members of Unverschämt ([unverschaemt.net](http://unverschaemt.net)).
 
