@@ -1,14 +1,11 @@
 language: objective-c
-
 before_install:
   - sudo easy_install cpp-coveralls
   - brew uninstall xctool
   - brew update
   - brew install xctool --HEAD  
-	
 script:
  - xctool -workspace PinFever.xcworkspace -scheme PinFever -sdk iphonesimulator8.1 ONLY_ACTIVE_ARCH=NO
  - xctool test -workspace PinFever.xcworkspace -scheme PinFeverTests -sdk iphonesimulator8.1 ONLY_ACTIVE_ARCH=NO GCC_GENERATE_TEST_COVERAGE_FILES=YES
- 
 after_success:
   - ./coveralls.sh
